@@ -1,0 +1,6 @@
+name: Elements
+version: '0.1'
+main: cho.info.elements.Elements
+api-version: '1.21'
+prefix: System
+authors: [ HamburgBigJ ]
