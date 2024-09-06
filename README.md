@@ -2,5 +2,6 @@
 
 **Implementet**
 - Mining SKill
+- Foresting Skill
 - Skill Level Up system
 
