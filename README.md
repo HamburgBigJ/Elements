@@ -1,29 +1,29 @@
-# Welcomet To the Elements Project by HamburgBigJ
 
-**Implementet**
+
+# Welcome to the Elements Project by HamburgBigJ
+
+**Implemented**
 -
-- Mining SKill
+- Mining Skill
 - Foresting Skill
-- Skill Level Up system
-
-
+- Skill Level Up System
 
 **To Fix**
 -
-- Test Commands : sethub / setword
-- see all public vars
+- Test commands: `/sethub`, `/setworld`
+- Review all public variables
 
-
-**To do**
+**To Do**
 -
-- Mana system
-- Stamina system
-- Gui Enderchest
-- Teleport system
-- Worls generator for Example:  Netherblock / Skyblock / Whaterblock / Stoneblock ...
+- Mana System
+- Stamina System
+- GUI Enderchest
+- Teleport System
+- World Generator (e.g., Netherblock, Skyblock, Waterblock, Stoneblock)
 
 **Ideas**
-- 
-- Combat skill
-- Crafting skill
-- Coustom bosses
+-
+- Combat Skill
+- Crafting Skill
+- Custom Bosses
+
