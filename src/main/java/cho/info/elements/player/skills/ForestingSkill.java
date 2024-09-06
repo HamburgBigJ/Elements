@@ -1,3 +1,9 @@
+/*
+Created by: HamburgBihJ
+9/6/2024
+10:04
+Edit by: HamburgBigJ
+ */
 package cho.info.elements.player.skills;
 
 import cho.info.elements.configs.ConfigManager;
@@ -17,48 +23,53 @@ import java.util.Set;
 public class ForestingSkill implements Listener {
     private JavaPlugin plugin;
     public ConfigManager configManager;
-    private final Set<Material> blockedMaterials;
+    private final Set<Material> Materials;
 
+    // Constructor to initialize the ForestingSkill class
     public ForestingSkill(JavaPlugin plugin, ConfigManager configManager) {
         this.plugin = plugin;
         this.configManager = configManager;
-        this.blockedMaterials = new HashSet<>();
+        this.Materials = new HashSet<>();
 
-        this.blockedMaterials.add(Material.OAK_LOG);
-        this.blockedMaterials.add(Material.WARPED_STEM);
-        this.blockedMaterials.add(Material.CRIMSON_STEM);
-        this.blockedMaterials.add(Material.JUNGLE_LOG);
-        this.blockedMaterials.add(Material.SPRUCE_LOG);
-        this.blockedMaterials.add(Material.BIRCH_LOG);
-        this.blockedMaterials.add(Material.ACACIA_LOG);
-        this.blockedMaterials.add(Material.DARK_OAK_LOG);
-        this.blockedMaterials.add(Material.MANGROVE_LOG);
-        this.blockedMaterials.add(Material.CHERRY_LOG);
-
+        // Add different types of log materials to the set
+        this.Materials.add(Material.OAK_LOG);
+        this.Materials.add(Material.WARPED_STEM);
+        this.Materials.add(Material.CRIMSON_STEM);
+        this.Materials.add(Material.JUNGLE_LOG);
+        this.Materials.add(Material.SPRUCE_LOG);
+        this.Materials.add(Material.BIRCH_LOG);
+        this.Materials.add(Material.ACACIA_LOG);
+        this.Materials.add(Material.DARK_OAK_LOG);
+        this.Materials.add(Material.MANGROVE_LOG);
+        this.Materials.add(Material.CHERRY_LOG);
     }
 
+    // Event handler for block break events
     @EventHandler
-    public void onBlockBreake(BlockBreakEvent event) {
+    public void onBlockBreak(BlockBreakEvent event) {
         Material blockType = event.getBlock().getType();
 
-        if (blockedMaterials.contains(blockType)) {
+        // Check if the block broken is one of the log materials
+        if (Materials.contains(blockType)) {
             Player player = event.getPlayer();
 
+            // Retrieve the player's foresting XP and max XP from the configuration manager
             Object forestingXpObj = configManager.getPlayerValue(player, "ForestingXp");
-            Object forestingMacXpObj = configManager.getPlayerValue(player, "ForestingMaxXp");
+            Object forestingMaxXpObj = configManager.getPlayerValue(player, "ForestingMaxXp");
 
             int forestingXp = (forestingXpObj != null) ? (int) forestingXpObj : 0;
-            int forestingMaxXp = (forestingMacXpObj != null) ? (int) forestingMacXpObj : 0;
+            int forestingMaxXp = (forestingMaxXpObj != null) ? (int) forestingMaxXpObj : 0;
 
+            // Increment the player's foresting XP
             forestingXp = forestingXp + 1;
 
+            // Update the player's foresting XP in the configuration manager
             configManager.setPlayerValue(player, "ForestingXp", forestingXp);
 
+            // Send a message to the player displaying their current foresting XP
             player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(
-                    ChatColor.DARK_AQUA + "Farming XP: " + forestingXp  + " / " + forestingMaxXp
+                    ChatColor.DARK_AQUA + "Foresting XP: " + forestingXp  + " / " + forestingMaxXp
             ));
         }
-
     }
-
 }

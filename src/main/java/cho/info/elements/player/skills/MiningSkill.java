@@ -1,3 +1,9 @@
+/*
+Created by: HamburgBihJ
+9/6/2024
+10:04
+Edit by: HamburgBigJ
+ */
 package cho.info.elements.player.skills;
 
 import cho.info.elements.configs.ConfigManager;
@@ -16,32 +22,31 @@ import org.slf4j.LoggerFactory;
 import java.util.HashSet;
 import java.util.Set;
 
-
 public class MiningSkill implements Listener {
 
     private static final Logger log = LoggerFactory.getLogger(MiningSkill.class);
     private JavaPlugin plugin;
-    private final Set<Material> blockedMaterials;
+    private final Set<Material> Materials;
     public ConfigManager configManager;
 
     public MiningSkill(JavaPlugin plugin, ConfigManager configManager) {
         this.plugin = plugin;
-        this.configManager = configManager; // ConfigManager-Referenz speichern
-        this.blockedMaterials = new HashSet<>();
+        this.configManager = configManager; // Save reference to ConfigManager
+        this.Materials = new HashSet<>();
 
-        this.blockedMaterials.add(Material.STONE);
-        this.blockedMaterials.add(Material.BASALT);
-        this.blockedMaterials.add(Material.DEEPSLATE);
+        this.Materials.add(Material.STONE);
+        this.Materials.add(Material.BASALT);
+        this.Materials.add(Material.DEEPSLATE);
     }
 
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
         Material blockType = event.getBlock().getType();
 
-        if (blockedMaterials.contains(blockType)) {
+        if (Materials.contains(blockType)) {
             Player player = event.getPlayer();
 
-            // Überprüfen, ob der Spieler bereits MiningXp hat, ansonsten 0 verwenden
+            // Check if the player already has MiningXp; otherwise, use 0
             Object miningxpObj = configManager.getPlayerValue(player, "MiningXp");
             Object miningMaxXpObj = configManager.getPlayerValue(player, "MiningMaxXp");
 
@@ -50,15 +55,13 @@ public class MiningSkill implements Listener {
 
             miningXp = miningXp + 1;
 
-            // Speichern des neuen MiningXp-Wertes
+            // Save the new MiningXp value
             configManager.setPlayerValue(player, "MiningXp", miningXp);
 
-            // Action Bar mit Farben senden
+            // Send Action Bar message with colors
             player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(
                     ChatColor.DARK_AQUA + "Mining XP: " + miningXp + " / " + miningMaxXp
             ));
         }
     }
-
-
 }

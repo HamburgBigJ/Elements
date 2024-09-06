@@ -1,14 +1,23 @@
+/*
+Created by: HamburgBihJ
+9/6/2024
+10:04
+Edit by: HamburgBigJ
+ */
 package cho.info.elements;
 
+import cho.info.elements.commands.GamemodeCommand;
+import cho.info.elements.commands.SetHubCommand;
+import cho.info.elements.commands.SetSkillXpCommand;
+import cho.info.elements.commands.SetWorldCommand;
 import cho.info.elements.configs.ConfigManager;
-import cho.info.elements.player.SkillLevelManeger;
+import cho.info.elements.player.SkillLevelManager;
 import cho.info.elements.player.onFirstJoin;
+import cho.info.elements.player.skills.FarmingSkill;
+import cho.info.elements.player.skills.ForestingSkill;
 import cho.info.elements.player.skills.MiningSkill;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import java.util.UUID;
 
 public final class Elements extends JavaPlugin {
 
@@ -21,13 +30,19 @@ public final class Elements extends JavaPlugin {
     @Override
     public void onEnable() {
 
-        ConfigManager configManager = new ConfigManager(getDataFolder());
-        // ANSI-Escape-Code für Blaue Farbe
+        configManager = new ConfigManager(getDataFolder());
+
+        getLogger().warning("Plugin: " + getName());
+        getLogger().warning("This is an Experimental Alpha version of this plugin.");
+        getLogger().warning("Many features aren't implemented yet and may not work!");
+
+
+        // ANSI Escape Code for Blue Color
         String blue = "\u001B[34m";
         String reset = "\u001B[0m";
 
         // ASCII-Art
-        String logo = blue + "\n" +
+        String logo = blue + "By: HamburgBigJ\n" +
                 " /$$$$$$$$\n" +
                 " | $$_____/\n" +
                 " | $$      \n" +
@@ -38,21 +53,51 @@ public final class Elements extends JavaPlugin {
                 " |________/\n" +
                 reset;
 
-        // Ausgabe in der Konsole
+        // Print to console
         getLogger().info(logo);
 
         saveDefaultConfig();
 
-        //Register All Events
+        // Register all events
         pluginManager.registerEvents(new onFirstJoin(this), this);
         pluginManager.registerEvents(new MiningSkill(this, configManager), this);
-        pluginManager.registerEvents(new SkillLevelManeger(this, configManager), this);
+        pluginManager.registerEvents(new SkillLevelManager(this, configManager), this);
+        pluginManager.registerEvents(new FarmingSkill(this, configManager), this);
+        pluginManager.registerEvents(new ForestingSkill(this, configManager), this);
 
+        // Register all commands
+        this.getCommand("gm").setExecutor(new GamemodeCommand());
+        this.getCommand("setvar").setExecutor(new SetSkillXpCommand(configManager));
+        this.getCommand("sethub").setExecutor(new SetHubCommand(configManager));
+        this.getCommand("serworld").setExecutor(new SetWorldCommand(configManager));
 
+        // All public variables
+        configManager.addPublicVar("HubCords", 0);
+        configManager.addPublicVar("WorldCords", 0);
     }
 
     @Override
     public void onDisable() {
         // Plugin shutdown logic
+        getLogger().info("Shutdown");
+
+        // ANSI Escape Code for Blue Color
+        String blue = "\u001B[34m";
+        String reset = "\u001B[0m";
+
+        // ASCII-Art
+        String logo = blue + "By: HamburgBigJ\n" +
+                " /$$$$$$$$\n" +
+                " | $$_____/\n" +
+                " | $$      \n" +
+                " | $$$$$   \n" +
+                " | $$__/   \n" +
+                " | $$      \n" +
+                " | $$$$$$$$\n" +
+                " |________/\n" +
+                reset;
+
+        // Print to console
+        getLogger().info(logo);
     }
 }

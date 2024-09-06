@@ -1,3 +1,9 @@
+/*
+Created by: HamburgBihJ
+9/6/2024
+10:04
+Edit by: HamburgBigJ
+ */
 package cho.info.elements.player;
 
 import cho.info.elements.configs.ConfigManager;
@@ -12,47 +18,47 @@ public class onFirstJoin implements Listener {
     private final JavaPlugin plugin;
     private ConfigManager configManager;
 
-
-    // Konstruktor um das Plugin-Objekt zu übergeben
+    // Constructor to pass the plugin object
     public onFirstJoin(JavaPlugin plugin) {
         this.plugin = plugin;
     }
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
-        FileConfiguration config = plugin.getConfig(); // Zugriff auf die Konfiguration des Plugins
+        FileConfiguration config = plugin.getConfig(); // Access the plugin's configuration
         String playerUUID = event.getPlayer().getUniqueId().toString();
 
         if (config.contains("players." + playerUUID)) {
-            // Der Spieler ist bereits gejoint
-            event.getPlayer().sendMessage("Willkommen zurück, " + event.getPlayer().getName() + "!");
+            // The player has already joined
+            event.getPlayer().sendMessage("Welcome back, " + event.getPlayer().getName() + "!");
         } else {
-            // Der Spieler join zum ersten Mal
-            event.getPlayer().sendMessage("Willkommen zu deinem ersten Besuch, " + event.getPlayer().getName() + "!");
-            // Füge den Spieler zur Konfiguration hinzu
+            // The player is joining for the first time
+            event.getPlayer().sendMessage("Welcome to your first visit, " + event.getPlayer().getName() + "!");
+            // Add the player to the configuration
             config.set("players." + playerUUID, true);
-            plugin.saveConfig(); // Speichere die Konfiguration
+            plugin.saveConfig(); // Save the configuration
 
-            // Erstelle eine Instanz des ConfigManagers
+            // Create an instance of ConfigManager
             ConfigManager configManager = new ConfigManager(plugin.getDataFolder());
 
-            //All Xp Forms For a player
+            // All XP Forms for a player
             configManager.addValue(event.getPlayer(), "FarmingXp", 0);
             configManager.addValue(event.getPlayer(), "ForestingXp", 0);
             configManager.addValue(event.getPlayer(), "MiningXp", 0);
 
-            //All Skills
+            // All Skills
             configManager.addValue(event.getPlayer(), "FarmingLv", 0);
             configManager.addValue(event.getPlayer(), "ForestingLv", 0);
             configManager.addValue(event.getPlayer(), "MiningLv", 0);
 
-            //Skill Max Xp
+            // Skill Max XP
             configManager.addValue(event.getPlayer(), "FarmingMaxXp", 100);
             configManager.addValue(event.getPlayer(), "ForestingMaxXp", 100);
             configManager.addValue(event.getPlayer(), "MiningMaxXp", 100);
 
-            //Recurses
+            // Resources
             configManager.addValue(event.getPlayer(), "Mana", 10);
+            configManager.addValue(event.getPlayer(), "Stamina", 20);
         }
     }
 }

@@ -1,3 +1,9 @@
+/*
+Created by: HamburgBihJ
+9/6/2024
+10:04
+Edit by: HamburgBigJ, Codellama
+ */
 package cho.info.elements.configs;
 
 import org.bukkit.configuration.file.FileConfiguration;
@@ -13,22 +19,34 @@ import java.util.UUID;
 public class ConfigManager {
 
     private final File playerDataFolder;
+    private final File publicVarsFile;
     private final Map<UUID, FileConfiguration> configCache = new HashMap<>();
+    private FileConfiguration publicVarsConfig;
 
     public ConfigManager(File pluginFolder) {
-        // Erstelle einen Ordner für Spielerdateien, falls er nicht existiert
+        // Create a folder for player files if it doesn't exist
         playerDataFolder = new File(pluginFolder, "playerdata");
         if (!playerDataFolder.exists()) {
             playerDataFolder.mkdirs();
         }
+
+        // Initialize the public variables file
+        File serverVarsFolder = new File(pluginFolder, "ServerVars");
+        if (!serverVarsFolder.exists()) {
+            serverVarsFolder.mkdirs();
+        }
+        publicVarsFile = new File(serverVarsFolder, "PublicVars.yml");
+
+        // Load public variables
+        loadPublicVars();
     }
 
-    // Lädt oder holt die Config-Datei für den Spieler basierend auf der UUID
+    // Loads or retrieves the config file for the player based on UUID
     private FileConfiguration getPlayerConfig(UUID playerUUID) {
         File playerFile = new File(playerDataFolder, playerUUID.toString() + ".yml");
         FileConfiguration config = configCache.get(playerUUID);
 
-        if (config == null || configFileNeedsReload(playerFile)) {
+        if (config == null || !playerFile.exists()) {
             if (!playerFile.exists()) {
                 try {
                     playerFile.createNewFile();
@@ -43,12 +61,7 @@ public class ConfigManager {
         return config;
     }
 
-    private boolean configFileNeedsReload(File playerFile) {
-        // Hier kannst du überprüfen, ob die Datei neu geladen werden muss (z.B. durch Zeitstempel vergleichen)
-        return !configCache.containsKey(playerFile);
-    }
-
-    // Speichert die Config-Datei des Spielers
+    // Saves the player's config file
     public void savePlayerConfig(UUID playerUUID, FileConfiguration config) {
         File playerFile = new File(playerDataFolder, playerUUID.toString() + ".yml");
         try {
@@ -58,35 +71,72 @@ public class ConfigManager {
         }
     }
 
-    // Funktion zum Setzen eines Wertes (z.B. FarmingXP) für den Spieler
+    // Sets a value (e.g., FarmingXP) for the player
     public void setPlayerValue(Player player, String path, Object value) {
         FileConfiguration config = getPlayerConfig(player.getUniqueId());
         config.set(path, value);
         savePlayerConfig(player.getUniqueId(), config);
     }
 
-    // Funktion zum Abrufen eines Wertes (z.B. FarmingXP) für den Spieler
+    // Retrieves a value (e.g., FarmingXP) for the player
     public Object getPlayerValue(Player player, String path) {
         FileConfiguration config = getPlayerConfig(player.getUniqueId());
         return config.get(path);
     }
 
-    // Funktion zum Hinzufügen einer neuen Variable mit einem Standardwert
+    // Adds a new variable with a default value
     public void addValue(Player player, String variableName, Object defaultValue) {
         FileConfiguration config = getPlayerConfig(player.getUniqueId());
 
-        // Überprüfe, ob die Variable bereits existiert
         if (!config.contains(variableName)) {
-            // Setze die Variable mit dem Standardwert
             config.set(variableName, defaultValue);
-            // Speichere die Config
             savePlayerConfig(player.getUniqueId(), config);
         }
     }
 
-    // Funktion zum Überprüfen, ob eine Variable existiert
+    // Checks if a variable exists
     public boolean contains(Player player, String path) {
         FileConfiguration config = getPlayerConfig(player.getUniqueId());
         return config.contains(path);
+    }
+
+    // Loads the public variables from the PublicVars file
+    private void loadPublicVars() {
+        if (!publicVarsFile.exists()) {
+            try {
+                publicVarsFile.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        publicVarsConfig = YamlConfiguration.loadConfiguration(publicVarsFile);
+    }
+
+    // Retrieves a public variable value
+    public Object getPublicVar(String path) {
+        return publicVarsConfig.get(path);
+    }
+
+    // Sets a public variable value
+    public void setPublicVar(String path, Object value) {
+        publicVarsConfig.set(path, value);
+        savePublicVars();
+    }
+
+    // Saves the public variables to the PublicVars file
+    private void savePublicVars() {
+        try {
+            publicVarsConfig.save(publicVarsFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Adds a new public variable with a default value
+    public void addPublicVar(String variableName, Object defaultValue) {
+        if (!publicVarsConfig.contains(variableName)) {
+            publicVarsConfig.set(variableName, defaultValue);
+            savePublicVars();
+        }
     }
 }
