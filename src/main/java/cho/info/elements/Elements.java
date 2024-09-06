@@ -1,6 +1,7 @@
 package cho.info.elements;
 
 import cho.info.elements.configs.ConfigManager;
+import cho.info.elements.player.SkillLevelManeger;
 import cho.info.elements.player.onFirstJoin;
 import cho.info.elements.player.skills.MiningSkill;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -19,6 +20,8 @@ public final class Elements extends JavaPlugin {
 
     @Override
     public void onEnable() {
+
+        ConfigManager configManager = new ConfigManager(getDataFolder());
         // ANSI-Escape-Code für Blaue Farbe
         String blue = "\u001B[34m";
         String reset = "\u001B[0m";
@@ -42,7 +45,8 @@ public final class Elements extends JavaPlugin {
 
         //Register All Events
         pluginManager.registerEvents(new onFirstJoin(this), this);
-        pluginManager.registerEvents(new MiningSkill(this), this);
+        pluginManager.registerEvents(new MiningSkill(this, configManager), this);
+        pluginManager.registerEvents(new SkillLevelManeger(this, configManager), this);
 
 
     }
