@@ -13,7 +13,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.awt.*;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -47,15 +46,17 @@ public class MiningSkill implements Listener {
             Object miningMaxXpObj = configManager.getPlayerValue(player, "MiningMaxXp");
 
             int miningMaxXp = (miningMaxXpObj != null) ? (int) miningMaxXpObj : 0;
-            int miningxp = (miningxpObj != null) ? (int) miningxpObj : 0;
+            int miningXp = (miningxpObj != null) ? (int) miningxpObj : 0;
 
-            int newminingxp = miningxp + 1;
+            miningXp = miningXp + 1;
 
             // Speichern des neuen MiningXp-Wertes
-            configManager.setPlayerValue(player, "MiningXp", newminingxp);
+            configManager.setPlayerValue(player, "MiningXp", miningXp);
 
             // Action Bar mit Farben senden
-            player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.DARK_AQUA + "Mining XP: " + newminingxp + " / " + miningMaxXp));
+            player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(
+                    ChatColor.DARK_AQUA + "Mining XP: " + miningXp + " / " + miningMaxXp
+            ));
         }
     }
 

@@ -1,6 +1,8 @@
 package cho.info.elements.player;
 
 import cho.info.elements.configs.ConfigManager;
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.ChatColor;
 import org.bukkit.Particle;
 import org.bukkit.World;
@@ -39,6 +41,10 @@ public class SkillLevelManeger implements Listener {
             miningMaxXp = miningMaxXp + 100;
             miningLv = miningLv + 1;
 
+            player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(
+                    ChatColor.DARK_AQUA + "Mining XP: " + miningXp + " / " + miningMaxXp
+            ));
+
             configManager.setPlayerValue(player, "MiningXp", miningXp);
             configManager.setPlayerValue(player, "MiningLv", miningLv);
             configManager.setPlayerValue(player, "MiningMaxXp", miningMaxXp);
@@ -47,9 +53,43 @@ public class SkillLevelManeger implements Listener {
 
             var playerlocation = event.getPlayer().getLocation();
 
-            world.spawnParticle(Particle.FIREWORK, playerlocation, 2);
+            world.spawnParticle(Particle.FIREWORK, playerlocation, 5);
 
 
+        }
+    }
+
+    @EventHandler
+    public void onForestingSkillManeger(BlockBreakEvent event) {
+        Player player = event.getPlayer();
+        World world = player.getWorld();
+
+        Object forestingXpObj = configManager.getPlayerValue(player, "ForestingXp");
+        Object forestingMacXpObj = configManager.getPlayerValue(player, "ForestingMaxXp");
+        Object forestingLvObj = configManager.getPlayerValue(player, "ForestingLv");
+
+        int forestingXp = (forestingXpObj != null) ? (int) forestingXpObj : 0;
+        int forestingMaxXp = (forestingMacXpObj != null) ? (int) forestingMacXpObj : 0;
+        int forestingLv = (forestingLvObj != null) ? (int) forestingLvObj : 0;
+
+        if (forestingXp >= forestingMaxXp) {
+            forestingXp = 0;
+            forestingMaxXp = forestingMaxXp + 100;
+            forestingLv = forestingLv + 1;
+
+            player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(
+                    ChatColor.DARK_AQUA + "Farming XP: " + forestingXp  + " / " + forestingMaxXp
+            ));
+
+            configManager.setPlayerValue(player, "ForestingXp", forestingXp);
+            configManager.setPlayerValue(player, "ForestingMaxXp", forestingMaxXp);
+            configManager.setPlayerValue(player, "ForestingLv", forestingLv);
+
+            event.getPlayer().sendMessage(ChatColor.DARK_AQUA + "Foresting Level up to --> " + forestingLv);
+
+            var playerlocation = event.getPlayer().getLocation();
+
+            world.spawnParticle(Particle.FIREWORK, playerlocation, 5);
         }
     }
 }

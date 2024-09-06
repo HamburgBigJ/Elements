@@ -1,5 +1,6 @@
 # Welcomet To the Elements Project
 
-** Implementet
+**Implementet**
 - Mining SKill
 - Skill Level Up system
+
