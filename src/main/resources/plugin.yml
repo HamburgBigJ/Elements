@@ -4,6 +4,8 @@ main: cho.info.elements.Elements
 api-version: '1.21'
 prefix: Elements-Alpha
 authors: [ HamburgBigJ ]
+softdepend:
+  - BoostedAudio
 
 commands:
   gm:

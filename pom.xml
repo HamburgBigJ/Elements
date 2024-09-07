@@ -68,5 +68,12 @@
             <version>1.21-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <systemPath>${project.basedir}/libs/BoostedAudio.jar</systemPath>
+            <groupId>fr.supermax_8.boostedaudio</groupId>
+            <artifactId>boostedaudio</artifactId>
+            <version>2.16.16</version>
+            <scope>system</scope>
+        </dependency>
     </dependencies>
 </project>

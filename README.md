@@ -37,3 +37,5 @@ https://www.youtube.com/@SparkofPhoenix
 - Gui chanel evet not work
 - Editeble enderchest
 - Teleport sound not work
+- Boosted audio Integraton
+- Softdepend rework

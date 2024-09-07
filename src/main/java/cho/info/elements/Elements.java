@@ -19,6 +19,8 @@ import cho.info.elements.player.onFirstJoin;
 import cho.info.elements.player.skills.FarmingSkill;
 import cho.info.elements.player.skills.ForestingSkill;
 import cho.info.elements.player.skills.MiningSkill;
+import fr.supermax_8.boostedaudio.api.BoostedAudioAPI;
+import fr.supermax_8.boostedaudio.api.User;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -38,6 +40,7 @@ public final class Elements extends JavaPlugin {
         configManager = new ConfigManager(getDataFolder());
         VariableManager publicVariableManager = new VariableManager(getDataFolder(), "ServerVars", "PublicVars.yml");
         ItemManager itemManager = new ItemManager();
+        BoostedAudioAPI boostedAudioAPI = BoostedAudioAPI.getAPI();
 
         getLogger().warning("Plugin: " + getName());
         getLogger().warning("This is an Experimental Alpha version of this plugin.");
@@ -82,6 +85,15 @@ public final class Elements extends JavaPlugin {
         // All public variables
         configManager.addPublicVar("HubCords", 0);
         configManager.addPublicVar("WorldCords", 0);
+
+
+        //Boosted Audio Soft Depend
+        if (pluginManager.isPluginEnabled("BoostedAudio")) {
+            getLogger().info("BoostedAudio: True");
+            boostedAudioAPI.info("Enable Elements");
+        }else {
+            getLogger().info("BoostedAudio: False");
+        }
     }
 
     @Override
