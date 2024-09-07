@@ -13,7 +13,6 @@
 - Implimet feture to read sub vares ecxample is Public vares
 - Mana System
 - Stamina System
-- GUI Enderchest
 - Teleport System
 - World Generator (e.g., Netherblock, Skyblock, Waterblock, Stoneblock)
 - Implemet xp reward
@@ -27,4 +26,9 @@
 **Errors**
 -
 - Set world cords
-- 
+- See All  Endechest Command
+- Teleport locaton not found
+- Destenaton save command rewride
+- Gui chanel evet not work
+- Editeble enderchest
+- Teleport sound not work

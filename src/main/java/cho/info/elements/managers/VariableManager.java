@@ -1,9 +1,8 @@
 /*
 Created by: HamburgBihJ
 9/7/2024
-11:04
 Edit by: HamburgBigJ
- */
+*/
 package cho.info.elements.managers;
 
 import org.bukkit.Bukkit;
@@ -18,8 +17,8 @@ import java.util.UUID;
 
 public class VariableManager {
 
-    private File configFile;
-    private FileConfiguration config;
+    private final FileConfiguration config;
+    private final File configFile;
 
     public VariableManager(File dataFolder, String subFolder, String fileName) {
         // Erstelle den Pfad zu dem Ordner "publicvars"
@@ -37,11 +36,12 @@ public class VariableManager {
                 e.printStackTrace();
             }
         }
+
         this.config = YamlConfiguration.loadConfiguration(configFile);
     }
 
     // Holt eine Location aus der YAML-Datei
-    public Location getLocation(String path) {
+    public Location getLocation(@NotNull String path) {
         if (config.contains(path)) {
             String worldName = config.getString(path + ".world");
             double x = config.getDouble(path + ".x");
@@ -53,10 +53,11 @@ public class VariableManager {
             return new Location(Bukkit.getWorld(worldName), x, y, z, yaw, pitch);
         }
         return null;  // Falls der Pfad nicht existiert
+
     }
 
     // Holt einen Boolean-Wert aus der YAML-Datei
-    public Boolean getBoolean(String path) {
+    public Boolean getBoolean(@NotNull String path) {
         if (config.contains(path)) {
             return config.getBoolean(path);
         }
@@ -64,7 +65,7 @@ public class VariableManager {
     }
 
     // Holt einen String aus der YAML-Datei
-    public String getString(String path) {
+    public String getString(@NotNull String path) {
         if (config.contains(path)) {
             return config.getString(path);
         }
@@ -72,7 +73,7 @@ public class VariableManager {
     }
 
     // Holt einen Wert eines Spielers (UUID) aus der YAML-Datei
-    public Boolean getPlayerStatus(UUID uuid) {
+    public Boolean getPlayerStatus(@NotNull UUID uuid) {
         String path = "players." + uuid.toString();
         return getBoolean(path);
     }
@@ -86,4 +87,3 @@ public class VariableManager {
         }
     }
 }
-

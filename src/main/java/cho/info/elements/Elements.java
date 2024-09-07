@@ -37,6 +37,7 @@ public final class Elements extends JavaPlugin {
 
         configManager = new ConfigManager(getDataFolder());
         VariableManager publicVariableManager = new VariableManager(getDataFolder(), "ServerVars", "PublicVars.yml");
+        ItemManager itemManager = new ItemManager();
 
         getLogger().warning("Plugin: " + getName());
         getLogger().warning("This is an Experimental Alpha version of this plugin.");
