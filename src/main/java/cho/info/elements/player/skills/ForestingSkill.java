@@ -6,7 +6,7 @@ Edit by: HamburgBigJ
  */
 package cho.info.elements.player.skills;
 
-import cho.info.elements.configs.ConfigManager;
+import cho.info.elements.managers.ConfigManager;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.ChatColor;
@@ -70,6 +70,15 @@ public class ForestingSkill implements Listener {
             player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(
                     ChatColor.DARK_AQUA + "Foresting XP: " + forestingXp  + " / " + forestingMaxXp
             ));
+
+            Object basexpobj = configManager.getPlayerValue(player, "BaseXp");
+            Object xpmultipliorobj = configManager.getPlayerValue(player, "XpMultiplier");
+
+            int basexp = (basexpobj != null) ? (int) basexpobj : 0;
+            int xpmultiplior = (xpmultipliorobj != null) ? (int) xpmultipliorobj : 0;
+
+            player.giveExp(basexp * xpmultiplior);
+
         }
     }
 }

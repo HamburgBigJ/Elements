@@ -6,7 +6,7 @@ Edit by: HamburgBigJ
 */
 package cho.info.elements.player;
 
-import cho.info.elements.configs.ConfigManager;
+import cho.info.elements.managers.ConfigManager;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.ChatColor;
@@ -67,9 +67,9 @@ public class SkillLevelManager implements Listener {
         Player player = event.getPlayer();
         World world = player.getWorld();
 
-        Object forestryXpObj = configManager.getPlayerValue(player, "ForestryXp");  // Corrected "Foresting" to "Forestry"
-        Object forestryMaxXpObj = configManager.getPlayerValue(player, "ForestryMaxXp");  // Corrected "Foresting" to "Forestry"
-        Object forestryLvObj = configManager.getPlayerValue(player, "ForestryLv");  // Corrected "Foresting" to "Forestry"
+        Object forestryXpObj = configManager.getPlayerValue(player, "ForestingXp");  // Corrected "Foresting" to "Forestry"
+        Object forestryMaxXpObj = configManager.getPlayerValue(player, "ForestingMaxXp");  // Corrected "Foresting" to "Forestry"
+        Object forestryLvObj = configManager.getPlayerValue(player, "ForestingLv");  // Corrected "Foresting" to "Forestry"
 
         int forestryXp = (forestryXpObj != null) ? (int) forestryXpObj : 0;
         int forestryMaxXp = (forestryMaxXpObj != null) ? (int) forestryMaxXpObj : 0;

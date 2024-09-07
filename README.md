@@ -8,18 +8,15 @@
 - Foresting Skill
 - Skill Level Up System
 
-**To Fix**
--
-- Test commands: `/sethub`, `/setworld`
-- Review all public variables
-
 **To Do**
 -
+- Implimet feture to read sub vares ecxample is Public vares
 - Mana System
 - Stamina System
 - GUI Enderchest
 - Teleport System
 - World Generator (e.g., Netherblock, Skyblock, Waterblock, Stoneblock)
+- Implemet xp reward
 
 **Ideas**
 -
@@ -27,3 +24,7 @@
 - Crafting Skill
 - Custom Bosses
 
+**Errors**
+-
+- Set world cords
+- 

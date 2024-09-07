@@ -10,8 +10,11 @@ import cho.info.elements.commands.GamemodeCommand;
 import cho.info.elements.commands.SetHubCommand;
 import cho.info.elements.commands.SetSkillXpCommand;
 import cho.info.elements.commands.SetWorldCommand;
-import cho.info.elements.configs.ConfigManager;
+import cho.info.elements.managers.ConfigManager;
+import cho.info.elements.managers.ItemManager;
+import cho.info.elements.managers.VariableManager;
 import cho.info.elements.player.SkillLevelManager;
+import cho.info.elements.player.gui.EnderChest;
 import cho.info.elements.player.onFirstJoin;
 import cho.info.elements.player.skills.FarmingSkill;
 import cho.info.elements.player.skills.ForestingSkill;
@@ -26,11 +29,14 @@ public final class Elements extends JavaPlugin {
 
     private ConfigManager configManager;
     public PluginManager pluginManager = getServer().getPluginManager();
+    public VariableManager variableManager;
+    public ItemManager itemManager;
 
     @Override
     public void onEnable() {
 
         configManager = new ConfigManager(getDataFolder());
+        VariableManager publicVariableManager = new VariableManager(getDataFolder(), "ServerVars", "PublicVars.yml");
 
         getLogger().warning("Plugin: " + getName());
         getLogger().warning("This is an Experimental Alpha version of this plugin.");
@@ -64,12 +70,13 @@ public final class Elements extends JavaPlugin {
         pluginManager.registerEvents(new SkillLevelManager(this, configManager), this);
         pluginManager.registerEvents(new FarmingSkill(this, configManager), this);
         pluginManager.registerEvents(new ForestingSkill(this, configManager), this);
+        pluginManager.registerEvents(new EnderChest(this, configManager, publicVariableManager, itemManager), this);
 
         // Register all commands
         this.getCommand("gm").setExecutor(new GamemodeCommand());
         this.getCommand("setvar").setExecutor(new SetSkillXpCommand(configManager));
         this.getCommand("sethub").setExecutor(new SetHubCommand(configManager));
-        this.getCommand("serworld").setExecutor(new SetWorldCommand(configManager));
+        this.getCommand("setworld").setExecutor(new SetWorldCommand(configManager));
 
         // All public variables
         configManager.addPublicVar("HubCords", 0);

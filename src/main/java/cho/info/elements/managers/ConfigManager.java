@@ -4,7 +4,7 @@ Created by: HamburgBihJ
 10:04
 Edit by: HamburgBigJ, Codellama
  */
-package cho.info.elements.configs;
+package cho.info.elements.managers;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;

@@ -6,7 +6,7 @@ Edit by: HamburgBigJ
  */
 package cho.info.elements.commands;
 
-import cho.info.elements.configs.ConfigManager;
+import cho.info.elements.managers.ConfigManager;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -51,7 +51,9 @@ public class SetSkillXpCommand implements CommandExecutor {
         } else {
             // Inform non-players that the command can only be used by players
             commandSender.sendMessage("This command can only be used by players.");
-            return false;
+
         }
+
+        return false;
     }
 }

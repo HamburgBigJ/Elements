@@ -6,7 +6,7 @@ Edit by: HamburgBigJ
  */
 package cho.info.elements.player;
 
-import cho.info.elements.configs.ConfigManager;
+import cho.info.elements.managers.ConfigManager;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -59,6 +59,13 @@ public class onFirstJoin implements Listener {
             // Resources
             configManager.addValue(event.getPlayer(), "Mana", 10);
             configManager.addValue(event.getPlayer(), "Stamina", 20);
+
+            //Reward
+            configManager.addValue(event.getPlayer(), "BaseXp", 1);
+            configManager.addValue(event.getPlayer(), "XpMultiplier", 1);
+
+            //Gui Tier
+            configManager.addValue(event.getPlayer(), "EdderGui", 0);
         }
     }
 }

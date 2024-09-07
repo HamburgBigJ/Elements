@@ -6,7 +6,7 @@ Edit by: HamburgBigJ
  */
 package cho.info.elements.commands;
 
-import cho.info.elements.configs.ConfigManager;
+import cho.info.elements.managers.ConfigManager;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
