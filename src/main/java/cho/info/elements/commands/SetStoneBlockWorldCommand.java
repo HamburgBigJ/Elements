@@ -15,12 +15,13 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-public class SetHubCommand implements CommandExecutor {
+public class SetStoneBlockWorldCommand implements CommandExecutor {
 
+    // Instance of ConfigManager used for managing configuration
     public ConfigManager configManager;
 
-    // Constructor to initialize ConfigManager
-    public SetHubCommand(ConfigManager configManager) {
+    // Constructor initializing ConfigManager
+    public SetStoneBlockWorldCommand(ConfigManager configManager) {
         this.configManager = configManager;
     }
 
@@ -32,16 +33,16 @@ public class SetHubCommand implements CommandExecutor {
             Location playerLocation = player.getLocation();
 
             // Save the player's location in the config with proper structure
-            configManager.setPublicVar("HubWorld.world", playerLocation.getWorld().getName());
-            configManager.setPublicVar("HubWorld.x", playerLocation.getX());
-            configManager.setPublicVar("HubWorld.y", playerLocation.getY());
-            configManager.setPublicVar("HubWorld.z", playerLocation.getZ());
-            configManager.setPublicVar("HubWorld.pitch", playerLocation.getPitch());
-            configManager.setPublicVar("HubWorld.yaw", playerLocation.getYaw());
+            configManager.setPublicVar("StoneblockWorld.world", playerLocation.getWorld().getName());
+            configManager.setPublicVar("StoneblockWorld.x", playerLocation.getX());
+            configManager.setPublicVar("StoneblockWorld.y", playerLocation.getY());
+            configManager.setPublicVar("StoneblockWorld.z", playerLocation.getZ());
+            configManager.setPublicVar("StoneblockWorld.pitch", playerLocation.getPitch());
+            configManager.setPublicVar("StoneblockWorld.yaw", playerLocation.getYaw());
 
 
 
-            player.sendMessage(ChatColor.GREEN + "Hub location set!");
+            player.sendMessage(ChatColor.GREEN + "SkyblockWorld location set!");
             return true;
         }
         return false;

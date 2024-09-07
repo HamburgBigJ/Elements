@@ -45,13 +45,14 @@ public class EnderChest implements Listener {
             Player player = event.getPlayer();
             Inventory enderchest = player.getEnderChest();
 
-            Object endertierobj = configManager.getPlayerValue(player, "EdderGui");
-            int endertier = (endertierobj != null) ? (int) endertierobj : 0;
+            // Sicherstellen, dass "EnderGui" korrekt referenziert wird
+            Object endertierObj = configManager.getPlayerValue(player, "EnderGui");
+            int endertier = (endertierObj instanceof Integer) ? (int) endertierObj : 0;
 
             if (block != null && block.getType() == Material.ENDER_CHEST) {
                 if (endertier >= 0) {
-                    List<String> teleportlore = itemManager.createLore(ChatColor.WHITE + "Click to Teleport to destination");
-                    ItemStack teleport = itemManager.createItem(Material.ENDER_EYE, 1, ChatColor.GOLD + "Teleport", teleportlore);
+                    List<String> teleportLore = itemManager.createLore(ChatColor.WHITE + "Click to Teleport to destination");
+                    ItemStack teleport = itemManager.createItem(Material.ENDER_EYE, 1, ChatColor.GOLD + "Teleport", teleportLore);
                     enderchest.setItem(23, teleport);
                 }
             }
@@ -64,21 +65,26 @@ public class EnderChest implements Listener {
         ItemStack clickedItem = event.getCurrentItem();
         Player player = (Player) event.getWhoClicked();
 
+        // Überprüfen, ob das Inventar das Enderchest des Spielers ist
         if (inventory.equals(player.getEnderChest())) {
             if (clickedItem != null && clickedItem.hasItemMeta()) {
                 ItemMeta meta = clickedItem.getItemMeta();
                 if (meta != null && meta.hasDisplayName()) {
                     String displayName = meta.getDisplayName();
-                    if (displayName.equals(ChatColor.GOLD + "Teleport")) {
-                        Location hubLocation = variableManager.getLocation("HubCords");
-                        if (hubLocation != null) {
 
+                    // Überprüfen, ob der angeklickte Gegenstand ein Teleport-Gegenstand ist
+                    if (displayName.equals(ChatColor.GOLD + "Teleport")) {
+                        Location hubLocation = variableManager.getLocation("HubWorld");
+                        player.teleport(hubLocation);
+                        /*if (hubLocation != null) { // Temp For Test Reasons
                             player.teleport(hubLocation);
-                            player.sendMessage("Teleport!");
-                            event.setCancelled(false);
+                            player.sendMessage(ChatColor.GREEN + "Teleport!");
                         } else {
                             player.sendMessage(ChatColor.RED + "Teleport location not found.");
+                            plugin.getLogger().warning("Hub location not found in the configuration.");
                         }
+                        */
+                        event.setCancelled(true);
                     }
                 }
             }

@@ -20,7 +20,6 @@ https://www.youtube.com/@SparkofPhoenix
 - Stamina System
 - Teleport System
 - World Generator (e.g., Netherblock, Skyblock, Waterblock, Stoneblock)
-- Implemet xp reward
 
 **Ideas**
 -
@@ -37,3 +36,4 @@ https://www.youtube.com/@SparkofPhoenix
 - Gui chanel evet not work
 - Editeble enderchest
 - Teleport sound not implementetd
+- EnderChest

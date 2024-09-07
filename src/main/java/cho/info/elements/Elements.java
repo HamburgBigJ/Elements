@@ -6,10 +6,7 @@ Edit by: HamburgBigJ
  */
 package cho.info.elements;
 
-import cho.info.elements.commands.GamemodeCommand;
-import cho.info.elements.commands.SetHubCommand;
-import cho.info.elements.commands.SetSkillXpCommand;
-import cho.info.elements.commands.SetWorldCommand;
+import cho.info.elements.commands.*;
 import cho.info.elements.managers.ConfigManager;
 import cho.info.elements.managers.ItemManager;
 import cho.info.elements.managers.VariableManager;
@@ -20,7 +17,7 @@ import cho.info.elements.player.skills.FarmingSkill;
 import cho.info.elements.player.skills.ForestingSkill;
 import cho.info.elements.player.skills.MiningSkill;
 import fr.supermax_8.boostedaudio.api.BoostedAudioAPI;
-import fr.supermax_8.boostedaudio.api.User;
+import org.bukkit.ChatColor;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -38,7 +35,7 @@ public final class Elements extends JavaPlugin {
     public void onEnable() {
 
         configManager = new ConfigManager(getDataFolder());
-        VariableManager publicVariableManager = new VariableManager(getDataFolder(), "ServerVars", "PublicVars.yml");
+        VariableManager publicVariableManager = new VariableManager(this, getDataFolder(), "ServerVars", "PublicVars.yml", true);
         ItemManager itemManager = new ItemManager();
         
 
@@ -79,21 +76,24 @@ public final class Elements extends JavaPlugin {
         // Register all commands
         this.getCommand("gm").setExecutor(new GamemodeCommand());
         this.getCommand("setvar").setExecutor(new SetSkillXpCommand(configManager));
-        this.getCommand("sethub").setExecutor(new SetHubCommand(configManager));
-        this.getCommand("setworld").setExecutor(new SetWorldCommand(configManager));
+        this.getCommand("sethubworld").setExecutor(new SetHubCommand(configManager));
+        this.getCommand("setskyblockworld").setExecutor(new SetSkyblcokWorldCommand(configManager));
+        this.getCommand("setwhaterblockworld").setExecutor(new SetWhaterBlockCommand(configManager));
+        this.getCommand("setstoneblockworld").setExecutor(new SetStoneBlockWorldCommand(configManager));
 
         // All public variables
-        configManager.addPublicVar("HubCords", 0);
-        configManager.addPublicVar("WorldCords", 0);
-
+        configManager.addPublicVar("HubWorld", 0);
+        configManager.addPublicVar("SkyblockWorld", 0);
+        configManager.addPublicVar("WhaterWorld", 0);
+        configManager.addPublicVar("StoneblockWorld", 0);
 
         //Boosted Audio Soft Depend
         if (pluginManager.isPluginEnabled("BoostedAudio")) {
             BoostedAudioAPI boostedAudioAPI = BoostedAudioAPI.getAPI();
-            getLogger().info("BoostedAudio: True");
-            boostedAudioAPI.info("Enable Elements");
+            getLogger().info(ChatColor.BLUE + "BoostedAudio: True");
+            boostedAudioAPI.info(ChatColor.BLUE + "Enable Elements");
         }else {
-            getLogger().info("BoostedAudio: False");
+            getLogger().info(ChatColor.RED + "BoostedAudio: False");
         }
     }
 

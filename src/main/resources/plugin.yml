@@ -1,8 +1,8 @@
-name: Elements-Alpha
+name: Elements
 version: '0.2'
 main: cho.info.elements.Elements
 api-version: '1.21'
-prefix: Elements-Alpha
+prefix: Elements
 authors: [ HamburgBigJ ]
 softdepend:
   - BoostedAudio
@@ -18,12 +18,22 @@ commands:
     usage: /<command> <var> <value>
     description: Sets Var to Value.
 
-  sethub:
+  sethubworld:
     permission: elements.sethub
     usage: /<command>
     description: Sets the Hub at your location.
 
-  setworld:
+  setskyblockworld:
+    permission: elements.setworld
+    usage: /<command>
+    description: Sets the World location at your location.
+
+  setwhaterblockworld:
+    permission: elements.setworld
+    usage: /<command>
+    description: Sets the World location at your location.
+
+  setstoneblockworld:
     permission: elements.setworld
     usage: /<command>
     description: Sets the World location at your location.
