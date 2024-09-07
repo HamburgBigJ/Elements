@@ -40,7 +40,7 @@ public final class Elements extends JavaPlugin {
         configManager = new ConfigManager(getDataFolder());
         VariableManager publicVariableManager = new VariableManager(getDataFolder(), "ServerVars", "PublicVars.yml");
         ItemManager itemManager = new ItemManager();
-        BoostedAudioAPI boostedAudioAPI = BoostedAudioAPI.getAPI();
+        
 
         getLogger().warning("Plugin: " + getName());
         getLogger().warning("This is an Experimental Alpha version of this plugin.");
@@ -89,6 +89,7 @@ public final class Elements extends JavaPlugin {
 
         //Boosted Audio Soft Depend
         if (pluginManager.isPluginEnabled("BoostedAudio")) {
+            BoostedAudioAPI boostedAudioAPI = BoostedAudioAPI.getAPI();
             getLogger().info("BoostedAudio: True");
             boostedAudioAPI.info("Enable Elements");
         }else {
