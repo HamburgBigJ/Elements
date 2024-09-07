@@ -36,6 +36,4 @@ https://www.youtube.com/@SparkofPhoenix
 - Destenaton save command rewride
 - Gui chanel evet not work
 - Editeble enderchest
-- Teleport sound not work
-- Boosted audio Integraton
-- Softdepend rework
+- Teleport sound not implementetd
