@@ -92,7 +92,7 @@ public class EnderChest implements Listener {
                     // Überprüfen, ob der angeklickte Gegenstand ein Teleport-Gegenstand ist
                     if (displayName.equals(ChatColor.GOLD + "Teleport")) {
 
-                        player.sendMessage(inventory.getItem(22).displayName());
+                        player.sendMessage(inventory.getItem(21).displayName()); // Item Name:inventory.getItem(21).displayName()
 
                         event.setCancelled(true);
                     }
