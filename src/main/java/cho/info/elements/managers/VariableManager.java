@@ -1,8 +1,3 @@
-/*
-Created by: HamburgBihJ
-9/7/2024
-Edit by: HamburgBigJ
-*/
 package cho.info.elements.managers;
 
 import org.bukkit.Bukkit;

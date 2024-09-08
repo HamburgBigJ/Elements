@@ -54,23 +54,48 @@ public class EnderChest implements Listener {
 
             if (block != null && block.getType() == Material.ENDER_CHEST) {
 
-                //EnderChest Tier 0
-                if (endertier >= 0) {
+                //EnderChest Tier 1
+                if (endertier >= 1) {
                     // Tteleport item
-                    List<String> teleportLore = itemManager.createLore(ChatColor.WHITE + "Click to Teleport to destination");
+                    List<String> teleportLore = itemManager.createLore(ChatColor.WHITE + "Click to Teleport");
                     ItemStack teleport = itemManager.createItem(Material.ENDER_EYE, 1, ChatColor.GOLD + "Teleport", teleportLore);
                     enderchest.setItem(22, teleport);
 
                     // Hub Item
-                    List<String> hubLore = itemManager.createLore(ChatColor.WHITE + "Click to Teleport to destination");
+                    List<String> hubLore = itemManager.createLore(ChatColor.WHITE + "Click to Teleport");
                     ItemStack hubitem = itemManager.createItem(Material.NETHER_STAR, 1, ChatColor.GOLD + "Hub", hubLore);
                     enderchest.setItem(23, hubitem);
 
                     // Selector
-                    List<String> selectorLore = itemManager.createLore(ChatColor.WHITE + "Click to select");
-                    ItemStack selectorItem = itemManager.createItem(Material.BLUE_STAINED_GLASS_PANE, 1, ChatColor.BLUE + "Skyblock", selectorLore);
+                    List<String> selectorLore = itemManager.createLore(ChatColor.WHITE + "Click to switch");
+                    ItemStack selectorItem = itemManager.createItem(Material.BLUE_STAINED_GLASS_PANE, 1, ChatColor.BLUE + "SkyBlock", selectorLore);
                     enderchest.setItem(21, selectorItem);
 
+                    //Enderchest Tier 2
+                    if (endertier >= 2){
+                        //Stats Item
+
+                        //Vars
+                        Object miningLvObj = configManager.getPlayerValue(player, "MiningLv");
+                        Object forestryLvObj = configManager.getPlayerValue(player, "ForestingLv");
+                        Object farmingLvObj = configManager.getPlayerValue(player, "FarmingLv");
+
+                        int miningLv = (miningLvObj != null) ? (int) miningLvObj : 0;
+                        int forestingLv = (forestryLvObj != null) ? (int) forestryLvObj : 0;
+                        int farmingLv = (farmingLvObj != null) ? (int) farmingLvObj :0;
+
+
+                        List<String> statitemlore = itemManager.createLore(
+                                ChatColor.DARK_AQUA + "MiningLv: " + miningLv,
+                                ChatColor.DARK_AQUA + "ForestingLv: " + forestingLv,
+                                ChatColor.DARK_AQUA + "FarmingLv: " + farmingLv
+                        );
+
+                        ItemStack statitem = itemManager.createItem(Material.LECTERN, 1, ChatColor.GOLD + "Stats", statitemlore);
+
+                        enderchest.setItem(26, statitem);
+
+                    }
                 }
             }
         }
@@ -92,7 +117,53 @@ public class EnderChest implements Listener {
                     // Überprüfen, ob der angeklickte Gegenstand ein Teleport-Gegenstand ist
                     if (displayName.equals(ChatColor.GOLD + "Teleport")) {
 
-                        player.sendMessage(inventory.getItem(21).displayName()); // Item Name:inventory.getItem(21).displayName()
+                        Object selectorobj = configManager.getPlayerValue(player, "Selector");
+
+                        int selector = (selectorobj != null) ? (int) selectorobj : 0;
+
+                        if (selector == 1) {
+                            World world = Bukkit.getWorld("world_skyblock");
+
+                            if (world != null) {
+                                // Erstelle die Location für den Teleport
+                                Location teleportLocation = new Location(world, 1, 70, 1);
+
+                                // Teleportiere den Spieler zur Location
+                                player.teleport(teleportLocation);
+                                player.sendMessage(ChatColor.GREEN + "You have been teleported to the location!");
+                            } else {
+                                player.sendMessage(ChatColor.RED + "The world 'world_skyblock' could not be found!");
+                            }
+
+                        } else if (selector == 2) {
+                            World world = Bukkit.getWorld("world_stone");
+
+                            if (world != null) {
+                                // Erstelle die Location für den Teleport
+                                Location teleportLocation = new Location(world, 1, 70, 1);
+
+                                // Teleportiere den Spieler zur Location
+                                player.teleport(teleportLocation);
+                                player.sendMessage(ChatColor.GREEN + "You have been teleported to the location!");
+                            } else {
+                                player.sendMessage(ChatColor.RED + "The world 'world_stone' could not be found!");
+                            }
+
+                        }else if (selector == 3) {
+                            World world = Bukkit.getWorld("world_whater");
+
+                            if (world != null) {
+                                // Erstelle die Location für den Teleport
+                                Location teleportLocation = new Location(world, 1, 70, 1);
+
+                                // Teleportiere den Spieler zur Location
+                                player.teleport(teleportLocation);
+                                player.sendMessage(ChatColor.GREEN + "You have been teleported to the location!");
+                            } else {
+                                player.sendMessage(ChatColor.RED + "The world 'world_whater' could not be found!");
+                            }
+
+                        }
 
                         event.setCancelled(true);
                     }
@@ -120,14 +191,66 @@ public class EnderChest implements Listener {
 
                     }
 
-                    // Selector Itme
-                    if (displayName.equals(ChatColor.BLUE + "Skyblock")) {
+                    // Selector Item // Test Version
+                    if (displayName.equals(ChatColor.BLUE + "SkyBlock") || displayName.equals(ChatColor.GRAY + "StoneBlock") || displayName.equals(ChatColor.AQUA + "WarherBlock")) {
+
+                        Object selectorobj = configManager.getPlayerValue(player, "Selector");
+
+                        int selector = (selectorobj != null) ? (int) selectorobj : 0;
+
+                        selector = selector + 1;
+
+                        if (selector >= 3) {
+                            selector = 1;
+                        }
+
+                        configManager.setPlayerValue(player, "Selector", selector);
+
+                        setSelector(player, selector);
 
 
                         event.setCancelled(true);
                     }
                 }
             }
+
         }
+        //Prevent Ender CHest Edeting
+        Object enderChestEditobj = configManager.getPlayerValue(player, "EnderChestEdit");
+
+        int enderChestEdit = (enderChestEditobj != null) ? (int) enderChestEditobj : 0;
+
+        if (enderChestEdit == 0) {
+            event.setCancelled(true);
+        } else if (enderChestEdit == 1) {
+            plugin.getLogger().info("Not Cancelt");
+        } else if (enderChestEdit >= 1) {
+            enderChestEdit = 0;
+            configManager.setPlayerValue(player, "EnderChestEdit", enderChestEdit);
+        }
+
+    }
+
+    public void setSelector(Player player, Integer selector) {
+        Inventory inventory = player.getEnderChest();
+
+        if (selector == 1) {
+
+            List<String> selectorLore = itemManager.createLore(ChatColor.WHITE + "Click to switch");
+            ItemStack selectorItem = itemManager.createItem(Material.BLUE_STAINED_GLASS_PANE, 1, ChatColor.BLUE + "SkyBlock", selectorLore);
+            inventory.setItem(21, selectorItem);
+        }else if (selector == 2) {
+
+            List<String> selectorLore = itemManager.createLore(ChatColor.WHITE + "Click to switch");
+            ItemStack selectorItem = itemManager.createItem(Material.BLACK_STAINED_GLASS_PANE, 1, ChatColor.GRAY + "StoneBlock", selectorLore);
+            inventory.setItem(21, selectorItem);
+        }else if (selector == 3) {
+
+            List<String> selectorLore = itemManager.createLore(ChatColor.WHITE + "Click to switch");
+            ItemStack selectorItem = itemManager.createItem(Material.LIGHT_BLUE_STAINED_GLASS_PANE, 1, ChatColor.AQUA + "WarherBlock", selectorLore);
+            inventory.setItem(21, selectorItem);
+        }
+
+
     }
 }

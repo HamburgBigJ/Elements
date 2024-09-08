@@ -1,9 +1,3 @@
-/*
-Created by: HamburgBihJ
-9/6/2024
-10:04
-Edit by: HamburgBigJ
- */
 package cho.info.elements.player;
 
 import cho.info.elements.managers.ConfigManager;
@@ -58,14 +52,16 @@ public class onFirstJoin implements Listener {
 
             // Resources
             configManager.addValue(event.getPlayer(), "Mana", 10);
-            configManager.addValue(event.getPlayer(), "Stamina", 20);
+            configManager.addValue(event.getPlayer(), "MaxMana", 20);
 
             //Reward
             configManager.addValue(event.getPlayer(), "BaseXp", 1);
             configManager.addValue(event.getPlayer(), "XpMultiplier", 1);
 
-            //Gui Tier
+            //Gui
             configManager.addValue(event.getPlayer(), "EdderGui", 0);
+            configManager.addValue(event.getPlayer(), "Selector", 1);
+            configManager.addValue(event.getPlayer(), "EnderChestEdit", 0);
         }
     }
 }

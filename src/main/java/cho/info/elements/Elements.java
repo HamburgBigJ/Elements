@@ -1,9 +1,3 @@
-/*
-Created by: HamburgBihJ
-9/6/2024
-10:04
-Edit by: HamburgBigJ
- */
 package cho.info.elements;
 
 import cho.info.elements.commands.*;
@@ -15,6 +9,7 @@ import cho.info.elements.managers.VariableManager;
 import cho.info.elements.managers.WorldManager;
 import cho.info.elements.player.SkillLevelManager;
 import cho.info.elements.player.gui.EnderChest;
+import cho.info.elements.player.mana.ManaRefill;
 import cho.info.elements.player.onFirstJoin;
 import cho.info.elements.player.skills.FarmingSkill;
 import cho.info.elements.player.skills.ForestingSkill;
@@ -37,6 +32,7 @@ public final class Elements extends JavaPlugin {
     public VariableManager variableManager;
     public ItemManager itemManager;
     public WorldManager worldManager;
+    public BoostedAudioAPI boostedAudioAPI;
 
     @Override
     public void onEnable() {
@@ -45,6 +41,7 @@ public final class Elements extends JavaPlugin {
         VariableManager publicVariableManager = new VariableManager(this, getDataFolder(), "ServerVars", "PublicVars.yml", true);
         ItemManager itemManager = new ItemManager();
         worldManager = new WorldManager(this);
+        boostedAudioAPI = BoostedAudioAPI.getAPI();
         
 
         getLogger().warning("Plugin: " + getName());
@@ -80,6 +77,7 @@ public final class Elements extends JavaPlugin {
         pluginManager.registerEvents(new FarmingSkill(this, configManager), this);
         pluginManager.registerEvents(new ForestingSkill(this, configManager), this);
         pluginManager.registerEvents(new EnderChest(this, configManager, publicVariableManager, itemManager), this);
+        pluginManager.registerEvents(new ManaRefill(this, configManager, itemManager), this);
 
         // Register all commands
         this.getCommand("gm").setExecutor(new GamemodeCommand());
@@ -89,14 +87,9 @@ public final class Elements extends JavaPlugin {
         // All public variables
         // Nothing yet
 
-        //Boosted Audio Soft Depend
-        if (pluginManager.isPluginEnabled("BoostedAudio")) {
-            BoostedAudioAPI boostedAudioAPI = BoostedAudioAPI.getAPI();
-            getLogger().info(ChatColor.BLUE + "BoostedAudio: True");
-            boostedAudioAPI.info(ChatColor.BLUE + "Enable Elements");
-        }else {
-            getLogger().info(ChatColor.RED + "BoostedAudio: False");
-        }
+        //Boosted Audio Depend
+        getLogger().info(ChatColor.BLUE + "BoostedAudio: True");
+        boostedAudioAPI.info(ChatColor.BLUE + "Enable Elements");
 
 
 
@@ -138,6 +131,8 @@ public final class Elements extends JavaPlugin {
 
         // Print to console
         getLogger().info(logo);
+
+
     }
 
 

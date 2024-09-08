@@ -1,9 +1,3 @@
-/*
-Created by: HamburgBihJ
-9/6/2024
-10:04
-Edit by: HamburgBigJ, Codellama
- */
 package cho.info.elements.managers;
 
 import org.bukkit.configuration.file.FileConfiguration;

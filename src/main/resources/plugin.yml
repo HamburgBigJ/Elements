@@ -1,10 +1,10 @@
 name: Elements
-version: '0.2'
+version: '0.3'
 main: cho.info.elements.Elements
 api-version: '1.21'
 prefix: Elements
 authors: [ HamburgBigJ ]
-softdepend:
+depend:
   - BoostedAudio
 
 commands:

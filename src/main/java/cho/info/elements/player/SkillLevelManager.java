@@ -1,9 +1,3 @@
-/*
-Created by: HamburgBihJ
-9/6/2024
-10:04
-Edit by: HamburgBigJ
-*/
 package cho.info.elements.player;
 
 import cho.info.elements.managers.ConfigManager;
