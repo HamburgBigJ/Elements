@@ -59,17 +59,17 @@ public class EnderChest implements Listener {
                     // Tteleport item
                     List<String> teleportLore = itemManager.createLore(ChatColor.WHITE + "Click to Teleport to destination");
                     ItemStack teleport = itemManager.createItem(Material.ENDER_EYE, 1, ChatColor.GOLD + "Teleport", teleportLore);
-                    enderchest.setItem(23, teleport);
+                    enderchest.setItem(22, teleport);
 
                     // Hub Item
                     List<String> hubLore = itemManager.createLore(ChatColor.WHITE + "Click to Teleport to destination");
                     ItemStack hubitem = itemManager.createItem(Material.NETHER_STAR, 1, ChatColor.GOLD + "Hub", hubLore);
-                    enderchest.setItem(24, hubitem);
+                    enderchest.setItem(23, hubitem);
 
                     // Selector
                     List<String> selectorLore = itemManager.createLore(ChatColor.WHITE + "Click to select");
                     ItemStack selectorItem = itemManager.createItem(Material.BLUE_STAINED_GLASS_PANE, 1, ChatColor.BLUE + "Skyblock", selectorLore);
-                    enderchest.setItem(22, selectorItem);
+                    enderchest.setItem(21, selectorItem);
 
                 }
             }
