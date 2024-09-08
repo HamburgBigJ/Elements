@@ -7,9 +7,12 @@ Edit by: HamburgBigJ
 package cho.info.elements;
 
 import cho.info.elements.commands.*;
+import cho.info.elements.generator.CustomOverworldGenerator;
+import cho.info.elements.generator.SkyblockWorldGenerator;
 import cho.info.elements.managers.ConfigManager;
 import cho.info.elements.managers.ItemManager;
 import cho.info.elements.managers.VariableManager;
+import cho.info.elements.managers.WorldManager;
 import cho.info.elements.player.SkillLevelManager;
 import cho.info.elements.player.gui.EnderChest;
 import cho.info.elements.player.onFirstJoin;
@@ -18,8 +21,11 @@ import cho.info.elements.player.skills.ForestingSkill;
 import cho.info.elements.player.skills.MiningSkill;
 import fr.supermax_8.boostedaudio.api.BoostedAudioAPI;
 import org.bukkit.ChatColor;
+import org.bukkit.World;
+import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import cho.info.elements.generator.SkyblockWorldGenerator;
 
 public final class Elements extends JavaPlugin {
 
@@ -30,6 +36,7 @@ public final class Elements extends JavaPlugin {
     public PluginManager pluginManager = getServer().getPluginManager();
     public VariableManager variableManager;
     public ItemManager itemManager;
+    public WorldManager worldManager;
 
     @Override
     public void onEnable() {
@@ -37,6 +44,7 @@ public final class Elements extends JavaPlugin {
         configManager = new ConfigManager(getDataFolder());
         VariableManager publicVariableManager = new VariableManager(this, getDataFolder(), "ServerVars", "PublicVars.yml", true);
         ItemManager itemManager = new ItemManager();
+        worldManager = new WorldManager(this);
         
 
         getLogger().warning("Plugin: " + getName());
@@ -76,16 +84,10 @@ public final class Elements extends JavaPlugin {
         // Register all commands
         this.getCommand("gm").setExecutor(new GamemodeCommand());
         this.getCommand("setvar").setExecutor(new SetSkillXpCommand(configManager));
-        this.getCommand("sethubworld").setExecutor(new SetHubCommand(configManager));
-        this.getCommand("setskyblockworld").setExecutor(new SetSkyblcokWorldCommand(configManager));
-        this.getCommand("setwhaterblockworld").setExecutor(new SetWhaterBlockCommand(configManager));
-        this.getCommand("setstoneblockworld").setExecutor(new SetStoneBlockWorldCommand(configManager));
+
 
         // All public variables
-        configManager.addPublicVar("HubWorld", 0);
-        configManager.addPublicVar("SkyblockWorld", 0);
-        configManager.addPublicVar("WhaterWorld", 0);
-        configManager.addPublicVar("StoneblockWorld", 0);
+        // Nothing yet
 
         //Boosted Audio Soft Depend
         if (pluginManager.isPluginEnabled("BoostedAudio")) {
@@ -95,6 +97,22 @@ public final class Elements extends JavaPlugin {
         }else {
             getLogger().info(ChatColor.RED + "BoostedAudio: False");
         }
+
+
+
+        //Create all Worlds
+        worldManager.createSkyWorld("world_skyblock");
+        getLogger().info("Create: world_skyblock");
+
+        worldManager.createStoneWorld("world_stone");
+        getLogger().info("Create: world_stone");
+
+        worldManager.createWaterWorld("world_whater");
+        getLogger().info("Create: world_whater");
+
+
+
+
     }
 
     @Override
@@ -120,5 +138,11 @@ public final class Elements extends JavaPlugin {
 
         // Print to console
         getLogger().info(logo);
+    }
+
+
+    @Override
+    public ChunkGenerator getDefaultWorldGenerator(String worldName, String id) {
+        return new CustomOverworldGenerator();
     }
 }

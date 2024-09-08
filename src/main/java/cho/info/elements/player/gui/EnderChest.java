@@ -7,6 +7,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -47,13 +48,29 @@ public class EnderChest implements Listener {
 
             // Sicherstellen, dass "EnderGui" korrekt referenziert wird
             Object endertierObj = configManager.getPlayerValue(player, "EnderGui");
-            int endertier = (endertierObj instanceof Integer) ? (int) endertierObj : 0;
+            int endertier = (endertierObj != null) ? (int) endertierObj : 0;
+
+
 
             if (block != null && block.getType() == Material.ENDER_CHEST) {
+
+                //EnderChest Tier 0
                 if (endertier >= 0) {
+                    // Tteleport item
                     List<String> teleportLore = itemManager.createLore(ChatColor.WHITE + "Click to Teleport to destination");
                     ItemStack teleport = itemManager.createItem(Material.ENDER_EYE, 1, ChatColor.GOLD + "Teleport", teleportLore);
                     enderchest.setItem(23, teleport);
+
+                    // Hub Item
+                    List<String> hubLore = itemManager.createLore(ChatColor.WHITE + "Click to Teleport to destination");
+                    ItemStack hubitem = itemManager.createItem(Material.NETHER_STAR, 1, ChatColor.GOLD + "Hub", hubLore);
+                    enderchest.setItem(24, hubitem);
+
+                    // Selector
+                    List<String> selectorLore = itemManager.createLore(ChatColor.WHITE + "Click to select");
+                    ItemStack selectorItem = itemManager.createItem(Material.BLUE_STAINED_GLASS_PANE, 1, ChatColor.BLUE + "Skyblock", selectorLore);
+                    enderchest.setItem(22, selectorItem);
+
                 }
             }
         }
@@ -74,16 +91,39 @@ public class EnderChest implements Listener {
 
                     // Überprüfen, ob der angeklickte Gegenstand ein Teleport-Gegenstand ist
                     if (displayName.equals(ChatColor.GOLD + "Teleport")) {
-                        Location hubLocation = variableManager.getLocation("HubWorld");
-                        player.teleport(hubLocation);
-                        /*if (hubLocation != null) { // Temp For Test Reasons
-                            player.teleport(hubLocation);
-                            player.sendMessage(ChatColor.GREEN + "Teleport!");
+
+                        player.sendMessage(inventory.getItem(22).displayName().toString());
+
+                        event.setCancelled(true);
+                    }
+
+
+                    // Hub Item
+                    if (displayName.equals(ChatColor.GOLD + "Hub")) {
+
+
+                        // Welt "world" laden
+                        World world = Bukkit.getWorld("world");
+
+                        if (world != null) {
+                            // Erstelle die Location für den Teleport
+                            Location teleportLocation = new Location(world, 1, 70, 1);
+
+                            // Teleportiere den Spieler zur Location
+                            player.teleport(teleportLocation);
+                            player.sendMessage(ChatColor.GREEN + "You have been teleported to the location!");
                         } else {
-                            player.sendMessage(ChatColor.RED + "Teleport location not found.");
-                            plugin.getLogger().warning("Hub location not found in the configuration.");
+                            player.sendMessage(ChatColor.RED + "The world 'world' could not be found!");
                         }
-                        */
+
+                        event.setCancelled(true);
+
+                    }
+
+                    // Selector Itme
+                    if (displayName.equals(ChatColor.BLUE + "Skyblock")) {
+
+
                         event.setCancelled(true);
                     }
                 }

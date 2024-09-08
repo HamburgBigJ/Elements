@@ -35,5 +35,3 @@ https://www.youtube.com/@SparkofPhoenix
 - Destenaton save command rewride
 - Gui chanel evet not work
 - Editeble enderchest
-- Teleport sound not implementetd
-- EnderChest

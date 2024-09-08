@@ -18,22 +18,6 @@ commands:
     usage: /<command> <var> <value>
     description: Sets Var to Value.
 
-  sethubworld:
-    permission: elements.sethub
-    usage: /<command>
-    description: Sets the Hub at your location.
-
-  setskyblockworld:
-    permission: elements.setworld
-    usage: /<command>
-    description: Sets the World location at your location.
-
-  setwhaterblockworld:
-    permission: elements.setworld
-    usage: /<command>
-    description: Sets the World location at your location.
-
-  setstoneblockworld:
-    permission: elements.setworld
-    usage: /<command>
-    description: Sets the World location at your location.
+worlds:
+  world:
+    generator: Elements:CustomOverworldGenerator
