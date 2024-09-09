@@ -1,11 +1,14 @@
 name: Elements
 version: '0.3'
 main: cho.info.elements.Elements
+description: Minecraft Elements
 api-version: '1.21'
 prefix: Elements
+load: STARTUP
 authors: [ HamburgBigJ ]
-depend:
-  - BoostedAudio
+
+
+
 
 commands:
   gm:

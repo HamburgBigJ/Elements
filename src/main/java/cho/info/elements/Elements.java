@@ -14,7 +14,6 @@ import cho.info.elements.player.onFirstJoin;
 import cho.info.elements.player.skills.FarmingSkill;
 import cho.info.elements.player.skills.ForestingSkill;
 import cho.info.elements.player.skills.MiningSkill;
-import fr.supermax_8.boostedaudio.api.BoostedAudioAPI;
 import org.bukkit.ChatColor;
 import org.bukkit.World;
 import org.bukkit.generator.ChunkGenerator;
@@ -32,7 +31,6 @@ public final class Elements extends JavaPlugin {
     public VariableManager variableManager;
     public ItemManager itemManager;
     public WorldManager worldManager;
-    public BoostedAudioAPI boostedAudioAPI;
 
     @Override
     public void onEnable() {
@@ -41,7 +39,6 @@ public final class Elements extends JavaPlugin {
         VariableManager publicVariableManager = new VariableManager(this, getDataFolder(), "ServerVars", "PublicVars.yml", true);
         ItemManager itemManager = new ItemManager();
         worldManager = new WorldManager(this);
-        boostedAudioAPI = BoostedAudioAPI.getAPI();
         
 
         getLogger().warning("Plugin: " + getName());
@@ -87,9 +84,6 @@ public final class Elements extends JavaPlugin {
         // All public variables
         // Nothing yet
 
-        //Boosted Audio Depend
-        getLogger().info(ChatColor.BLUE + "BoostedAudio: True");
-        boostedAudioAPI.info(ChatColor.BLUE + "Enable Elements");
 
 
 
