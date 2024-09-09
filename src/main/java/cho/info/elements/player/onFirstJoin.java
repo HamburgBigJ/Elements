@@ -57,11 +57,12 @@ public class onFirstJoin implements Listener {
             //Reward
             configManager.addValue(event.getPlayer(), "BaseXp", 1);
             configManager.addValue(event.getPlayer(), "XpMultiplier", 1);
+            configManager.addValue(event.getPlayer(), "HomeDimension", 0); // 1 = Skyblock 2 = StoneBlock 3 = WhaterBlock
 
             //Gui
             configManager.addValue(event.getPlayer(), "EdderGui", 0);
             configManager.addValue(event.getPlayer(), "Selector", 1);
-            configManager.addValue(event.getPlayer(), "EnderChestEdit", 0);
+
         }
     }
 }

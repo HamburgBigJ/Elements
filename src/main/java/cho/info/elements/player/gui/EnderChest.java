@@ -3,11 +3,7 @@ package cho.info.elements.player.gui;
 import cho.info.elements.managers.ConfigManager;
 import cho.info.elements.managers.ItemManager;
 import cho.info.elements.managers.VariableManager;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -46,13 +42,16 @@ public class EnderChest implements Listener {
             Player player = event.getPlayer();
             Inventory enderchest = player.getEnderChest();
 
-            // Sicherstellen, dass "EnderGui" korrekt referenziert wird
-            Object endertierObj = configManager.getPlayerValue(player, "EnderGui");
-            int endertier = (endertierObj != null) ? (int) endertierObj : 0;
 
 
 
             if (block != null && block.getType() == Material.ENDER_CHEST) {
+
+                // Sicherstellen, dass "EnderGui" korrekt referenziert wird
+                Object endertierObj = configManager.getPlayerValue(player, "EdderGui");
+                int endertier = (endertierObj != null) ? (int) endertierObj : 0;
+
+                plugin.getLogger().info("Endertir : " + endertier);
 
                 //EnderChest Tier 1
                 if (endertier >= 1) {
@@ -67,9 +66,12 @@ public class EnderChest implements Listener {
                     enderchest.setItem(23, hubitem);
 
                     // Selector
+
                     List<String> selectorLore = itemManager.createLore(ChatColor.WHITE + "Click to switch");
                     ItemStack selectorItem = itemManager.createItem(Material.BLUE_STAINED_GLASS_PANE, 1, ChatColor.BLUE + "SkyBlock", selectorLore);
                     enderchest.setItem(21, selectorItem);
+                    configManager.setPlayerValue(player, "Selector", 1);
+
 
                     //Enderchest Tier 2
                     if (endertier >= 2){
@@ -95,7 +97,15 @@ public class EnderChest implements Listener {
 
                         enderchest.setItem(26, statitem);
 
+                    }else {
+                        ItemStack itemStack = new ItemStack(Material.AIR);
+
+                        enderchest.setItem(26, itemStack);
                     }
+                }else {
+
+
+                    enderchest.clear();
                 }
             }
         }
@@ -131,6 +141,8 @@ public class EnderChest implements Listener {
                                 // Teleportiere den Spieler zur Location
                                 player.teleport(teleportLocation);
                                 player.sendMessage(ChatColor.GREEN + "You have been teleported to the location!");
+
+                                player.playSound(player.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 3f, 3f);
                             } else {
                                 player.sendMessage(ChatColor.RED + "The world 'world_skyblock' could not be found!");
                             }
@@ -145,6 +157,8 @@ public class EnderChest implements Listener {
                                 // Teleportiere den Spieler zur Location
                                 player.teleport(teleportLocation);
                                 player.sendMessage(ChatColor.GREEN + "You have been teleported to the location!");
+
+                                player.playSound(player.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 3f, 3f);
                             } else {
                                 player.sendMessage(ChatColor.RED + "The world 'world_stone' could not be found!");
                             }
@@ -159,6 +173,8 @@ public class EnderChest implements Listener {
                                 // Teleportiere den Spieler zur Location
                                 player.teleport(teleportLocation);
                                 player.sendMessage(ChatColor.GREEN + "You have been teleported to the location!");
+
+                                player.playSound(player.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 3f, 3f);
                             } else {
                                 player.sendMessage(ChatColor.RED + "The world 'world_whater' could not be found!");
                             }
@@ -187,6 +203,8 @@ public class EnderChest implements Listener {
                             player.sendMessage(ChatColor.RED + "The world 'world' could not be found!");
                         }
 
+                        player.playSound(player.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 3f, 3f);
+
                         event.setCancelled(true);
 
                     }
@@ -200,7 +218,7 @@ public class EnderChest implements Listener {
 
                         selector = selector + 1;
 
-                        if (selector >= 3) {
+                        if (selector >= 4) { // NOt 3 !!!
                             selector = 1;
                         }
 
@@ -208,25 +226,21 @@ public class EnderChest implements Listener {
 
                         setSelector(player, selector);
 
+                        player.playSound(player.getLocation(), Sound.BLOCK_AMETHYST_BLOCK_BREAK, 3f, 3f);
+
 
                         event.setCancelled(true);
+                    }
+
+                    // Stat Item
+                    if (displayName.equals(ChatColor.GOLD + "Stats")) {
+                        event.setCancelled(true);
+                        player.sendMessage(ChatColor.BLUE + "Stats Reloaded!");
+                        player.playSound(player.getLocation(), Sound.BLOCK_BARREL_OPEN, 3f, 3f);
                     }
                 }
             }
 
-        }
-        //Prevent Ender CHest Edeting
-        Object enderChestEditobj = configManager.getPlayerValue(player, "EnderChestEdit");
-
-        int enderChestEdit = (enderChestEditobj != null) ? (int) enderChestEditobj : 0;
-
-        if (enderChestEdit == 0) {
-            event.setCancelled(true);
-        } else if (enderChestEdit == 1) {
-            plugin.getLogger().info("Not Cancelt");
-        } else if (enderChestEdit >= 1) {
-            enderChestEdit = 0;
-            configManager.setPlayerValue(player, "EnderChestEdit", enderChestEdit);
         }
 
     }

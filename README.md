@@ -16,6 +16,7 @@ https://www.youtube.com/@SparkofPhoenix
 - Mana Refill Skytem under: player/mana/ManaRefill.java
 - Story
 - Edit BoostedAudio as a dependency
+- Home Dimesion Profit xp
 
 **Ideas**
 -
