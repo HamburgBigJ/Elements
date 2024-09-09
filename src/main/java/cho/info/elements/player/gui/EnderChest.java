@@ -51,6 +51,38 @@ public class EnderChest implements Listener {
 
             if (block != null && block.getType() == Material.ENDER_CHEST) {
 
+                ItemStack air = new ItemStack(Material.AIR);
+
+
+                // Reset all  items
+
+                enderchest.setItem(1, air);
+                enderchest.setItem(2, air);
+                enderchest.setItem(3, air);
+                enderchest.setItem(4, air);
+                enderchest.setItem(5, air);
+                enderchest.setItem(6, air);
+                enderchest.setItem(7, air);
+                enderchest.setItem(8, air);
+
+                enderchest.setItem(9, air);
+                enderchest.setItem(10, air);
+                enderchest.setItem(11, air);
+                enderchest.setItem(12, air);
+                enderchest.setItem(13, air);
+                enderchest.setItem(14, air);
+                enderchest.setItem(16, air);
+                enderchest.setItem(17, air);
+
+                enderchest.setItem(19, air);
+                enderchest.setItem(20, air);
+                enderchest.setItem(21, air);
+                enderchest.setItem(22, air);
+                enderchest.setItem(23, air);
+                enderchest.setItem(24, air);
+                enderchest.setItem(25, air);
+                enderchest.setItem(26, air);
+
                 // Sicherstellen, dass "EnderGui" korrekt referenziert wird
                 Object endertierObj = configManager.getPlayerValue(player, "EdderGui");
                 int endertier = (endertierObj != null) ? (int) endertierObj : 0;
@@ -110,10 +142,29 @@ public class EnderChest implements Listener {
                                 List<String> extraenderchestlore = itemManager.createLore(ChatColor.GOLD + "Click to open EnderChest");
 
                                 // Erstelle eine weiße Shulkerbox mit einem benutzerdefinierten Namen und Lore
-                                ItemStack extraenderchest = itemManager.createItem(Material.WHITE_SHULKER_BOX, 1, ChatColor.WHITE + "Element EnderChest", extraenderchestlore);
+                                ItemStack extraenderchest = itemManager.createItem(Material.WHITE_SHULKER_BOX, 1, ChatColor.DARK_PURPLE + "Element EnderChest", extraenderchestlore);
 
                                 // Setze das Item in den Slot 18 der Enderchest
                                 player.getEnderChest().setItem(18, extraenderchest);
+
+
+
+
+                                if (endertier >= 4) {
+                                    //Settings
+
+                                    List<String> settingslore = itemManager.createLore(ChatColor.GOLD + "Click to edit");
+                                    ItemStack settings = itemManager.createItem(Material.COMPASS, 1, ChatColor.WHITE + "Settings",settingslore);
+
+                                    player.getEnderChest().setItem(0, settings);
+
+
+
+                                }else {
+                                    ItemStack itemStack = new ItemStack(Material.AIR);
+
+                                    enderchest.setItem(0, itemStack);
+                                }
                             }
 
 
@@ -263,11 +314,33 @@ public class EnderChest implements Listener {
                         event.setCancelled(true);
                         player.sendMessage(ChatColor.BLUE + "Stats Reloaded!");
                         player.playSound(player.getLocation(), Sound.BLOCK_BARREL_OPEN, 3f, 3f);
+
+
+                        //Vars
+                        Object miningLvObj = configManager.getPlayerValue(player, "MiningLv");
+                        Object forestryLvObj = configManager.getPlayerValue(player, "ForestingLv");
+                        Object farmingLvObj = configManager.getPlayerValue(player, "FarmingLv");
+
+                        int miningLv = (miningLvObj != null) ? (int) miningLvObj : 0;
+                        int forestingLv = (forestryLvObj != null) ? (int) forestryLvObj : 0;
+                        int farmingLv = (farmingLvObj != null) ? (int) farmingLvObj :0;
+
+
+                        List<String> statitemlore = itemManager.createLore(
+                                ChatColor.DARK_AQUA + "MiningLv: " + miningLv,
+                                ChatColor.DARK_AQUA + "ForestingLv: " + forestingLv,
+                                ChatColor.DARK_AQUA + "FarmingLv: " + farmingLv
+                        );
+
+                        ItemStack statitem = itemManager.createItem(Material.LECTERN, 1, ChatColor.GOLD + "Stats", statitemlore);
+
+                        player.getEnderChest().setItem(26, statitem);
+
                     }
 
 
                     // Extra EnderChest
-                    if (displayName.equals(ChatColor.WHITE + "Element EnderChest")) {
+                    if (displayName.equals(ChatColor.DARK_PURPLE + "Element EnderChest")) {
                         event.setCancelled(true);
 
                         // Lade die Shulkerbox aus dem Ender Chest
@@ -291,6 +364,48 @@ public class EnderChest implements Listener {
                                 }
                             }
                         }
+                    }
+
+                    if (displayName.equals(ChatColor.WHITE + "Settings")) {
+                        Inventory enderchest = player.getEnderChest();
+
+                        List<String> glasslore = itemManager.createLore(ChatColor.GRAY + "²");
+
+
+                        ItemStack grayglass = itemManager.createItem(Material.BLACK_STAINED_GLASS_PANE, 1, ChatColor.GRAY + "²", glasslore);
+
+
+
+                        //Set EnderChest
+
+                        enderchest.setItem(1, grayglass);
+                        enderchest.setItem(2, grayglass);
+                        enderchest.setItem(3, grayglass);
+                        enderchest.setItem(4, grayglass); // Set to gorl bossbar
+                        enderchest.setItem(5, grayglass);
+                        enderchest.setItem(6, grayglass);
+                        enderchest.setItem(7, grayglass);
+                        enderchest.setItem(8, grayglass);
+
+                        enderchest.setItem(9, grayglass);
+                        enderchest.setItem(17, grayglass);
+
+                        enderchest.setItem(19, grayglass);
+                        enderchest.setItem(20, grayglass);
+                        enderchest.setItem(21, grayglass);
+                        enderchest.setItem(22, grayglass);
+                        enderchest.setItem(23, grayglass);
+                        enderchest.setItem(24, grayglass);
+                        enderchest.setItem(25, grayglass);
+                        enderchest.setItem(26, grayglass);
+
+                        event.setCancelled(true);
+
+                        player.playSound(player.getLocation(), Sound.ITEM_SHIELD_BREAK, 3f, 3f);
+                    }
+
+                    if (displayName.equals(ChatColor.GRAY + "²")) {
+                        event.setCancelled(true);
                     }
                 }
             }

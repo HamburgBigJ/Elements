@@ -69,35 +69,39 @@ public class MiningSkill implements Listener {
             player.giveExp(basexp * xpmultiplior);
 
         // addet Support for Nether warts
-        } else if (event.getBlock().equals(Material.NETHER_WART) && event.getBlock() instanceof Ageable) {
+        } else if (event.getBlock().getType() == Material.NETHER_WART) {
+            // Prüfen, ob das Alter der Netherwarzen 3 ist
+            if (event.getBlock().getBlockData() instanceof Ageable ageable) {
+                if (ageable.getAge() == 3) {
+                    Player player = event.getPlayer();
 
-            Player player = event.getPlayer();
+                    // Überprüfen, ob der Spieler bereits MiningXp hat, ansonsten 0 verwenden
+                    Object miningxpObj = configManager.getPlayerValue(player, "MiningXp");
+                    Object miningMaxXpObj = configManager.getPlayerValue(player, "MiningMaxXp");
 
-            // Check if the player already has MiningXp; otherwise, use 0
-            Object miningxpObj = configManager.getPlayerValue(player, "MiningXp");
-            Object miningMaxXpObj = configManager.getPlayerValue(player, "MiningMaxXp");
+                    int miningMaxXp = (miningMaxXpObj != null) ? (int) miningMaxXpObj : 0;
+                    int miningXp = (miningxpObj != null) ? (int) miningxpObj : 0;
 
-            int miningMaxXp = (miningMaxXpObj != null) ? (int) miningMaxXpObj : 0;
-            int miningXp = (miningxpObj != null) ? (int) miningxpObj : 0;
+                    miningXp = miningXp + 1;
 
-            miningXp = miningXp + 1;
+                    // Speichern des neuen MiningXp-Werts
+                    configManager.setPlayerValue(player, "MiningXp", miningXp);
 
-            // Save the new MiningXp value
-            configManager.setPlayerValue(player, "MiningXp", miningXp);
+                    // Nachricht in der Action Bar senden
+                    player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(
+                            ChatColor.DARK_AQUA + "Mining XP: " + miningXp + " / " + miningMaxXp
+                    ));
 
-            // Send Action Bar message with colors
-            player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(
-                    ChatColor.DARK_AQUA + "Mining XP: " + miningXp + " / " + miningMaxXp
-            ));
+                    Object basexpobj = configManager.getPlayerValue(player, "BaseXp");
+                    Object xpmultipliorobj = configManager.getPlayerValue(player, "XpMultiplier");
 
+                    int basexp = (basexpobj != null) ? (int) basexpobj : 0;
+                    int xpmultiplior = (xpmultipliorobj != null) ? (int) xpmultipliorobj : 0;
 
-            Object basexpobj = configManager.getPlayerValue(player, "BaseXp");
-            Object xpmultipliorobj = configManager.getPlayerValue(player, "XpMultiplier");
-
-            int basexp = (basexpobj != null) ? (int) basexpobj : 0;
-            int xpmultiplior = (xpmultipliorobj != null) ? (int) xpmultipliorobj : 0;
-
-            player.giveExp(basexp * xpmultiplior);
+                    player.giveExp(basexp * xpmultiplior);
+                }
+            }
         }
+
     }
 }
