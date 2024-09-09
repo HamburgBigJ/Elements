@@ -3,6 +3,7 @@ package cho.info.elements.player.skills;
 import cho.info.elements.managers.ConfigManager;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.data.Ageable;
@@ -97,6 +98,8 @@ public class MiningSkill implements Listener {
 
                     int basexp = (basexpobj != null) ? (int) basexpobj : 0;
                     int xpmultiplior = (xpmultipliorobj != null) ? (int) xpmultipliorobj : 0;
+
+                    //Impemet hir world cheker for xp
 
                     player.giveExp(basexp * xpmultiplior);
                 }
