@@ -16,12 +16,15 @@ import cho.info.elements.player.skills.ForestingSkill;
 import cho.info.elements.player.skills.MiningSkill;
 import org.bukkit.ChatColor;
 import org.bukkit.World;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.server.ServerLoadEvent;
 import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import cho.info.elements.generator.SkyblockWorldGenerator;
 
-public final class Elements extends JavaPlugin {
+public final class Elements extends JavaPlugin implements Listener {
 
     public static final String ANSI_RED = "\u001B[31m";
     public static final String ANSI_RESET = "\u001B[0m";
@@ -75,27 +78,14 @@ public final class Elements extends JavaPlugin {
         pluginManager.registerEvents(new ForestingSkill(this, configManager), this);
         pluginManager.registerEvents(new EnderChest(this, configManager, publicVariableManager, itemManager), this);
         pluginManager.registerEvents(new ManaRefill(this, configManager, itemManager), this);
+        // Only Event In der Main !!!!
+        pluginManager.registerEvents(this, this);
 
         // Register all commands
         this.getCommand("gm").setExecutor(new GamemodeCommand());
         this.getCommand("setvar").setExecutor(new SetSkillXpCommand(configManager));
 
 
-        // All public variables
-        // Nothing yet
-
-
-
-
-        //Create all Worlds
-        worldManager.createSkyWorld("world_skyblock");
-        getLogger().info("Create: world_skyblock");
-
-        worldManager.createStoneWorld("world_stone");
-        getLogger().info("Create: world_stone");
-
-        worldManager.createWaterWorld("world_whater");
-        getLogger().info("Create: world_whater");
 
 
 
@@ -133,5 +123,28 @@ public final class Elements extends JavaPlugin {
     @Override
     public ChunkGenerator getDefaultWorldGenerator(String worldName, String id) {
         return new CustomOverworldGenerator();
+    }
+
+    @EventHandler
+    public void onServerLoad(ServerLoadEvent event) {
+        getLogger().info("Server full load  Finish");
+        runAfterServerLoad();
+
+    }
+
+
+    public void runAfterServerLoad() {
+        // Deine Funktion, die erst nach dem Laden des Servers ausgeführt werden soll
+        getLogger().info("Load!");
+
+        //Create all Worlds
+        worldManager.createSkyWorld("world_skyblock");
+        getLogger().info("Create: world_skyblock");
+
+        worldManager.createStoneWorld("world_stone");
+        getLogger().info("Create: world_stone");
+
+        worldManager.createWaterWorld("world_whater");
+        getLogger().info("Create: world_whater");
     }
 }

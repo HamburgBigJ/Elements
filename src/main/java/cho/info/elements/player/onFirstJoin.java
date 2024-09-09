@@ -63,6 +63,7 @@ public class onFirstJoin implements Listener {
             configManager.addValue(event.getPlayer(), "EdderGui", 0);
             configManager.addValue(event.getPlayer(), "Selector", 1);
 
+
         }
     }
 }
