@@ -16,6 +16,7 @@ https://www.youtube.com/@SparkofPhoenix
 - Mana Refill Skytem under: player/mana/ManaRefill.java
 - Story
 - Home Dimesion Profit xp
+- Villager 1 at 5 69 8 in hub
 
 **Ideas**
 -

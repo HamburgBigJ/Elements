@@ -22,10 +22,10 @@ import java.util.List;
 
 public class EnderChest implements Listener {
 
-    private final JavaPlugin plugin;
-    private final VariableManager variableManager;
-    private final ItemManager itemManager;
-    private final ConfigManager configManager;
+    public JavaPlugin plugin;
+    public VariableManager variableManager;
+    public ItemManager itemManager;
+    public ConfigManager configManager;
 
 
     public EnderChest(JavaPlugin plugin, ConfigManager configManager, VariableManager variableManager, ItemManager itemManager) {
@@ -55,7 +55,7 @@ public class EnderChest implements Listener {
 
 
                 // Reset all  items
-
+                enderchest.setItem(0, air);
                 enderchest.setItem(1, air);
                 enderchest.setItem(2, air);
                 enderchest.setItem(3, air);
@@ -147,24 +147,22 @@ public class EnderChest implements Listener {
                                 // Setze das Item in den Slot 18 der Enderchest
                                 player.getEnderChest().setItem(18, extraenderchest);
 
+                            }
+
+                            if (endertier >= 4) {
+                                //Settings
+
+                                List<String> settingslore = itemManager.createLore(ChatColor.GOLD + "Click to edit");
+                                ItemStack settings = itemManager.createItem(Material.COMPASS, 1, ChatColor.WHITE + "Settings",settingslore);
+
+                                player.getEnderChest().setItem(0, settings);
 
 
 
-                                if (endertier >= 4) {
-                                    //Settings
+                            }else {
+                                ItemStack itemStack = new ItemStack(Material.AIR);
 
-                                    List<String> settingslore = itemManager.createLore(ChatColor.GOLD + "Click to edit");
-                                    ItemStack settings = itemManager.createItem(Material.COMPASS, 1, ChatColor.WHITE + "Settings",settingslore);
-
-                                    player.getEnderChest().setItem(0, settings);
-
-
-
-                                }else {
-                                    ItemStack itemStack = new ItemStack(Material.AIR);
-
-                                    enderchest.setItem(0, itemStack);
-                                }
+                                enderchest.setItem(0, itemStack);
                             }
 
 
@@ -377,7 +375,7 @@ public class EnderChest implements Listener {
 
 
                         //Set EnderChest
-
+                        enderchest.setItem(0, grayglass);
                         enderchest.setItem(1, grayglass);
                         enderchest.setItem(2, grayglass);
                         enderchest.setItem(3, grayglass);

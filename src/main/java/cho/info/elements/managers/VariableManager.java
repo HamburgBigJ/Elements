@@ -13,6 +13,8 @@ import java.util.UUID;
 
 public class VariableManager {
 
+    ///Do not use !!!!  out Dated
+
     private final FileConfiguration config;
     private final File configFile;
     private final JavaPlugin plugin;

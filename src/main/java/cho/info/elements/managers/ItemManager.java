@@ -35,9 +35,9 @@ public class ItemManager {
     public List<String> createLore(String... lines) {
         List<String> lore = new ArrayList<>();
         for (String line : lines) {
+            // Füge den Zeilenumbruch hinzu
             lore.add(ChatColor.GRAY + line);
         }
         return lore;
     }
 }
-

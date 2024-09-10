@@ -21,6 +21,11 @@ commands:
     usage: /<command> <var> <value>
     description: Sets Var to Value.
 
+  setskillvar:
+    permission: elements.setskillvar
+    usage: /<command>
+    description: Set skill Var
+
 worlds:
   world:
     generator: Elements:CustomOverworldGenerator

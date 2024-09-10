@@ -14,6 +14,7 @@ import cho.info.elements.player.onFirstJoin;
 import cho.info.elements.player.skills.FarmingSkill;
 import cho.info.elements.player.skills.ForestingSkill;
 import cho.info.elements.player.skills.MiningSkill;
+import cho.info.elements.server.VillagersInHub;
 import org.bukkit.ChatColor;
 import org.bukkit.World;
 import org.bukkit.event.EventHandler;
@@ -29,11 +30,15 @@ public final class Elements extends JavaPlugin implements Listener {
     public static final String ANSI_RED = "\u001B[31m";
     public static final String ANSI_RESET = "\u001B[0m";
 
-    private ConfigManager configManager;
+    public ConfigManager configManager;
     public PluginManager pluginManager = getServer().getPluginManager();
     public VariableManager variableManager;
     public ItemManager itemManager;
     public WorldManager worldManager;
+    public VillagersInHub villagersInHub;
+
+
+
 
     @Override
     public void onEnable() {
@@ -42,6 +47,12 @@ public final class Elements extends JavaPlugin implements Listener {
         VariableManager publicVariableManager = new VariableManager(this, getDataFolder(), "ServerVars", "PublicVars.yml", true);
         ItemManager itemManager = new ItemManager();
         worldManager = new WorldManager(this);
+
+        // Initialisiere VillagersInHub
+        villagersInHub = new VillagersInHub();
+        villagersInHub.configManager = configManager;
+        villagersInHub.itemManager = itemManager;
+
         
 
         getLogger().warning("Plugin: " + getName());
@@ -84,12 +95,14 @@ public final class Elements extends JavaPlugin implements Listener {
         // Register all commands
         this.getCommand("gm").setExecutor(new GamemodeCommand());
         this.getCommand("setvar").setExecutor(new SetSkillXpCommand(configManager));
+        this.getCommand("setskillvar").setExecutor(new SetSkillXpCommand(configManager));
 
 
         //Public Vars
         configManager.addPublicVar("Stage", 1);
 
 
+        // Note: Villagers after startup !!!
 
 
     }
@@ -136,6 +149,9 @@ public final class Elements extends JavaPlugin implements Listener {
 
 
     public void runAfterServerLoad() {
+
+
+
         // Deine Funktion, die erst nach dem Laden des Servers ausgeführt werden soll
         getLogger().info("Load!");
 
@@ -148,5 +164,18 @@ public final class Elements extends JavaPlugin implements Listener {
 
         worldManager.createWaterWorld("world_whater");
         getLogger().info("Create: world_whater");
+
+
+        //Spawn Villager
+        Object stageobj = configManager.getPublicVar("Stage");
+
+        int stage = (stageobj != null) ? (int) stageobj : 0;
+
+        if (stage >= 1) {
+
+            villagersInHub.spawnVillagerStone();
+
+
+        }
     }
 }

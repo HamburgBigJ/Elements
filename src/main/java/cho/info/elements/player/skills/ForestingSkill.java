@@ -15,7 +15,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class ForestingSkill implements Listener {
-    private JavaPlugin plugin;
+    public JavaPlugin plugin;
     public ConfigManager configManager;
     private final Set<Material> Materials;
 
