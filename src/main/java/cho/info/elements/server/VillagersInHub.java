@@ -25,12 +25,13 @@ public class VillagersInHub {
 
     public void spawnVillagerStone() {
 
-        Location villagerLocation = new Location(Bukkit.getWorld("world"), 5, 69, 8);
+        Location villagerLocation = new Location(Bukkit.getWorld("world"), 5.5, 69, 8.5);
         if (!isVillagerAtLocation(villagerLocation)) {
             Villager villagerStone = (Villager) Bukkit.getWorld("world").spawnEntity(villagerLocation, EntityType.VILLAGER);
             villagerStone.setCustomNameVisible(true);
             villagerStone.setCustomName(ChatColor.BLUE + "Stone Villager");
             villagerStone.setAI(false);
+            villagerStone.setNoPhysics(true);
             villagerStone.setInvulnerable(true);
             villagerStone.setVillagerLevel(5);
             villagerStone.setProfession(Villager.Profession.WEAPONSMITH);
@@ -45,20 +46,23 @@ public class VillagersInHub {
 
             // Erster Handel: Cobble zu Komprimiertem
             List<String> compressedStoneLore = itemManager.createLore(
-                    ChatColor.DARK_BLUE + "" + ChatColor.BOLD + "Rare"
+                    ChatColor.GRAY + "Komprimierter Stein",
+                    ChatColor.GRAY + " ",
+                    ChatColor.BLUE + "" + ChatColor.BOLD + "Rare"
             );
-            ItemStack compressedStone = itemManager.createItem(Material.DEEPSLATE, 1, ChatColor.DARK_BLUE + "Compressed Cobblestone", compressedStoneLore);
+            ItemStack compressedStone = itemManager.createItem(Material.DEEPSLATE, 1, ChatColor.BLUE + "Compressed Cobblestone", compressedStoneLore);
             MerchantRecipe compressedStoneTrade = new MerchantRecipe(compressedStone, 999999999);
             compressedStoneTrade.addIngredient(new ItemStack(Material.COBBLESTONE, 64));
             stoneVillagerTrades.add(compressedStoneTrade);
 
             // Zweiter Handel: Element-Pickaxe
             List<String> elementPickaxeLore = itemManager.createLore(
-                    ChatColor.BLUE + "+100 Drops",
-                    ChatColor.BLUE + "+ %100 XP",
-                    ChatColor.DARK_BLUE + "" + ChatColor.BOLD + "Rare"
+                    ChatColor.GRAY + "Cobblestone Drops: " + ChatColor.GREEN + "+100%",
+                    ChatColor.GRAY + "Xp Drops: " + ChatColor.GREEN + "+100%",
+                    ChatColor.GRAY + " ",
+                    ChatColor.DARK_GREEN + "" + ChatColor.BOLD + "Uncommon"
             );
-            ItemStack elementPickaxe = itemManager.createItem(Material.IRON_PICKAXE, 1, ChatColor.GREEN + "Element Pickaxe", elementPickaxeLore);
+            ItemStack elementPickaxe = itemManager.createItem(Material.IRON_PICKAXE, 1, ChatColor.DARK_GREEN + "Element Pickaxe", elementPickaxeLore);
             MerchantRecipe elementPickaxeTrade = new MerchantRecipe(elementPickaxe, 999999999);
             ItemMeta elemtPickaxeMeta = elementPickaxe.getItemMeta();
 
@@ -68,18 +72,24 @@ public class VillagersInHub {
             }
             elementPickaxe.getItemMeta().setUnbreakable(true);
 
-            ItemStack tradeCompressed = itemManager.createItem(Material.DEEPSLATE, 64, ChatColor.DARK_BLUE + "Compressed Cobblestone", compressedStoneLore);
+            ItemStack tradeCompressed = itemManager.createItem(Material.DEEPSLATE, 32, ChatColor.BLUE + "Compressed Cobblestone", compressedStoneLore);
             elementPickaxeTrade.addIngredient(tradeCompressed);
             stoneVillagerTrades.add(elementPickaxeTrade);
 
             // Stone Splitter
-            List<String> stoneSplitterLore = itemManager.createLore(ChatColor.DARK_BLUE + "" + ChatColor.BOLD + "Rare");
-            ItemStack stoneSplitter = itemManager.createItem(Material.STICK, 1, ChatColor.BLUE + "Stone Splitter", stoneSplitterLore);
+            List<String> stoneSplitterLore = itemManager.createLore(
+                    ChatColor.GRAY + "Möglicherweise kann man mir diesem",
+                    ChatColor.GRAY + "Item einen Stein aufspalten",
+                    ChatColor.GRAY + " ",
+                    ChatColor.DARK_PURPLE + "" + ChatColor.BOLD + "Epic"
+            );
+            ItemStack stoneSplitter = itemManager.createItem(Material.STICK, 1, ChatColor.DARK_PURPLE + "Stone Splitter", stoneSplitterLore);
             ItemMeta metastonesplitter = stoneSplitter.getItemMeta();
             if (metastonesplitter != null) {
                 metastonesplitter.addEnchant(Enchantment.AQUA_AFFINITY, 1, true);
                 metastonesplitter.addItemFlags(ItemFlag.HIDE_ENCHANTS);
                 metastonesplitter.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+                metastonesplitter.addItemFlags(ItemFlag.HIDE_ADDITIONAL_TOOLTIP);
                 stoneSplitter.setItemMeta(metastonesplitter);
             }
 

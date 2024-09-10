@@ -98,6 +98,7 @@ public final class Elements extends JavaPlugin implements Listener {
         this.getCommand("setskillvar").setExecutor(new SetSkillXpCommand(configManager));
 
 
+
         //Public Vars
         configManager.addPublicVar("Stage", 1);
 

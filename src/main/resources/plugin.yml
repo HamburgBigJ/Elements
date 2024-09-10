@@ -23,8 +23,10 @@ commands:
 
   setskillvar:
     permission: elements.setskillvar
-    usage: /<command>
+    usage: /<command> <var> <value>
     description: Set skill Var
+
+
 
 worlds:
   world:

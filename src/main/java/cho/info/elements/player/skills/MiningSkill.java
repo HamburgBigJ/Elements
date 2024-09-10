@@ -3,6 +3,7 @@ package cho.info.elements.player.skills;
 import cho.info.elements.managers.ConfigManager;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.data.Ageable;
@@ -17,6 +18,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.HashSet;
+import java.util.Map;
+import java.util.Random;
 import java.util.Set;
 
 public class MiningSkill implements Listener {
@@ -25,6 +28,7 @@ public class MiningSkill implements Listener {
     public JavaPlugin plugin;
     private final Set<Material> Materials;
     public ConfigManager configManager;
+    private Random random;
 
     public MiningSkill(JavaPlugin plugin, ConfigManager configManager) {
         this.plugin = plugin;
@@ -45,23 +49,46 @@ public class MiningSkill implements Listener {
 
         // Check if the block type is in the set of materials
         if (Materials.contains(blockType)) {
+
+
             int xpMultiplier = 1; // Default XP multiplier
+            int dropMultiplier = 0; // Default drop multiplier
 
             if (isSpecialPickaxe(item)) {
-                xpMultiplier = 2; // Apply special multiplier if the pickaxe is special
+                xpMultiplier = 2; // Apply special XP multiplier
+
+                if (Bukkit.getCurrentTick() >= 5) {
+                    dropMultiplier = 1;
+                } else {
+                    dropMultiplier = Bukkit.getCurrentTick(); // Adjust as needed
+                }
             }
 
             handleMiningXp(player, xpMultiplier);
 
+            modifyBlockDrops(event, dropMultiplier);
+
+
         } else if (blockType == Material.NETHER_WART) {
             if (event.getBlock().getBlockData() instanceof Ageable ageable && ageable.getAge() == 3) {
+
                 int xpMultiplier = 1; // Default XP multiplier
+                int dropMultiplier = 0; // Default drop multiplier
 
                 if (isSpecialPickaxe(item)) {
-                    xpMultiplier = 2; // Apply special multiplier if the pickaxe is special
+                    xpMultiplier = 2; // Apply special XP multiplier
+
+                    if (Bukkit.getCurrentTick() >= 5) {
+                        dropMultiplier = 1;
+                    } else {
+                        dropMultiplier = Bukkit.getCurrentTick(); // Adjust as needed
+                    }
                 }
 
                 handleMiningXp(player, xpMultiplier);
+
+                modifyBlockDrops(event, dropMultiplier);
+
             }
         }
     }
@@ -96,7 +123,7 @@ public class MiningSkill implements Listener {
             ItemMeta meta = item.getItemMeta();
             if (meta != null) {
                 // Check for the specific name of the pickaxe
-                if (meta.hasDisplayName() && meta.getDisplayName().equals(ChatColor.GREEN + "Element Pickaxe")) {
+                if (meta.hasDisplayName() && meta.getDisplayName().equals(ChatColor.DARK_GREEN + "Element Pickaxe")) {
                     return true;
                 }
 
@@ -105,5 +132,29 @@ public class MiningSkill implements Listener {
             }
         }
         return false;
+    }
+
+    private void modifyBlockDrops(BlockBreakEvent event, int dropMultiplier) {
+        // Clear existing drops
+        event.getBlock().getDrops().clear();
+
+        // Define a mapping from block types to desired drops
+        Map<Material, Material> blockToDropMapping = Map.of(
+                Material.STONE, Material.COBBLESTONE,
+                Material.BASALT, Material.BASALT, // Example mapping, adjust as needed
+                Material.DEEPSLATE, Material.COBBLESTONE // Adjust as needed
+        );
+
+        // Get the desired drop material
+        Material dropMaterial = blockToDropMapping.getOrDefault(event.getBlock().getType(), event.getBlock().getType());
+        ItemStack dropItem = new ItemStack(dropMaterial);
+
+        // Set the new drop amount based on the multiplier
+        int baseDropAmount = 1; // Default drop amount
+        int newDropAmount = (int) Math.round(baseDropAmount + dropMultiplier - 1);
+
+        for (int i = 0; i < newDropAmount; i++) {
+            event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), dropItem);
+        }
     }
 }
