@@ -15,6 +15,7 @@ import cho.info.elements.player.skills.FarmingSkill;
 import cho.info.elements.player.skills.ForestingSkill;
 import cho.info.elements.player.skills.MiningSkill;
 import cho.info.elements.server.VillagersInHub;
+import cho.info.elements.server.events.SteinSpalterHit;
 import org.bukkit.ChatColor;
 import org.bukkit.World;
 import org.bukkit.event.EventHandler;
@@ -89,6 +90,7 @@ public final class Elements extends JavaPlugin implements Listener {
         pluginManager.registerEvents(new ForestingSkill(this, configManager), this);
         pluginManager.registerEvents(new EnderChest(this, configManager, publicVariableManager, itemManager), this);
         pluginManager.registerEvents(new ManaRefill(this, configManager, itemManager), this);
+        pluginManager.registerEvents(new SteinSpalterHit(), this);
         // Only Event In der Main !!!!
         pluginManager.registerEvents(this, this);
 
