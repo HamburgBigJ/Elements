@@ -55,7 +55,7 @@ public class VillagersInHub {
             // Zweiter Handel: Element-Pickaxe
             List<String> elementPickaxeLore = itemManager.createLore(
                     ChatColor.BLUE + "+100 Drops",
-                    ChatColor.BLUE + "+100 XP",
+                    ChatColor.BLUE + "+ %100 XP",
                     ChatColor.DARK_BLUE + "" + ChatColor.BOLD + "Rare"
             );
             ItemStack elementPickaxe = itemManager.createItem(Material.IRON_PICKAXE, 1, ChatColor.GREEN + "Element Pickaxe", elementPickaxeLore);
