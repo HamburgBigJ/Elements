@@ -26,6 +26,10 @@ commands:
     usage: /<command> <var> <value>
     description: Set skill Var
 
+  respawnallvillagers:
+    permission: elements.respawnallvillagers
+    usage: /<command>
+    description: Respawn all villagers
 
 
 worlds:

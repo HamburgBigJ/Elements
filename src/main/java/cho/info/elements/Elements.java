@@ -8,6 +8,7 @@ import cho.info.elements.managers.ItemManager;
 import cho.info.elements.managers.VariableManager;
 import cho.info.elements.managers.WorldManager;
 import cho.info.elements.player.SkillLevelManager;
+import cho.info.elements.player.blocks.CompresstCobbleDrop;
 import cho.info.elements.player.gui.EnderChest;
 import cho.info.elements.player.mana.ManaRefill;
 import cho.info.elements.player.onFirstJoin;
@@ -15,9 +16,15 @@ import cho.info.elements.player.skills.FarmingSkill;
 import cho.info.elements.player.skills.ForestingSkill;
 import cho.info.elements.player.skills.MiningSkill;
 import cho.info.elements.server.VillagersInHub;
+import cho.info.elements.server.events.HubWeather;
+import cho.info.elements.server.events.LoadPlayer;
 import cho.info.elements.server.events.SteinSpalterHit;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.GameRule;
 import org.bukkit.World;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.server.ServerLoadEvent;
@@ -39,8 +46,6 @@ public final class Elements extends JavaPlugin implements Listener {
     public VillagersInHub villagersInHub;
 
 
-
-
     @Override
     public void onEnable() {
 
@@ -54,7 +59,6 @@ public final class Elements extends JavaPlugin implements Listener {
         villagersInHub.configManager = configManager;
         villagersInHub.itemManager = itemManager;
 
-        
 
         getLogger().warning("Plugin: " + getName());
         getLogger().warning("This is an Experimental Alpha version of this plugin.");
@@ -91,6 +95,9 @@ public final class Elements extends JavaPlugin implements Listener {
         pluginManager.registerEvents(new EnderChest(this, configManager, publicVariableManager, itemManager), this);
         pluginManager.registerEvents(new ManaRefill(this, configManager, itemManager), this);
         pluginManager.registerEvents(new SteinSpalterHit(), this);
+        pluginManager.registerEvents(new HubWeather(), this);
+        pluginManager.registerEvents(new CompresstCobbleDrop(itemManager), this);
+        pluginManager.registerEvents(new LoadPlayer(configManager), this);
         // Only Event In der Main !!!!
         pluginManager.registerEvents(this, this);
 
@@ -98,7 +105,7 @@ public final class Elements extends JavaPlugin implements Listener {
         this.getCommand("gm").setExecutor(new GamemodeCommand());
         this.getCommand("setvar").setExecutor(new SetSkillXpCommand(configManager));
         this.getCommand("setskillvar").setExecutor(new SetSkillXpCommand(configManager));
-
+        this.getCommand("respawnallvillagers").setExecutor(new RespanAllVillager(this));
 
 
         //Public Vars
@@ -106,6 +113,10 @@ public final class Elements extends JavaPlugin implements Listener {
 
 
         // Note: Villagers after startup !!!
+
+        // Serrver gamerules
+
+
 
 
     }
@@ -154,7 +165,6 @@ public final class Elements extends JavaPlugin implements Listener {
     public void runAfterServerLoad() {
 
 
-
         // Deine Funktion, die erst nach dem Laden des Servers ausgeführt werden soll
         getLogger().info("Load!");
 
@@ -167,6 +177,19 @@ public final class Elements extends JavaPlugin implements Listener {
 
         worldManager.createWaterWorld("world_whater");
         getLogger().info("Create: world_whater");
+
+        enableKeepInventory();
+
+        spawnvillager();
+
+
+
+
+    }
+
+    public void spawnvillager() {
+
+        killAllVillagersInOverworld();
 
 
         //Spawn Villager
@@ -181,4 +204,72 @@ public final class Elements extends JavaPlugin implements Listener {
 
         }
     }
+
+    public void killAllVillagersInOverworld() {
+        // Get the Overworld (commonly named "world")
+        World world = Bukkit.getWorld("world");
+
+        if (world != null) {
+            // Loop through all entities in the world
+            for (Entity entity : world.getEntities()) {
+                // Check if the entity is a villager
+                if (entity.getType() == EntityType.VILLAGER) {
+                    // Kill the villager
+                    entity.remove();
+                }
+            }
+        } else {
+            getLogger().info("World 'world' not found!");
+
+
+        }
+    }
+
+
+    public void enableKeepInventory() {
+        // Get the world (in this case, the overworld named "world")
+        World world = Bukkit.getWorld("world");
+
+        if (world != null) {
+            // Set the keepInventory game rule to true
+            world.setGameRule(GameRule.KEEP_INVENTORY, true);
+            getLogger().info("KeepInventory has been enabled.");
+        } else {
+            getLogger().info("World 'world' not found!");
+        }
+
+        // Get the world (in this case, the overworld named "world_skyblock")
+        World world_skyblock = Bukkit.getWorld("world_skyblock");
+
+        if (world_skyblock != null) {
+            // Set the keepInventory game rule to true
+            world_skyblock.setGameRule(GameRule.KEEP_INVENTORY, true);
+            getLogger().info("KeepInventory has been enabled.");
+        } else {
+            getLogger().info("World 'world' not found!");
+        }
+
+        // Get the world (in this case, the overworld named "world_stone")
+        World world_stone = Bukkit.getWorld("world_stone");
+
+        if (world_stone != null) {
+            // Set the keepInventory game rule to true
+            world_stone.setGameRule(GameRule.KEEP_INVENTORY, true);
+            getLogger().info("KeepInventory has been enabled.");
+        } else {
+            getLogger().info("World 'world' not found!");
+        }
+
+        // Get the world (in this case, the overworld named "world_whater")
+        World world_whater = Bukkit.getWorld("world_whater");
+
+        if (world_whater != null) {
+            // Set the keepInventory game rule to true
+            world_whater.setGameRule(GameRule.KEEP_INVENTORY, true);
+            getLogger().info("KeepInventory has been enabled.");
+        } else {
+            getLogger().info("World 'world' not found!");
+        }
+    }
+
 }

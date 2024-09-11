@@ -70,7 +70,7 @@ public class FarmingSkill implements Listener {
 
                     // Send a message to the player with their updated Farming XP
                     player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(
-                            ChatColor.DARK_AQUA + "Farming XP: " + farmingXp + " / " + farmingMaxXp
+                            ChatColor.DARK_AQUA + "✂ Farming XP: " + farmingXp + " / " + farmingMaxXp
                     ));
                 }
             }
@@ -90,7 +90,7 @@ public class FarmingSkill implements Listener {
 
             // Send a message to the player with their updated Farming XP
             player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(
-                    ChatColor.DARK_AQUA + "Farming XP: " + farmingXp + " / " + farmingMaxXp
+                    ChatColor.DARK_AQUA + "✂ Farming XP: " + farmingXp + " / " + farmingMaxXp
             ));
 
 

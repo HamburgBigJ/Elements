@@ -62,7 +62,7 @@ public class ForestingSkill implements Listener {
 
             // Send a message to the player displaying their current foresting XP
             player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(
-                    ChatColor.DARK_AQUA + "Foresting XP: " + forestingXp  + " / " + forestingMaxXp
+                    ChatColor.DARK_AQUA + "\uD83E\uDE93 Foresting XP: " + forestingXp  + " / " + forestingMaxXp
             ));
 
             Object basexpobj = configManager.getPlayerValue(player, "BaseXp");

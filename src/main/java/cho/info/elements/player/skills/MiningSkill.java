@@ -108,7 +108,7 @@ public class MiningSkill implements Listener {
 
         // Display XP in the Action Bar
         player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(
-                ChatColor.DARK_AQUA + "Mining XP: " + miningXp + " / " + miningMaxXp
+                ChatColor.DARK_AQUA + "⛏ Mining XP: " + miningXp + " / " + miningMaxXp
         ));
 
         // Get base XP and apply the multiplier

@@ -41,7 +41,7 @@ public class SkillLevelManager implements Listener {
             miningLv = miningLv + 1;
 
             player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(
-                    ChatColor.DARK_AQUA + "Mining XP: " + miningXp + " / " + miningMaxXp
+                    ChatColor.DARK_AQUA + "⛏ Mining XP: " + miningXp + " / " + miningMaxXp
             ));
 
             configManager.setPlayerValue(player, "MiningXp", miningXp);
@@ -75,7 +75,7 @@ public class SkillLevelManager implements Listener {
             forestryLv = forestryLv + 1;
 
             player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(
-                    ChatColor.DARK_AQUA + "Forestry XP: " + forestryXp  + " / " + forestryMaxXp
+                    ChatColor.DARK_AQUA + "\uD83E\uDE93 Forestry XP: " + forestryXp  + " / " + forestryMaxXp
             ));
 
             configManager.setPlayerValue(player, "ForestryXp", forestryXp);
@@ -109,7 +109,7 @@ public class SkillLevelManager implements Listener {
             farmingLv = farmingLv + 1;
 
             player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(
-                    ChatColor.DARK_AQUA + "Farming XP: " + farmingXp  + " / " + farmingMaxXp
+                    ChatColor.DARK_AQUA + "✂ Farming XP: " + farmingXp  + " / " + farmingMaxXp
             ));
 
             configManager.setPlayerValue(player, "FarmingXp", farmingXp);

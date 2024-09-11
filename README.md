@@ -16,9 +16,8 @@ https://www.youtube.com/@SparkofPhoenix
 - Mana Refill Skytem under: player/mana/ManaRefill.java
 - Story
 - Home Dimesion Profit xp
-- Steinspalte FIx
 - Steinspalter Mini  boss fucniton
-- Deepslater dop Compressst cobble stone
+- Colection complete
 
 **Ideas**
 -

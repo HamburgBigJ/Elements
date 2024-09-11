@@ -13,6 +13,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BlockStateMeta;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -107,6 +108,19 @@ public class EnderChest implements Listener {
                     ItemStack selectorItem = itemManager.createItem(Material.BLUE_STAINED_GLASS_PANE, 1, ChatColor.BLUE + "SkyBlock", selectorLore);
                     enderchest.setItem(21, selectorItem);
                     configManager.setPlayerValue(player, "Selector", 1);
+
+
+                    //Colection
+                    List<String> colectionlore = itemManager.createLore(ChatColor.WHITE + "Click!");
+                    ItemStack colecion = itemManager.createItem(Material.DIAMOND_PICKAXE, 1, ChatColor.GOLD + "Colection", colectionlore);
+
+                    ItemMeta colectionmeta = colecion.getItemMeta();
+
+                    colectionmeta.addItemFlags(ItemFlag.HIDE_ADDITIONAL_TOOLTIP, ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_ENCHANTS);
+
+                    colecion.setItemMeta(colectionmeta);
+
+                    enderchest.setItem(13, colecion);
 
 
                     //Enderchest Tier 2
@@ -386,6 +400,7 @@ public class EnderChest implements Listener {
                         enderchest.setItem(8, grayglass);
 
                         enderchest.setItem(9, grayglass);
+                        enderchest.setItem(13, grayglass);
                         enderchest.setItem(17, grayglass);
 
                         enderchest.setItem(19, grayglass);
@@ -404,6 +419,13 @@ public class EnderChest implements Listener {
 
                     if (displayName.equals(ChatColor.GRAY + "²")) {
                         event.setCancelled(true);
+                    }
+
+                    if (displayName.equals(ChatColor.GOLD + "Colection")) {
+                        event.setCancelled(true);
+
+                        //Code für colection
+
                     }
                 }
             }
