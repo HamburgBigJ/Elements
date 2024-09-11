@@ -41,6 +41,7 @@ public class MiningSkill implements Listener {
         this.Materials.add(Material.BASALT);
         this.Materials.add(Material.DEEPSLATE);
         this.Materials.add(Material.NETHER_WART);
+        this.Materials.add(Material.COBBLESTONE);
     }
 
     @EventHandler
