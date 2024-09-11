@@ -19,10 +19,7 @@ import cho.info.elements.server.VillagersInHub;
 import cho.info.elements.server.events.HubWeather;
 import cho.info.elements.server.events.LoadPlayer;
 import cho.info.elements.server.events.SteinSpalterHit;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.GameRule;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
@@ -183,6 +180,10 @@ public final class Elements extends JavaPlugin implements Listener {
         spawnvillager();
 
 
+        // Set the world spawn location
+        getLogger().info("Set World Spawn");
+        setWorldSpawn("world", 1, 70, 1);
+
 
 
     }
@@ -269,6 +270,23 @@ public final class Elements extends JavaPlugin implements Listener {
             getLogger().info("KeepInventory has been enabled.");
         } else {
             getLogger().info("World 'world' not found!");
+        }
+    }
+
+    private void setWorldSpawn(String worldName, int x, int y, int z) {
+        // Get the world by name
+        World world = Bukkit.getWorld(worldName);
+
+        if (world != null) {
+            // Create a Location object with the desired coordinates
+            Location spawnLocation = new Location(world, x, y, z);
+
+            // Set the world spawn location
+            world.setSpawnLocation(spawnLocation);
+
+            getLogger().info("Spawn location set to: " + spawnLocation.toVector());
+        } else {
+            getLogger().warning("World '" + worldName + "' not found!");
         }
     }
 

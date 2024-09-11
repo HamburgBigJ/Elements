@@ -385,6 +385,7 @@ public class EnderChest implements Listener {
 
 
                         ItemStack grayglass = itemManager.createItem(Material.BLACK_STAINED_GLASS_PANE, 1, ChatColor.GRAY + "²", glasslore);
+                        ItemStack air = new ItemStack(Material.AIR);
 
 
 
@@ -400,7 +401,7 @@ public class EnderChest implements Listener {
                         enderchest.setItem(8, grayglass);
 
                         enderchest.setItem(9, grayglass);
-                        enderchest.setItem(13, grayglass);
+                        enderchest.setItem(13, air); // only air slot
                         enderchest.setItem(17, grayglass);
 
                         enderchest.setItem(19, grayglass);

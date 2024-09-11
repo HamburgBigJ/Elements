@@ -25,7 +25,8 @@ public class LoadPlayer implements Listener {
         int playerHealth = (playerHealthObj != null) ? (int) playerHealthObj : 0;
 
         // Convert int to double and set the player's health
-        player.setHealth((double) playerHealth);
+        // player.setHealth((double) playerHealth); incorcect
+        player.setMaxHealth((double) playerHealth);
 
     }
 
