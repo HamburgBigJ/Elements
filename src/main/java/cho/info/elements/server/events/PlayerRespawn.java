@@ -41,6 +41,9 @@ public class PlayerRespawn implements Listener {
 
             player.teleport(location);
         }
+
+        player.setTotalExperience(player.getTotalExperience() / 3);
+        //
     }
 
 }
