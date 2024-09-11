@@ -1,11 +1,13 @@
 package cho.info.elements.player.skills;
 
 import cho.info.elements.managers.ConfigManager;
+import cho.info.elements.server.events.PlayerRespawn;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.block.data.Ageable;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -115,7 +117,9 @@ public class MiningSkill implements Listener {
         Object basexpobj = configManager.getPlayerValue(player, "BaseXp");
         int basexp = (basexpobj != null) ? (int) basexpobj : 0;
 
-        player.giveExp(basexp * xpMultiplier); // Apply multiplier
+        int bonusxp = checkHomeDimension(player);
+
+        player.giveExp((basexp * xpMultiplier) + bonusxp); // Apply multiplier
     }
 
     private boolean isSpecialPickaxe(ItemStack item) {
@@ -155,6 +159,38 @@ public class MiningSkill implements Listener {
 
         for (int i = 0; i < newDropAmount; i++) {
             event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), dropItem);
+        }
+    }
+
+    private int checkHomeDimension(Player player) {
+        // Hole die Heimdimension des Spielers aus der Konfiguration
+        Object homedimensionobj = configManager.getPlayerValue(player, "HomeDimension");
+        int homedimension = (homedimensionobj != null) ? (int) homedimensionobj : 0; // 1 = Skyblock, 2 = StoneBlock, 3 = WaterBlock
+
+        // Ermitteln der aktuellen Dimension des Spielers (hier als Welt angenommen)
+        String currentWorldName = player.getWorld().getName();
+
+        // Hier solltest du eine Methode oder Logik haben, um die Dimension anhand des Weltnamens zu bestimmen
+        int currentDimension = getDimensionFromWorldName(currentWorldName);
+
+        // Vergleiche die Dimensionen
+        if (currentDimension == homedimension) {
+            return 2;
+        }
+        return 0;
+    }
+
+    private int getDimensionFromWorldName(String worldName) {
+        // Füge hier die Logik hinzu, um die Dimension anhand des Weltnamens zu bestimmen
+        // Zum Beispiel:
+        if (worldName.equals("world_skyblock")) {
+            return 1; // Skyblock
+        } else if (worldName.equals("world_stone")) {
+            return 2; // StoneBlock
+        } else if (worldName.equals("world_whater")) {
+            return 3; // WaterBlock
+        } else {
+            return 0; // Unbekannte Dimension
         }
     }
 }

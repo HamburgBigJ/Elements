@@ -25,7 +25,7 @@ public class VillagersInHub {
 
     public void spawnVillagerStone() {
 
-        Location villagerLocation = new Location(Bukkit.getWorld("world"), 5.5, 69, 8.5);
+        Location villagerLocation = new Location(Bukkit.getWorld("world"), 4.5, 69,17.5);
         if (!isVillagerAtLocation(villagerLocation)) {
             Villager villagerStone = (Villager) Bukkit.getWorld("world").spawnEntity(villagerLocation, EntityType.VILLAGER);
             villagerStone.setCustomNameVisible(true);
