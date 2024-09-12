@@ -1,6 +1,8 @@
 package cho.info.elements.player;
 
 import cho.info.elements.managers.ConfigManager;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -71,5 +73,9 @@ public class onFirstJoin implements Listener {
 
 
         }
+
+        Location location = new Location(Bukkit.getWorld("world"), 1.5, 70, 1.5);
+
+        event.getPlayer().teleport(location);
     }
 }

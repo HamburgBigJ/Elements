@@ -13,12 +13,14 @@ https://www.youtube.com/@SparkofPhoenix
 
 **To Do**
 -
+- Techniker Hinzufügen in Jeder dimesion
 - Mana Refill Skytem under: player/mana/ManaRefill.java
 - Story
 - Steinspalter Mini  boss fucniton
 - Colection complete
 - Mire vilagers 
 - Building generator 
+- 
 
 **Ideas**
 -
@@ -28,6 +30,6 @@ https://www.youtube.com/@SparkofPhoenix
 
 **Errors**
 -
--  Dpawn point hub by join whenn homdimesion = 0
-- Respawn big in hub
+- Display name form villager
+- Rechtsckilck detection bei villager nciht funktionirt
 - 

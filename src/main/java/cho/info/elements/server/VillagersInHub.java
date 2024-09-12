@@ -99,7 +99,7 @@ public class VillagersInHub {
 
             villagerStone.setRecipes(stoneVillagerTrades);
 
-            Bukkit.getLogger().info("Spawn 1 Villager");
+
         }
 
 

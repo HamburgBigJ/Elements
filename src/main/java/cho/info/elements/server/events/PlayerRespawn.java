@@ -2,6 +2,7 @@ package cho.info.elements.server.events;
 
 import cho.info.elements.managers.ConfigManager;
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
@@ -31,15 +32,26 @@ public class PlayerRespawn implements Listener {
         if (homedimension == 1) {
             Location location = new Location(Bukkit.getWorld("world_skyblock"), 1.5, 70, 1.5);
 
+            player.setGameMode(GameMode.SURVIVAL);
+
             player.teleport(location);
         } else if (homedimension == 2) {
             Location location = new Location(Bukkit.getWorld("world_stone"), 1.5, 70, 1.5);
+
+            player.setGameMode(GameMode.SURVIVAL);
 
             player.teleport(location);
         } else if (homedimension == 3) {
             Location location = new Location(Bukkit.getWorld("world_whater"), 1.5, 70, 1.5);
 
+            player.setGameMode(GameMode.SURVIVAL);
+
             player.teleport(location);
+        } else if (homedimension == 0) {
+            Location location = new Location(Bukkit.getWorld("world"), 1.5, 70, 1.5);
+
+            player.teleport(location);
+            player.setGameMode(GameMode.ADVENTURE);
         }
 
         player.setTotalExperience(player.getTotalExperience() / 3);

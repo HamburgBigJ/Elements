@@ -232,6 +232,8 @@ public class EnderChest implements Listener {
                                 player.sendMessage(ChatColor.GREEN + "You have been teleported to the location!");
 
                                 player.playSound(player.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 3f, 3f);
+
+                                player.setGameMode(GameMode.SURVIVAL);
                             } else {
                                 player.sendMessage(ChatColor.RED + "The world 'world_skyblock' could not be found!");
                             }
@@ -248,6 +250,8 @@ public class EnderChest implements Listener {
                                 player.sendMessage(ChatColor.GREEN + "You have been teleported to the location!");
 
                                 player.playSound(player.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 3f, 3f);
+
+                                player.setGameMode(GameMode.SURVIVAL);
                             } else {
                                 player.sendMessage(ChatColor.RED + "The world 'world_stone' could not be found!");
                             }
@@ -264,6 +268,8 @@ public class EnderChest implements Listener {
                                 player.sendMessage(ChatColor.GREEN + "You have been teleported to the location!");
 
                                 player.playSound(player.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 3f, 3f);
+
+                                player.setGameMode(GameMode.SURVIVAL);
                             } else {
                                 player.sendMessage(ChatColor.RED + "The world 'world_whater' could not be found!");
                             }
@@ -288,6 +294,8 @@ public class EnderChest implements Listener {
                             // Teleportiere den Spieler zur Location
                             player.teleport(teleportLocation);
                             player.sendMessage(ChatColor.GREEN + "You have been teleported to the location!");
+
+                            player.setGameMode(GameMode.ADVENTURE);
                         } else {
                             player.sendMessage(ChatColor.RED + "The world 'world' could not be found!");
                         }

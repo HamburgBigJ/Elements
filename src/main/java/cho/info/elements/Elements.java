@@ -19,6 +19,8 @@ import cho.info.elements.server.VillagersInHub;
 import cho.info.elements.server.events.HubWeather;
 import cho.info.elements.server.events.LoadPlayer;
 import cho.info.elements.server.events.SteinSpalterHit;
+import cho.info.elements.server.goals.FirstGoal;
+import cho.info.elements.server.goals.GoalVillagers;
 import org.bukkit.*;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -95,8 +97,10 @@ public final class Elements extends JavaPlugin implements Listener {
         pluginManager.registerEvents(new HubWeather(), this);
         pluginManager.registerEvents(new CompresstCobbleDrop(itemManager), this);
         pluginManager.registerEvents(new LoadPlayer(configManager), this);
+        pluginManager.registerEvents(new FirstGoal(this, configManager), this);
         // Only Event In der Main !!!!
         pluginManager.registerEvents(this, this);
+
 
         // Register all commands
         this.getCommand("gm").setExecutor(new GamemodeCommand());
@@ -107,6 +111,14 @@ public final class Elements extends JavaPlugin implements Listener {
 
         //Public Vars
         configManager.addPublicVar("Stage", 1);
+
+        configManager.addPublicVar("FirstGoal", 0);
+        configManager.addPublicVar("FirstGoalMaxXp", 10000);
+        configManager.addPublicVar("FirstGoalXp", 0);
+
+        configManager.addPublicVar("SecondGoal", 0);
+        configManager.addPublicVar("SecondGoalMaxXp", 100000);
+        configManager.addPublicVar("SecondGoalXp", 0);
 
 
         // Note: Villagers after startup !!!
@@ -190,6 +202,8 @@ public final class Elements extends JavaPlugin implements Listener {
 
     public void spawnvillager() {
 
+        GoalVillagers goalVillagers = new GoalVillagers(configManager);
+
         killAllVillagersInOverworld();
 
 
@@ -204,6 +218,11 @@ public final class Elements extends JavaPlugin implements Listener {
 
 
         }
+
+        goalVillagers.spawnVillagers();
+        getLogger().info("Spawn All villagers");
+
+
     }
 
     public void killAllVillagersInOverworld() {
