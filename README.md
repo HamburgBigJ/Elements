@@ -28,4 +28,4 @@ https://www.youtube.com/@SparkofPhoenix
 
 **Errors**
 -
--  
+-  Dpawn point hub by join whenn homdimesion = 0
