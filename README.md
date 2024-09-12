@@ -17,6 +17,8 @@ https://www.youtube.com/@SparkofPhoenix
 - Story
 - Steinspalter Mini  boss fucniton
 - Colection complete
+- Mire vilagers 
+- Building generator 
 
 **Ideas**
 -
