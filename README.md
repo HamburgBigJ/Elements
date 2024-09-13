@@ -20,16 +20,18 @@ https://www.youtube.com/@SparkofPhoenix
 - Colection complete
 - Mire vilagers 
 - Building generator 
-- 
+- Strukture load system
+- All struktures Xp Goal
+- Villagers in struktures
+- goal 2 Ferting machen
+- Allw Wlten in scematic saven
 
 **Ideas**
 -
 - Combat Skill
 - Crafting Skill
-- 
 
 **Errors**
 -
 - Display name form villager
 - Rechtsckilck detection bei villager nciht funktionirt
-- 
