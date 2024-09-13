@@ -32,30 +32,29 @@ public class PlayerRespawn implements Listener {
         if (homedimension == 1) {
             Location location = new Location(Bukkit.getWorld("world_skyblock"), 1.5, 70, 1.5);
 
+            event.setRespawnLocation(location);
             player.setGameMode(GameMode.SURVIVAL);
-
-            player.teleport(location);
         } else if (homedimension == 2) {
             Location location = new Location(Bukkit.getWorld("world_stone"), 1.5, 70, 1.5);
 
+            event.setRespawnLocation(location);
             player.setGameMode(GameMode.SURVIVAL);
-
-            player.teleport(location);
         } else if (homedimension == 3) {
             Location location = new Location(Bukkit.getWorld("world_whater"), 1.5, 70, 1.5);
 
+            event.setRespawnLocation(location);
             player.setGameMode(GameMode.SURVIVAL);
-
-            player.teleport(location);
         } else if (homedimension == 0) {
             Location location = new Location(Bukkit.getWorld("world"), 1.5, 70, 1.5);
 
-            player.teleport(location);
+            event.setRespawnLocation(location);
             player.setGameMode(GameMode.ADVENTURE);
         }
 
         player.setTotalExperience(player.getTotalExperience() / 3);
         //
+
     }
+
 
 }

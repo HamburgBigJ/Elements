@@ -32,6 +32,8 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import cho.info.elements.generator.SkyblockWorldGenerator;
 
+import java.util.Set;
+
 public final class Elements extends JavaPlugin implements Listener {
 
     public static final String ANSI_RED = "\u001B[31m";
@@ -107,6 +109,7 @@ public final class Elements extends JavaPlugin implements Listener {
         this.getCommand("setvar").setExecutor(new SetSkillXpCommand(configManager));
         this.getCommand("setskillvar").setExecutor(new SetSkillXpCommand(configManager));
         this.getCommand("respawnallvillagers").setExecutor(new RespanAllVillager(this));
+        this.getCommand("setpublicvar").setExecutor(new SetPublicVarCommand(configManager));
 
 
         //Public Vars

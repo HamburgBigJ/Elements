@@ -37,9 +37,6 @@ public class SetSkillXpCommand implements CommandExecutor {
                 player.sendMessage("Successfully updated " + xptype + " to " + amount + ".");
                 return true;
             } else {
-                // Inform the player about the correct usage of the command
-                player.sendMessage("Usage: /setskillxp <xpType> <amount>");
-                player.sendMessage("XP Types: FarmingXp, ForestingXp, MiningXp, etc.");
                 return false;
             }
         } else {
