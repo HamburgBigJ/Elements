@@ -21,6 +21,7 @@ import cho.info.elements.server.events.LoadPlayer;
 import cho.info.elements.server.events.SteinSpalterHit;
 import cho.info.elements.server.goals.FirstGoal;
 import cho.info.elements.server.goals.GoalVillagers;
+import com.sk89q.worldedit.WorldEdit;
 import org.bukkit.*;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -50,6 +51,7 @@ public final class Elements extends JavaPlugin implements Listener {
     @Override
     public void onEnable() {
 
+        WorldEdit worldEdit = WorldEdit.getInstance();
         configManager = new ConfigManager(getDataFolder());
         VariableManager publicVariableManager = new VariableManager(this, getDataFolder(), "ServerVars", "PublicVars.yml", true);
         ItemManager itemManager = new ItemManager();
