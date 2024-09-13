@@ -26,12 +26,9 @@ public class FirstGoal implements Listener {
         Player player = event.getPlayer();
         Entity goalEntity = event.getRightClicked();
 
-
-
-        // Überprüfen, ob das Entity ein Villager ist
+        // Check if the entity is a Villager
         if (goalEntity.getType() == EntityType.VILLAGER) {
             Villager villager = (Villager) goalEntity;
-
 
             // First Goal
             Object firstGoalXpObj = configManager.getPublicVar("FirstGoalXp");
@@ -42,7 +39,7 @@ public class FirstGoal implements Listener {
 
             if (villager.getCustomName() != null && villager.getCustomName().equals(ChatColor.GOLD + "First Goal: " + ChatColor.GREEN + String.valueOf(firstGoalXp) + ChatColor.WHITE + " / " + ChatColor.GREEN + String.valueOf(firstGoalMaxXp) + ChatColor.WHITE + " Xp")) {
                 if (player.getLevel() >= 10) {
-                    player.sendMessage(ChatColor.GOLD + "Du Hast 10 Level Eingezahlt!");
+                    player.sendMessage(ChatColor.GOLD + "You have deposited 10 levels!");
                     int playerLevel = player.getLevel();
 
                     playerLevel = playerLevel - 10;
@@ -64,7 +61,6 @@ public class FirstGoal implements Listener {
                     firstGoal = 1;
 
                     configManager.setPublicVar("FirstGoal", firstGoal);
-
 
                     villager.remove();
                 }

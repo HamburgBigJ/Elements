@@ -177,7 +177,7 @@ public final class Elements extends JavaPlugin implements Listener {
     public void runAfterServerLoad() {
 
 
-        // Deine Funktion, die erst nach dem Laden des Servers ausgeführt werden soll
+
         getLogger().info("Load!");
 
         //Create all Worlds

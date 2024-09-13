@@ -1,5 +1,5 @@
 name: Elements
-version: '0.3'
+version: '0.4'
 main: cho.info.elements.Elements
 description: Minecraft Elements
 api-version: '1.21'

@@ -18,33 +18,32 @@ public class SteinSpalterHit implements Listener {
 
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
-        // Überprüfe, ob der Spieler mit der rechten Maustaste auf einen Block geklickt hat
+        // Check if the player right-clicked on a block
         if (event.getAction().toString().contains("RIGHT_CLICK_BLOCK")) {
             Player player = event.getPlayer();
             ItemStack itemInHand = player.getInventory().getItemInMainHand();
             Block clickedBlock = event.getClickedBlock();
 
             if (clickedBlock != null) {
-                // Überprüfe, ob das Item in der Hand ein Stick ist und den richtigen Namen hat
+                // Check if the item in hand is a stick and has the correct name
                 if (itemInHand.getType() == Material.STICK && itemInHand.hasItemMeta() && itemInHand.getItemMeta().hasDisplayName()) {
                     String displayName = itemInHand.getItemMeta().getDisplayName();
 
                     if (displayName.equals(steinSpalterName) && clickedBlock.getType() == deepslateMaterial) {
-                        // Entferne den Block und das Item aus dem Inventar des Spielers
+                        // Remove the block and the item from the player's inventory
                         clickedBlock.setType(Material.AIR);
 
-                        // Reduziere die Menge des Items „Stone Splitter“ im Inventar des Spielers um 1
+                        // Decrease the amount of "Stone Splitter" in the player's inventory by 1
                         ItemStack stoneSplitter = new ItemStack(Material.STICK, 1);
                         stoneSplitter.getItemMeta().setDisplayName(steinSpalterName);
                         player.getInventory().removeItem(stoneSplitter);
 
-                        // Update die Menge des Items in der Hand des Spielers
+                        // Update the amount of the item in the player's hand
                         ItemStack updatedItemInHand = itemInHand.clone();
                         updatedItemInHand.setAmount(updatedItemInHand.getAmount() - 1);
                         player.getInventory().setItemInMainHand(updatedItemInHand);
 
-                        // Code für den stinspalter mini boss
-
+                        // Code for the "Steinspalter" mini boss
 
                     }
                 }

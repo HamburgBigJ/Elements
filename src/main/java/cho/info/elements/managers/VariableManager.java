@@ -18,35 +18,35 @@ public class VariableManager {
     private final FileConfiguration config;
     private final File configFile;
     private final JavaPlugin plugin;
-    private boolean loggingEnabled;  // Schalter für Logging
+    private boolean loggingEnabled;  // Switch for logging
 
-    // Konstruktor mit Logging-Schalter
+    // Constructor with logging switch
     public VariableManager(JavaPlugin plugin, File dataFolder, String subFolder, String fileName, boolean loggingEnabled) {
         this.plugin = plugin;
-        this.loggingEnabled = loggingEnabled;  // Setze den Logging-Schalter
+        this.loggingEnabled = loggingEnabled;  // Set the logging switch
 
-        // Erstelle den Pfad zu dem Ordner "publicvars"
+        // Create the path to the "publicvars" folder
         File folder = new File(dataFolder, subFolder);
         if (!folder.exists()) {
-            folder.mkdirs();  // Erstelle den Ordner, falls er nicht existiert
-            logInfo("Ordner erstellt: " + folder.getPath());
+            folder.mkdirs();  // Create the folder if it does not exist
+            logInfo("Folder created: " + folder.getPath());
         }
 
-        // Pfad zur Datei
+        // Path to the file
         this.configFile = new File(folder, fileName);
         if (!configFile.exists()) {
             try {
                 configFile.createNewFile();
-                logInfo("Datei erstellt: " + configFile.getPath());
+                logInfo("File created: " + configFile.getPath());
             } catch (IOException e) {
-                logSevere("Fehler beim Erstellen der Datei: " + e.getMessage());
+                logSevere("Error creating file: " + e.getMessage());
             }
         }
 
         this.config = YamlConfiguration.loadConfiguration(configFile);
     }
 
-    // Holt eine Location aus der YAML-Datei
+    // Retrieves a Location from the YAML file
     public Location getLocation(@NotNull String path) {
         if (config.contains(path + ".world")) {
             String worldName = config.getString(path + ".world");
@@ -57,59 +57,59 @@ public class VariableManager {
             if (worldName != null && Bukkit.getWorld(worldName) != null) {
                 return new Location(Bukkit.getWorld(worldName), x, y, z);
             } else {
-                logWarning("Welt " + worldName + " nicht gefunden oder null.");
+                logWarning("World " + worldName + " not found or null.");
             }
         } else {
-            logWarning("Pfad für Location nicht gefunden: " + path);
+            logWarning("Path for location not found: " + path);
         }
         return null;
     }
 
-    // Holt einen Boolean-Wert aus der YAML-Datei
+    // Retrieves a Boolean value from the YAML file
     public Boolean getBoolean(@NotNull String path) {
         if (config.contains(path)) {
             Boolean value = config.getBoolean(path);
-            logInfo("Boolean-Wert geladen: " + path + " = " + value);
+            logInfo("Boolean value loaded: " + path + " = " + value);
             return value;
         }
-        logWarning("Boolean-Wert nicht gefunden: " + path);
+        logWarning("Boolean value not found: " + path);
         return null;
     }
 
-    // Holt einen String aus der YAML-Datei
+    // Retrieves a String from the YAML file
     public String getString(@NotNull String path) {
         if (config.contains(path)) {
             String value = config.getString(path);
-            logInfo("String-Wert geladen: " + path + " = " + value);
+            logInfo("String value loaded: " + path + " = " + value);
             return value;
         }
-        logWarning("String-Wert nicht gefunden: " + path);
+        logWarning("String value not found: " + path);
         return null;
     }
 
-    // Holt einen Wert eines Spielers (UUID) aus der YAML-Datei
+    // Retrieves a player's status (UUID) from the YAML file
     public Boolean getPlayerStatus(@NotNull UUID uuid) {
         String path = "players." + uuid.toString();
         Boolean status = getBoolean(path);
         if (status != null) {
-            logInfo("Spielerstatus für " + uuid + " geladen: " + status);
+            logInfo("Player status for " + uuid + " loaded: " + status);
         } else {
-            logWarning("Spielerstatus für " + uuid + " nicht gefunden.");
+            logWarning("Player status for " + uuid + " not found.");
         }
         return status;
     }
 
-    // Speichert die Config-Datei
+    // Saves the config file
     public void saveConfig() {
         try {
             config.save(configFile);
-            logInfo("Konfigurationsdatei erfolgreich gespeichert: " + configFile.getPath());
+            logInfo("Configuration file successfully saved: " + configFile.getPath());
         } catch (IOException e) {
-            logSevere("Fehler beim Speichern der Konfigurationsdatei: " + e.getMessage());
+            logSevere("Error saving configuration file: " + e.getMessage());
         }
     }
 
-    // Methoden für Logging, abhängig vom Schalter
+    // Logging methods, depending on the switch
     private void logInfo(String message) {
         if (loggingEnabled) {
             plugin.getLogger().info(message);
@@ -128,7 +128,7 @@ public class VariableManager {
         }
     }
 
-    // Schalter für Logging umschalten
+    // Toggle logging switch
     public void setLoggingEnabled(boolean enabled) {
         this.loggingEnabled = enabled;
     }

@@ -55,7 +55,7 @@ public class EnderChest implements Listener {
                 ItemStack air = new ItemStack(Material.AIR);
 
 
-                // Reset all  items
+                // Reset all items
                 enderchest.setItem(0, air);
                 enderchest.setItem(1, air);
                 enderchest.setItem(2, air);
@@ -84,7 +84,7 @@ public class EnderChest implements Listener {
                 enderchest.setItem(25, air);
                 enderchest.setItem(26, air);
 
-                // Sicherstellen, dass "EnderGui" korrekt referenziert wird
+                // Make sure "EdderGui" is referenced correctly
                 Object endertierObj = configManager.getPlayerValue(player, "EdderGui");
                 int endertier = (endertierObj != null) ? (int) endertierObj : 0;
 
@@ -123,7 +123,7 @@ public class EnderChest implements Listener {
                     enderchest.setItem(13, colecion);
 
 
-                    //Enderchest Tier 2
+                    //EnderChest Tier 2
                     if (endertier >= 2){
                         //Stats Item
 
@@ -151,14 +151,14 @@ public class EnderChest implements Listener {
 
                             ItemStack item = player.getEnderChest().getItem(18); // Hole das Item im Slot 18
 
-                            // Überprüfe, ob der Slot leer ist oder das Item Luft ist
+                            // Check if the slot is empty or the item is air
                             if (item == null || item.getType() == Material.AIR) {
                                 List<String> extraenderchestlore = itemManager.createLore(ChatColor.GOLD + "Click to open EnderChest");
 
-                                // Erstelle eine weiße Shulkerbox mit einem benutzerdefinierten Namen und Lore
+                                // Create a white Shulker Box with a custom name and lore
                                 ItemStack extraenderchest = itemManager.createItem(Material.WHITE_SHULKER_BOX, 1, ChatColor.DARK_PURPLE + "Element EnderChest", extraenderchestlore);
 
-                                // Setze das Item in den Slot 18 der Enderchest
+                                // Set the item in slot 18 of the Ender Chest
                                 player.getEnderChest().setItem(18, extraenderchest);
 
                             }
@@ -206,14 +206,14 @@ public class EnderChest implements Listener {
         ItemStack clickedItem = event.getCurrentItem();
         Player player = (Player) event.getWhoClicked();
 
-        // Überprüfen, ob das Inventar das Enderchest des Spielers ist
+        // If its Players inv
         if (inventory.equals(player.getEnderChest())) {
             if (clickedItem != null && clickedItem.hasItemMeta()) {
                 ItemMeta meta = clickedItem.getItemMeta();
                 if (meta != null && meta.hasDisplayName()) {
                     String displayName = meta.getDisplayName();
 
-                    // Überprüfen, ob der angeklickte Gegenstand ein Teleport-Gegenstand ist
+
                     if (displayName.equals(ChatColor.GOLD + "Teleport")) {
 
                         Object selectorobj = configManager.getPlayerValue(player, "Selector");
@@ -224,10 +224,10 @@ public class EnderChest implements Listener {
                             World world = Bukkit.getWorld("world_skyblock");
 
                             if (world != null) {
-                                // Erstelle die Location für den Teleport
+
                                 Location teleportLocation = new Location(world, 1.50, 70.00, 1.50);
 
-                                // Teleportiere den Spieler zur Location
+
                                 player.teleport(teleportLocation);
                                 player.sendMessage(ChatColor.GREEN + "You have been teleported to the location!");
 
@@ -242,10 +242,10 @@ public class EnderChest implements Listener {
                             World world = Bukkit.getWorld("world_stone");
 
                             if (world != null) {
-                                // Erstelle die Location für den Teleport
+
                                 Location teleportLocation = new Location(world, 1.50, 70.00, 1.50);
 
-                                // Teleportiere den Spieler zur Location
+
                                 player.teleport(teleportLocation);
                                 player.sendMessage(ChatColor.GREEN + "You have been teleported to the location!");
 
@@ -260,10 +260,10 @@ public class EnderChest implements Listener {
                             World world = Bukkit.getWorld("world_whater");
 
                             if (world != null) {
-                                // Erstelle die Location für den Teleport
+
                                 Location teleportLocation = new Location(world, 1.50, 70.00, 1.50);
 
-                                // Teleportiere den Spieler zur Location
+
                                 player.teleport(teleportLocation);
                                 player.sendMessage(ChatColor.GREEN + "You have been teleported to the location!");
 
@@ -284,14 +284,14 @@ public class EnderChest implements Listener {
                     if (displayName.equals(ChatColor.GOLD + "Hub")) {
 
 
-                        // Welt "world" laden
+
                         World world = Bukkit.getWorld("world");
 
                         if (world != null) {
-                            // Erstelle die Location für den Teleport
+
                             Location teleportLocation = new Location(world, 1.50, 70.00, 1.50);
 
-                            // Teleportiere den Spieler zur Location
+
                             player.teleport(teleportLocation);
                             player.sendMessage(ChatColor.GREEN + "You have been teleported to the location!");
 
@@ -363,7 +363,7 @@ public class EnderChest implements Listener {
                     if (displayName.equals(ChatColor.DARK_PURPLE + "Element EnderChest")) {
                         event.setCancelled(true);
 
-                        // Lade die Shulkerbox aus dem Ender Chest
+                        // Load Shulker Box
                         ItemStack shulkerBox = player.getEnderChest().getItem(18);
                         if (shulkerBox != null && shulkerBox.getType() == Material.WHITE_SHULKER_BOX) {
                             // Hole das BlockStateMeta der Shulkerbox
@@ -372,11 +372,11 @@ public class EnderChest implements Listener {
                                 if (blockStateMeta.getBlockState() instanceof ShulkerBox) {
                                     ShulkerBox boxState = (ShulkerBox) blockStateMeta.getBlockState();
 
-                                    // Erstelle ein neues Inventar mit dem Inhalt der Shulkerbox
+
                                     Inventory shulkerInventory = Bukkit.createInventory(null, 27, ChatColor.DARK_PURPLE + "Elements EnderChest");
                                     shulkerInventory.setContents(boxState.getInventory().getContents());
 
-                                    // Öffne das neue Inventar für den Spieler
+
                                     player.openInventory(shulkerInventory);
 
                                     //Sound
@@ -433,7 +433,7 @@ public class EnderChest implements Listener {
                     if (displayName.equals(ChatColor.GOLD + "Colection")) {
                         event.setCancelled(true);
 
-                        //Code für colection
+                        //Code für colection To do !!!
 
                     }
                 }
@@ -474,32 +474,32 @@ public class EnderChest implements Listener {
             Inventory shulkerInventory = event.getInventory();
             Player player = (Player) event.getPlayer();
 
-            // Hole die Shulkerbox aus dem Ender Chest des Spielers
+
             ItemStack shulkerBox = player.getEnderChest().getItem(18);
 
-            // Überprüfe, ob es sich um eine weiße Shulkerbox handelt
+
             if (shulkerBox != null && shulkerBox.getType() == Material.WHITE_SHULKER_BOX) {
-                // Speichere die Inhalte in den NBT-Daten der Shulkerbox
+
                 shulkerBox = saveInventoryToShulkerBox(shulkerBox, shulkerInventory);
 
-                // Setze die aktualisierte Shulkerbox wieder in das Ender Chest des Spielers
+
                 player.getEnderChest().setItem(18, shulkerBox);
             }
         }
     }
 
     private ItemStack saveInventoryToShulkerBox(ItemStack shulkerBox, Inventory inventory) {
-        // Hole das ItemMeta der Shulkerbox
+
         ItemMeta meta = shulkerBox.getItemMeta();
         if (meta instanceof BlockStateMeta) {
             BlockStateMeta blockStateMeta = (BlockStateMeta) meta;
             if (blockStateMeta.getBlockState() instanceof ShulkerBox) {
                 ShulkerBox boxState = (ShulkerBox) blockStateMeta.getBlockState();
 
-                // Setze die Inhalte des Inventars in die Shulkerbox
+
                 boxState.getInventory().setContents(inventory.getContents());
 
-                // Speichere den neuen Zustand in die Shulkerbox
+
                 blockStateMeta.setBlockState(boxState);
                 shulkerBox.setItemMeta(blockStateMeta);
             }

@@ -37,12 +37,12 @@ public class onFirstJoin implements Listener {
             // Create an instance of ConfigManager
             ConfigManager configManager = new ConfigManager(plugin.getDataFolder());
 
-            // All XP Forms for a player
+            // All XP forms for a player
             configManager.addValue(event.getPlayer(), "FarmingXp", 0);
             configManager.addValue(event.getPlayer(), "ForestingXp", 0);
             configManager.addValue(event.getPlayer(), "MiningXp", 0);
 
-            // All Skills
+            // All skills
             configManager.addValue(event.getPlayer(), "FarmingLv", 0);
             configManager.addValue(event.getPlayer(), "ForestingLv", 0);
             configManager.addValue(event.getPlayer(), "MiningLv", 0);
@@ -56,21 +56,20 @@ public class onFirstJoin implements Listener {
             configManager.addValue(event.getPlayer(), "Mana", 10);
             configManager.addValue(event.getPlayer(), "MaxMana", 20);
 
-            //Reward
+            // Reward
             configManager.addValue(event.getPlayer(), "BaseXp", 1);
             configManager.addValue(event.getPlayer(), "XpMultiplier", 1);
-            configManager.addValue(event.getPlayer(), "HomeDimension", 0); // 1 = Skyblock 2 = StoneBlock 3 = WhaterBlock
+            configManager.addValue(event.getPlayer(), "HomeDimension", 0); // 1 = Skyblock, 2 = StoneBlock, 3 = WaterBlock
 
-            //Gui
+            // GUI
             configManager.addValue(event.getPlayer(), "EdderGui", 0);
             configManager.addValue(event.getPlayer(), "Selector", 1);
 
-            //Health
+            // Health
             configManager.addValue(event.getPlayer(), "health", 6);
 
-            //Colection to do
+            // Collection to do
             configManager.addValue(event.getPlayer(), "cobblestone", 0);
-
 
         }
 

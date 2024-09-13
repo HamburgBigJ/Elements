@@ -53,7 +53,6 @@ public class MiningSkill implements Listener {
         // Check if the block type is in the set of materials
         if (Materials.contains(blockType)) {
 
-
             int xpMultiplier = 1; // Default XP multiplier
             int dropMultiplier = 0; // Default drop multiplier
 
@@ -70,7 +69,6 @@ public class MiningSkill implements Listener {
             handleMiningXp(player, xpMultiplier);
 
             modifyBlockDrops(event, dropMultiplier);
-
 
         } else if (blockType == Material.NETHER_WART) {
             if (event.getBlock().getBlockData() instanceof Ageable ageable && ageable.getAge() == 3) {
@@ -164,17 +162,17 @@ public class MiningSkill implements Listener {
     }
 
     private int checkHomeDimension(Player player) {
-        // Hole die Heimdimension des Spielers aus der Konfiguration
+        // Get the player's home dimension from the configuration
         Object homedimensionobj = configManager.getPlayerValue(player, "HomeDimension");
         int homedimension = (homedimensionobj != null) ? (int) homedimensionobj : 0; // 1 = Skyblock, 2 = StoneBlock, 3 = WaterBlock
 
-        // Ermitteln der aktuellen Dimension des Spielers (hier als Welt angenommen)
+        // Determine the current dimension of the player (assumed to be the world here)
         String currentWorldName = player.getWorld().getName();
 
-        // Hier solltest du eine Methode oder Logik haben, um die Dimension anhand des Weltnamens zu bestimmen
+        // Here you should have a method or logic to determine the dimension based on the world name
         int currentDimension = getDimensionFromWorldName(currentWorldName);
 
-        // Vergleiche die Dimensionen
+        // Compare the dimensions
         if (currentDimension == homedimension) {
             return 2;
         }
@@ -182,16 +180,16 @@ public class MiningSkill implements Listener {
     }
 
     private int getDimensionFromWorldName(String worldName) {
-        // Füge hier die Logik hinzu, um die Dimension anhand des Weltnamens zu bestimmen
-        // Zum Beispiel:
+        // Add logic here to determine the dimension based on the world name
+        // For example:
         if (worldName.equals("world_skyblock")) {
             return 1; // Skyblock
         } else if (worldName.equals("world_stone")) {
             return 2; // StoneBlock
-        } else if (worldName.equals("world_whater")) {
+        } else if (worldName.equals("world_water")) {
             return 3; // WaterBlock
         } else {
-            return 0; // Unbekannte Dimension
+            return 0; // Unknown dimension
         }
     }
 }

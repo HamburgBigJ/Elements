@@ -12,17 +12,17 @@ public class WaterWorldGenerator extends ChunkGenerator {
     public ChunkData generateChunkData(World world, Random random, int x, int z, BiomeGrid biome) {
         ChunkData chunk = createChunkData(world);
 
-        int minHeight = -60; // Mindesthöhe für Bedrock
-        int maxHeight = 310; // Maximale Höhe für die Barrier-Schicht
+        int minHeight = -60; // Minimum height for Barrier
+        int maxHeight = 310; // Maximum height for the Barrier layer
 
-        // 1. Bedrock-Schicht bei Y = -60
+        // 1. Barrier layer at Y = -60
         for (int i = 0; i < 16; i++) {
             for (int j = 0; j < 16; j++) {
                 chunk.setBlock(i, minHeight, j, Material.BARRIER);
             }
         }
 
-        // 2. Wasser von Y = -59 bis Y = 309
+        // 2. Water from Y = -59 to Y = 309
         for (int i = 0; i < 16; i++) {
             for (int j = 0; j < 16; j++) {
                 for (int y = minHeight + 1; y < maxHeight; y++) {
@@ -31,14 +31,14 @@ public class WaterWorldGenerator extends ChunkGenerator {
             }
         }
 
-        // 3. Barrier-Schicht bei Y = 310
+        // 3. Barrier layer at Y = 310
         for (int i = 0; i < 16; i++) {
             for (int j = 0; j < 16; j++) {
                 chunk.setBlock(i, maxHeight, j, Material.BARRIER);
             }
         }
 
-        // Setze das Biome auf Deep Ocean für diesen Chunk
+        // Set the biome to Deep Ocean for this chunk
         for (int i = 0; i < 16; i++) {
             for (int j = 0; j < 16; j++) {
                 biome.setBiome(i, j, Biome.DEEP_OCEAN);

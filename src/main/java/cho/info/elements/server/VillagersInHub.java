@@ -36,15 +36,15 @@ public class VillagersInHub {
             villagerStone.setVillagerLevel(5);
             villagerStone.setProfession(Villager.Profession.WEAPONSMITH);
 
-            // Setze die Blickrichtung des Villagers auf Norden
-            float yaw = 180.0f; // 180 Grad für Norden
-            float pitch = 0.0f; // 0 Grad für eine gerade Ausrichtung
+            // Set the villager's facing direction to North
+            float yaw = 180.0f; // 180 degrees for North
+            float pitch = 0.0f; // 0 degrees for a straight orientation
             villagerStone.setRotation(yaw, pitch);
 
-            // Erstelle Handelsangebote
+            // Create trade offers
             List<MerchantRecipe> stoneVillagerTrades = new ArrayList<>();
 
-            // Erster Handel: Cobble zu Komprimiertem
+            // First trade: Cobblestone to Compressed
             List<String> compressedStoneLore = itemManager.createLore(
                     ChatColor.GRAY + "Komprimierter Stein",
                     ChatColor.GRAY + " ",
@@ -55,7 +55,7 @@ public class VillagersInHub {
             compressedStoneTrade.addIngredient(new ItemStack(Material.COBBLESTONE, 64));
             stoneVillagerTrades.add(compressedStoneTrade);
 
-            // Zweiter Handel: Element-Pickaxe
+            // Second trade: Element Pickaxe
             List<String> elementPickaxeLore = itemManager.createLore(
                     ChatColor.GRAY + "Cobblestone Drops: " + ChatColor.GREEN + "+100%",
                     ChatColor.GRAY + "Xp Drops: " + ChatColor.GREEN + "+100%",

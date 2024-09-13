@@ -22,12 +22,12 @@ public class WorldManager {
     }
 
     /**
-     * Erstellt eine Welt mit benutzerdefiniertem Chunk-Generator.
+     * Creates a world with a custom chunk generator.
      *
-     * @param worldName     Name der Welt
-     * @param environment   Die Weltumgebung (z. B. NORMAL, NETHER, END)
-     * @param worldType     Typ der Welt (z. B. FLAT, NORMAL)
-     * @param generator     Der Chunk-Generator für benutzerdefinierte Weltgeneration
+     * @param worldName     Name of the world
+     * @param environment   The world environment (e.g., NORMAL, NETHER, END)
+     * @param worldType     Type of the world (e.g., FLAT, NORMAL)
+     * @param generator     The chunk generator for custom world generation
      */
     public void createCustomWorld(String worldName, Environment environment, WorldType worldType, ChunkGenerator generator) {
         WorldCreator creator = new WorldCreator(worldName);
@@ -38,9 +38,9 @@ public class WorldManager {
     }
 
     /**
-     * Erstellt eine Wasserwelt mit benutzerdefiniertem Generator.
+     * Creates a water world with a custom generator.
      *
-     * @param worldName Name der Wasserwelt
+     * @param worldName Name of the water world
      */
     public void createWaterWorld(String worldName) {
         ChunkGenerator waterWorldGenerator = new WaterWorldGenerator();
@@ -48,61 +48,61 @@ public class WorldManager {
     }
 
     public void createSkyWorld(String worldName) {
-        ChunkGenerator waterWorldGenerator = new SkyblockWorldGenerator();
-        createCustomWorld(worldName, Environment.NORMAL, WorldType.FLAT, waterWorldGenerator);
+        ChunkGenerator skyWorldGenerator = new SkyblockWorldGenerator();
+        createCustomWorld(worldName, Environment.NORMAL, WorldType.FLAT, skyWorldGenerator);
     }
 
     public void createStoneWorld(String worldName) {
-        ChunkGenerator waterWorldGenerator = new StoneWorldGenerator();
-        createCustomWorld(worldName, Environment.NORMAL, WorldType.FLAT, waterWorldGenerator);
+        ChunkGenerator stoneWorldGenerator = new StoneWorldGenerator();
+        createCustomWorld(worldName, Environment.NORMAL, WorldType.FLAT, stoneWorldGenerator);
     }
 
     /**
-     * Ändert den Generator einer existierenden Welt.
+     * Changes the generator of an existing world.
      *
-     * @param worldName Name der Welt
-     * @param generator Der neue Chunk-Generator
+     * @param worldName Name of the world
+     * @param generator The new chunk generator
      */
     public void setWorldGenerator(String worldName, ChunkGenerator generator) {
         World world = Bukkit.getWorld(worldName);
 
         if (world != null) {
-            // Welt entladen
+            // Unload the world
             Bukkit.unloadWorld(world, false);
         }
 
-        // Welt neu laden mit neuem Generator
+        // Reload the world with the new generator
         WorldCreator creator = new WorldCreator(worldName);
         creator.generator(generator);
         Bukkit.createWorld(creator);
 
-        plugin.getLogger().info("Welt " + worldName + " wurde mit einem neuen Generator neu geladen.");
+        plugin.getLogger().info("World " + worldName + " has been reloaded with a new generator.");
     }
 
     /**
-     * Beispiel: Ändert den Generator der Wasserwelt
+     * Example: Changes the generator of the water world
      *
-     * @param worldName Name der Wasserwelt
+     * @param worldName Name of the water world
      */
     public void changeToWaterWorldGenerator(String worldName) {
         setWorldGenerator(worldName, new WaterWorldGenerator());
     }
 
     public void setOverworldGenerator(ChunkGenerator generator) {
-        World overworld = Bukkit.getWorld("world"); // "world" ist der Standardname der Overworld
+        World overworld = Bukkit.getWorld("world"); // "world" is the default name of the Overworld
 
         if (overworld != null) {
-            // Welt entladen
+            // Unload the world
             Bukkit.unloadWorld(overworld, false);
         }
 
-        // Welt neu laden mit benutzerdefiniertem Generator
+        // Reload the world with the custom generator
         WorldCreator creator = new WorldCreator("world");
         creator.generator(generator);
         Bukkit.createWorld(creator);
 
-        plugin.getLogger().info("Overworld wurde mit einem neuen Generator neu geladen.");
+        plugin.getLogger().info("Overworld has been reloaded with a new generator.");
     }
 
-    // Weitere Methoden (wie Löschen oder Teleportieren) könnten hier hinzugefügt werden.
+    // Additional methods (such as deleting or teleporting) could be added here.
 }

@@ -118,17 +118,17 @@ public class FarmingSkill implements Listener {
     }
 
     private int checkHomeDimension(Player player) {
-        // Hole die Heimdimension des Spielers aus der Konfiguration
+
         Object homedimensionobj = configManager.getPlayerValue(player, "HomeDimension");
         int homedimension = (homedimensionobj != null) ? (int) homedimensionobj : 0; // 1 = Skyblock, 2 = StoneBlock, 3 = WaterBlock
 
-        // Ermitteln der aktuellen Dimension des Spielers (hier als Welt angenommen)
+
         String currentWorldName = player.getWorld().getName();
 
-        // Hier solltest du eine Methode oder Logik haben, um die Dimension anhand des Weltnamens zu bestimmen
+
         int currentDimension = getDimensionFromWorldName(currentWorldName);
 
-        // Vergleiche die Dimensionen
+
         if (currentDimension == homedimension) {
             return 2;
         }
@@ -136,8 +136,7 @@ public class FarmingSkill implements Listener {
     }
 
     private int getDimensionFromWorldName(String worldName) {
-        // Füge hier die Logik hinzu, um die Dimension anhand des Weltnamens zu bestimmen
-        // Zum Beispiel:
+
         if (worldName.equals("world_skyblock")) {
             return 1; // Skyblock
         } else if (worldName.equals("world_stone")) {
@@ -145,7 +144,7 @@ public class FarmingSkill implements Listener {
         } else if (worldName.equals("world_whater")) {
             return 3; // WaterBlock
         } else {
-            return 0; // Unbekannte Dimension
+            return 0;
         }
     }
 }
