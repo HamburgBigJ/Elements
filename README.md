@@ -1,5 +1,11 @@
 # Elements Project by HamburgBigJ
 
+<p align="center">
+    <a href="https://www.codefactor.io/repository/github/hamburgbigj/elements/overview/master" alt="CodeFactor Score">
+        <img src="https://www.codefactor.io/repository/github/hamburgbigj/elements/badge/master"/>
+    </a>
+</p>
+
 **Disclaimer:**
 - This is a recreation of the original project by **SparkofPhoenix**.
 
