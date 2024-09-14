@@ -23,7 +23,9 @@ import cho.info.elements.server.events.LoadPlayer;
 import cho.info.elements.server.events.SteinSpalterHit;
 import cho.info.elements.server.goals.FirstGoal;
 import cho.info.elements.server.goals.GoalVillagers;
+import cho.info.elements.server.goals.hubstruktures.EnderVillager;
 import cho.info.elements.server.goals.hubstruktures.LibarianVillager;
+import cho.info.elements.server.goals.hubstruktures.LotaryVillager;
 import cho.info.elements.server.goals.hubstruktures.SmitherVillager;
 import cho.info.elements.server.mapedit.HubBlockBreak;
 import com.sk89q.worldedit.WorldEdit;
@@ -56,6 +58,8 @@ public final class Elements extends JavaPlugin implements Listener {
     public VillagerTechniker villagerTechniker;
     public SmitherVillager smitherVillager;
     public LibarianVillager libarianVillager;
+    public LotaryVillager lotaryVillager;
+    public EnderVillager enderVillager;
 
     @Override
     public void onEnable() {
@@ -119,6 +123,8 @@ public final class Elements extends JavaPlugin implements Listener {
         pluginManager.registerEvents(new SmitherVillager(configManager), this);
         pluginManager.registerEvents(new HubBlockBreak(), this);
         pluginManager.registerEvents(new LibarianVillager(configManager), this);
+        pluginManager.registerEvents(new EnderVillager(configManager), this);
+        pluginManager.registerEvents(new LotaryVillager(configManager), this);
         // Only Event In der Main !!!!
         pluginManager.registerEvents(this, this);
 
@@ -147,15 +153,23 @@ public final class Elements extends JavaPlugin implements Listener {
 
         //Smithin goal
         configManager.addPublicVar("SmitherGoal", 0);
-        configManager.addPublicVar("SmitherGoalMaxXp", 1000);
+        configManager.addPublicVar("SmitherGoalMaxXp", 5000);
         configManager.addPublicVar("SmitherGoalXp", 0);
 
         //Bibiotekar
         configManager.addPublicVar("LibarianGoal", 0);
-        configManager.addPublicVar("LibarianGoalMaxXp", 10000);
+        configManager.addPublicVar("LibarianGoalMaxXp", 30000);
         configManager.addPublicVar("LibarianGoalXp", 0);
 
+        // Ender Villager
+        configManager.addPublicVar("EnderVillagerGoal", 0);
+        configManager.addPublicVar("EnderVillagerGoalMaxXp", 50000);
+        configManager.addPublicVar("EnderVillagerGoalXp", 0);
 
+        // Lorery Vilalger
+        configManager.addPublicVar("LoreryVillagerGoal", 0);
+        configManager.addPublicVar("LoreryVillagerGoalMaxXp", 1000);
+        configManager.addPublicVar("LoreryVillagerGoalXp", 0);
 
         // Note: Villagers after startup !!!
 
@@ -246,7 +260,9 @@ public final class Elements extends JavaPlugin implements Listener {
 
         LibarianVillager libarianVillager = new LibarianVillager(configManager);
 
+        EnderVillager enderVillager = new EnderVillager(configManager);
 
+        LotaryVillager lotaryVillager = new LotaryVillager(configManager);
 
         killAllVillagersInOverworld();
 
@@ -265,6 +281,10 @@ public final class Elements extends JavaPlugin implements Listener {
             villagerTechniker.villagerSpawn();
 
             libarianVillager.villagerSpawn();
+
+            enderVillager.villagerSpawn();
+
+            lotaryVillager.villagerSpawn();
 
 
         }
