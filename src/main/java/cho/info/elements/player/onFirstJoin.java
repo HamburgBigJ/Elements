@@ -2,6 +2,7 @@ package cho.info.elements.player;
 
 import cho.info.elements.managers.ConfigManager;
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.EventHandler;
@@ -70,6 +71,10 @@ public class onFirstJoin implements Listener {
 
             // Collection to do
             configManager.addValue(event.getPlayer(), "cobblestone", 0);
+
+
+            // Gamemod Change
+            event.getPlayer().setGameMode(GameMode.ADVENTURE);
 
         }
 
