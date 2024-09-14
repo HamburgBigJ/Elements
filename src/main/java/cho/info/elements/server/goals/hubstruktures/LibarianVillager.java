@@ -12,31 +12,31 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 
-public class SmitherVillager implements Listener {
+public class LibarianVillager implements Listener {
 
-    private static final String VILLAGER_NAME_PREFIX = ChatColor.GOLD + "Smith ";
+    public ConfigManager configManager;
+
+    private static final String VILLAGER_NAME_PREFIX = ChatColor.GOLD + "Librarian ";
     private static final String VILLAGER_NAME_SUFFIX = ChatColor.GOLD + " / ";
 
-    private final ConfigManager configManager;
-
-    public SmitherVillager(ConfigManager configManager) {
+    public LibarianVillager(ConfigManager configManager) {
         this.configManager = configManager;
     }
 
     public void villagerSpawn() {
-        Object smitherStageObj = configManager.getPublicVar("SmitherGoal");
-        int smitherStage = (smitherStageObj != null) ? (int) smitherStageObj : 0;
+        Object libarianStageObj = configManager.getPublicVar("LibarianGoal");
+        int libarianStage = (libarianStageObj != null) ? (int) libarianStageObj : 0;
 
-        if (smitherStage == 0) {
-            Location villagerLocation = new Location(Bukkit.getWorld("world"), -8.5, 69, -1.5);
+        if (libarianStage == 0) {
+            Location villagerLocation = new Location(Bukkit.getWorld("world"), -8.5, 69, 3.5);
             if (!isVillagerAtLocation(villagerLocation)) {
                 Villager villager = (Villager) Bukkit.getWorld("world").spawnEntity(villagerLocation, EntityType.VILLAGER);
                 configureVillager(villager);
 
-                int smiterXp = getConfigValue("SmitherGoalXp");
-                int smitherMaxXp = getConfigValue("SmitherGoalMaxXp");
+                int libarianXp = getConfigValue("LibarianGoalXp");
+                int libarianMaxXp = getConfigValue("LibarianGoalMaxXp");
 
-                villager.setCustomName(createVillagerName(smiterXp, smitherMaxXp));
+                villager.setCustomName(createVillagerName(libarianXp, libarianMaxXp));
             }
         }
     }
@@ -65,29 +65,28 @@ public class SmitherVillager implements Listener {
             Villager villager = (Villager) event.getRightClicked();
             Player player = event.getPlayer();
 
-            int smitherStage = getConfigValue("SmitherGoal");
-            int smiterXp = getConfigValue("SmitherGoalXp");
-            int smitherMaxXp = getConfigValue("SmitherGoalMaxXp");
+            int libarianStage = getConfigValue("LibarianGoal");
+            int libarianXp = getConfigValue("LibarianGoalXp");
+            int libarianMaxXp = getConfigValue("LibarianGoalMaxXp");
 
-            if (villager.getCustomName() != null && villager.getCustomName().equals(createVillagerName(smiterXp, smitherMaxXp))) {
-                if (smiterXp >= smitherMaxXp) {
-                    smitherStage = 1;
-                    configManager.setPublicVar("SmitherGoal", smitherStage);
+            if (villager.getCustomName() != null && villager.getCustomName().equals(createVillagerName(libarianXp, libarianMaxXp))) {
+                if (libarianXp >= libarianMaxXp) {
+                    libarianStage = 1;
+                    configManager.setPublicVar("LibarianGoal", libarianStage);
                     villager.remove();
 
-                    //Clones
-
-                    Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "clone -32 81 65 -26 77 69 -11 69 -5");
+                    // Führe den Clone-Befehl aus
+                    Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "clone -34 81 69 -40 77 65 -11 69 3");
                 }
 
                 if (player.getLevel() >= 10) {
                     player.sendMessage(ChatColor.GOLD + "You have deposited 10 levels!");
                     player.setLevel(player.getLevel() - 10);
 
-                    smiterXp += 10;
-                    configManager.setPublicVar("SmitherGoalXp", smiterXp);
+                    libarianXp += 10;
+                    configManager.setPublicVar("LibarianGoalXp", libarianXp);
 
-                    villager.setCustomName(createVillagerName(smiterXp, smitherMaxXp));
+                    villager.setCustomName(createVillagerName(libarianXp, libarianMaxXp));
                 } else {
                     player.sendMessage("Du hast nicht Genug Level!");
                 }
@@ -100,7 +99,7 @@ public class SmitherVillager implements Listener {
         return (value != null) ? (int) value : 0;
     }
 
-    private String createVillagerName(int smiterXp, int smitherMaxXp) {
-        return VILLAGER_NAME_PREFIX + ChatColor.GREEN + smiterXp + VILLAGER_NAME_SUFFIX + ChatColor.GREEN + smitherMaxXp;
+    private String createVillagerName(int libarianXp, int libarianMaxXp) {
+        return VILLAGER_NAME_PREFIX + ChatColor.GREEN + libarianXp + VILLAGER_NAME_SUFFIX + ChatColor.GREEN + libarianMaxXp;
     }
 }

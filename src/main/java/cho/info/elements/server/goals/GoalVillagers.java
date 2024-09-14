@@ -45,7 +45,7 @@ public class GoalVillagers {
                 int firstGoalXp = (firstGoalXpObj != null) ? (int) firstGoalXpObj : 0;
                 int firstGoalMaxXp = (firstGoalMaxXpObj != null) ? (int) firstGoalMaxXpObj : 0;
 
-                goalFirst.setCustomName(ChatColor.GOLD + "First Goal: " + ChatColor.GREEN + String.valueOf(firstGoalXp) + ChatColor.WHITE + " / " + ChatColor.GREEN + String.valueOf(firstGoalMaxXp) + ChatColor.WHITE + " Xp");
+                goalFirst.setCustomName(ChatColor.GOLD + "First Goal: " + ChatColor.GREEN + String.valueOf(firstGoalXp) + ChatColor.WHITE + " / " + ChatColor.GREEN + String.valueOf(firstGoalMaxXp));
             }
         }
     }

@@ -37,6 +37,10 @@ commands:
     usage: /<command> <var> <value>
     description: Set Public Var
 
+  resetallstruktures:
+    permission: elements.resetallsruktures
+    usage: /<command>
+    description: Resets all Struktures
 
 worlds:
   world:

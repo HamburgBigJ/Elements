@@ -23,8 +23,11 @@ import cho.info.elements.server.events.LoadPlayer;
 import cho.info.elements.server.events.SteinSpalterHit;
 import cho.info.elements.server.goals.FirstGoal;
 import cho.info.elements.server.goals.GoalVillagers;
+import cho.info.elements.server.goals.hubstruktures.LibarianVillager;
 import cho.info.elements.server.goals.hubstruktures.SmitherVillager;
+import cho.info.elements.server.mapedit.HubBlockBreak;
 import com.sk89q.worldedit.WorldEdit;
+import com.sk89q.worldedit.bukkit.WorldEditPlugin;
 import org.bukkit.*;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -32,6 +35,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.server.ServerLoadEvent;
 import org.bukkit.generator.ChunkGenerator;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import cho.info.elements.generator.SkyblockWorldGenerator;
@@ -51,7 +55,7 @@ public final class Elements extends JavaPlugin implements Listener {
     public VillagersInHub villagersInHub;
     public VillagerTechniker villagerTechniker;
     public SmitherVillager smitherVillager;
-
+    public LibarianVillager libarianVillager;
 
     @Override
     public void onEnable() {
@@ -61,6 +65,9 @@ public final class Elements extends JavaPlugin implements Listener {
         VariableManager publicVariableManager = new VariableManager(this, getDataFolder(), "ServerVars", "PublicVars.yml", true);
         ItemManager itemManager = new ItemManager();
         worldManager = new WorldManager(this);
+
+
+
 
         // Initialisiere VillagersInHub
         villagersInHub = new VillagersInHub();
@@ -110,6 +117,8 @@ public final class Elements extends JavaPlugin implements Listener {
         pluginManager.registerEvents(new SelectClass(configManager), this);
         pluginManager.registerEvents(new VillagerTechniker(configManager), this);
         pluginManager.registerEvents(new SmitherVillager(configManager), this);
+        pluginManager.registerEvents(new HubBlockBreak(), this);
+        pluginManager.registerEvents(new LibarianVillager(configManager), this);
         // Only Event In der Main !!!!
         pluginManager.registerEvents(this, this);
 
@@ -120,22 +129,32 @@ public final class Elements extends JavaPlugin implements Listener {
         this.getCommand("setskillvar").setExecutor(new SetSkillXpCommand(configManager));
         this.getCommand("respawnallvillagers").setExecutor(new RespanAllVillager(this));
         this.getCommand("setpublicvar").setExecutor(new SetPublicVarCommand(configManager));
+        this.getCommand("resetallstruktures").setExecutor(new ResteAllStruktures());
 
 
         //Public Vars
         configManager.addPublicVar("Stage", 1);
 
+        //First Goal
         configManager.addPublicVar("FirstGoal", 0);
         configManager.addPublicVar("FirstGoalMaxXp", 10000);
         configManager.addPublicVar("FirstGoalXp", 0);
 
+        //Second Goal
         configManager.addPublicVar("SecondGoal", 0);
         configManager.addPublicVar("SecondGoalMaxXp", 100000);
         configManager.addPublicVar("SecondGoalXp", 0);
 
+        //Smithin goal
         configManager.addPublicVar("SmitherGoal", 0);
         configManager.addPublicVar("SmitherGoalMaxXp", 1000);
         configManager.addPublicVar("SmitherGoalXp", 0);
+
+        //Bibiotekar
+        configManager.addPublicVar("LibarianGoal", 0);
+        configManager.addPublicVar("LibarianGoalMaxXp", 10000);
+        configManager.addPublicVar("LibarianGoalXp", 0);
+
 
 
         // Note: Villagers after startup !!!
@@ -223,7 +242,11 @@ public final class Elements extends JavaPlugin implements Listener {
 
         VillagerTechniker villagerTechniker = new VillagerTechniker(configManager);
 
-        SmitherVillager smitherVillager1 = new SmitherVillager(configManager);
+        SmitherVillager smitherVillager = new SmitherVillager(configManager);
+
+        LibarianVillager libarianVillager = new LibarianVillager(configManager);
+
+
 
         killAllVillagersInOverworld();
 
@@ -237,9 +260,11 @@ public final class Elements extends JavaPlugin implements Listener {
 
             villagersInHub.spawnVillagerStone();
 
+            smitherVillager.villagerSpawn();
+
             villagerTechniker.villagerSpawn();
 
-            smitherVillager.villagerSpawn();
+            libarianVillager.villagerSpawn();
 
 
         }

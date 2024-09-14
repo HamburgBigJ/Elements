@@ -37,7 +37,7 @@ public class FirstGoal implements Listener {
             int firstGoalXp = (firstGoalXpObj != null) ? (int) firstGoalXpObj : 0;
             int firstGoalMaxXp = (firstGoalMaxXpObj != null) ? (int) firstGoalMaxXpObj : 0;
 
-            if (villager.getCustomName() != null && villager.getCustomName().equals(ChatColor.GOLD + "First Goal: " + ChatColor.GREEN + String.valueOf(firstGoalXp) + ChatColor.WHITE + " / " + ChatColor.GREEN + String.valueOf(firstGoalMaxXp) + ChatColor.WHITE + " Xp")) {
+            if (villager.getCustomName() != null && villager.getCustomName().equals(ChatColor.GOLD + "First Goal: " + ChatColor.GREEN + String.valueOf(firstGoalXp) + ChatColor.WHITE + " / " + ChatColor.GREEN + String.valueOf(firstGoalMaxXp))) {
                 if (player.getLevel() >= 10) {
                     player.sendMessage(ChatColor.GOLD + "You have deposited 10 levels!");
                     int playerLevel = player.getLevel();
@@ -50,7 +50,7 @@ public class FirstGoal implements Listener {
 
                     configManager.setPublicVar("FirstGoalXp", firstGoalXp);
 
-                    villager.setCustomName(ChatColor.GOLD + "First Goal: " + ChatColor.GREEN + String.valueOf(firstGoalXp) + ChatColor.WHITE + " / " + ChatColor.GREEN + String.valueOf(firstGoalMaxXp) + ChatColor.WHITE + " Xp");
+                    villager.setCustomName(ChatColor.GOLD + "First Goal: " + ChatColor.GREEN + String.valueOf(firstGoalXp) + ChatColor.WHITE + " / " + ChatColor.GREEN + String.valueOf(firstGoalMaxXp));
 
                 } else if (firstGoalXp >= firstGoalMaxXp) {
 

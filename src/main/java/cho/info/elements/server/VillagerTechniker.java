@@ -27,9 +27,9 @@ public class VillagerTechniker implements Listener {
 
     public void villagerSpawn() {
         // Define locations in different worlds
-        Location technikerSkyLocation = new Location(Bukkit.getWorld("world_skyblock"), 0, 70, 2);
-        Location technikerStoneLocation = new Location(Bukkit.getWorld("world_stone"), 10, 65, 10);
-        Location technikerWaterLocation = new Location(Bukkit.getWorld("world_water"), -10, 63, -5);
+        Location technikerSkyLocation = new Location(Bukkit.getWorld("world_skyblock"), 0.5, 70, 2.5);
+        Location technikerStoneLocation = new Location(Bukkit.getWorld("world_stone"), 0.5, 70, 2.5);
+        Location technikerWaterLocation = new Location(Bukkit.getWorld("world_whater"), 0.5, 70, 2.5);
 
         // Spawn villagers in each location if they aren't already present
         spawnVillagerAtLocation(technikerSkyLocation, ChatColor.GOLD + "Techniker");
@@ -38,18 +38,23 @@ public class VillagerTechniker implements Listener {
     }
 
     private void spawnVillagerAtLocation(Location location, String customName) {
-        if (!isVillagerAtLocation(location)) {
+        if (location.getWorld() != null && !isVillagerAtLocation(location)) {
             Villager techniker = (Villager) location.getWorld().spawnEntity(location, EntityType.VILLAGER);
             techniker.setAI(false);
             techniker.setSilent(true);
             techniker.setNoPhysics(true);
-            techniker.setInvisible(true);
+            techniker.setInvisible(false);
             techniker.setCustomName(customName);
             techniker.setCustomNameVisible(true);
         }
     }
 
     private boolean isVillagerAtLocation(Location location) {
+        if (location.getWorld() == null) {
+            Bukkit.getLogger().severe("World is not loaded for location: " + location.toString());
+            return false;
+        }
+
         for (Entity entity : location.getWorld().getNearbyEntities(location, 1, 1, 1)) {
             if (entity instanceof Villager) {
                 return true;
@@ -73,7 +78,7 @@ public class VillagerTechniker implements Listener {
 
                 if (stage == 0) {
                     // Give the player the starter Shulker Box as in the previous stage
-                    player.sendMessage("Du hast deine Dimension gewählt.\n" +
+                    player.sendMessage(ChatColor.GREEN + "Du hast deine Dimension gewählt.\n" +
                             "Leider kannst du deine Dimension nicht wechseln!\n" +
                             "Bringe mir für ein Upgrade deiner Enderchest diese Items:\n" +
                             "64 Oak Log\n" +
@@ -100,6 +105,8 @@ public class VillagerTechniker implements Listener {
 
                         // Proceed to next stage (Stage 4)
                         configManager.setPlayerValue(player, "TechnikerStage", 2);
+
+                        configManager.setPlayerValue(player, "EdderGui", 1);
 
                     } else {
                         player.sendMessage(ChatColor.RED + "Du benötigst folgende Items, um fortzufahren:\n" +
