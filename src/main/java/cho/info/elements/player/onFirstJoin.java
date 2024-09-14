@@ -72,6 +72,9 @@ public class onFirstJoin implements Listener {
             // Collection to do
             configManager.addValue(event.getPlayer(), "cobblestone", 0);
 
+            // Techniker Stage
+            configManager.addValue(event.getPlayer(), "TechnikerStage", 0);
+
 
             // Gamemod Change
             event.getPlayer().setGameMode(GameMode.ADVENTURE);

@@ -5,7 +5,7 @@ description: Minecraft Elements
 api-version: '1.21'
 prefix: Elements
 load: STARTUP
-authors: [ HamburgBigJ ]
+authors: [ HamburgBigJ, WardoTheBee ]
 depend:
   - WorldEdit
 

@@ -7,6 +7,7 @@ import cho.info.elements.managers.ConfigManager;
 import cho.info.elements.managers.ItemManager;
 import cho.info.elements.managers.VariableManager;
 import cho.info.elements.managers.WorldManager;
+import cho.info.elements.player.SelectClass;
 import cho.info.elements.player.SkillLevelManager;
 import cho.info.elements.player.blocks.CompresstCobbleDrop;
 import cho.info.elements.player.gui.EnderChest;
@@ -15,12 +16,14 @@ import cho.info.elements.player.onFirstJoin;
 import cho.info.elements.player.skills.FarmingSkill;
 import cho.info.elements.player.skills.ForestingSkill;
 import cho.info.elements.player.skills.MiningSkill;
+import cho.info.elements.server.VillagerTechniker;
 import cho.info.elements.server.VillagersInHub;
 import cho.info.elements.server.events.HubWeather;
 import cho.info.elements.server.events.LoadPlayer;
 import cho.info.elements.server.events.SteinSpalterHit;
 import cho.info.elements.server.goals.FirstGoal;
 import cho.info.elements.server.goals.GoalVillagers;
+import cho.info.elements.server.goals.hubstruktures.SmitherVillager;
 import com.sk89q.worldedit.WorldEdit;
 import org.bukkit.*;
 import org.bukkit.entity.Entity;
@@ -46,6 +49,8 @@ public final class Elements extends JavaPlugin implements Listener {
     public ItemManager itemManager;
     public WorldManager worldManager;
     public VillagersInHub villagersInHub;
+    public VillagerTechniker villagerTechniker;
+    public SmitherVillager smitherVillager;
 
 
     @Override
@@ -102,6 +107,9 @@ public final class Elements extends JavaPlugin implements Listener {
         pluginManager.registerEvents(new CompresstCobbleDrop(itemManager), this);
         pluginManager.registerEvents(new LoadPlayer(configManager), this);
         pluginManager.registerEvents(new FirstGoal(this, configManager), this);
+        pluginManager.registerEvents(new SelectClass(configManager), this);
+        pluginManager.registerEvents(new VillagerTechniker(configManager), this);
+        pluginManager.registerEvents(new SmitherVillager(configManager), this);
         // Only Event In der Main !!!!
         pluginManager.registerEvents(this, this);
 
@@ -124,6 +132,10 @@ public final class Elements extends JavaPlugin implements Listener {
         configManager.addPublicVar("SecondGoal", 0);
         configManager.addPublicVar("SecondGoalMaxXp", 100000);
         configManager.addPublicVar("SecondGoalXp", 0);
+
+        configManager.addPublicVar("SmitherGoal", 0);
+        configManager.addPublicVar("SmitherGoalMaxXp", 1000);
+        configManager.addPublicVar("SmitherGoalXp", 0);
 
 
         // Note: Villagers after startup !!!
@@ -209,6 +221,10 @@ public final class Elements extends JavaPlugin implements Listener {
 
         GoalVillagers goalVillagers = new GoalVillagers(configManager);
 
+        VillagerTechniker villagerTechniker = new VillagerTechniker(configManager);
+
+        SmitherVillager smitherVillager1 = new SmitherVillager(configManager);
+
         killAllVillagersInOverworld();
 
 
@@ -220,6 +236,10 @@ public final class Elements extends JavaPlugin implements Listener {
         if (stage >= 1) {
 
             villagersInHub.spawnVillagerStone();
+
+            villagerTechniker.villagerSpawn();
+
+            smitherVillager.villagerSpawn();
 
 
         }
@@ -243,6 +263,29 @@ public final class Elements extends JavaPlugin implements Listener {
                     entity.remove();
                 }
             }
+
+            World syblcok = Bukkit.getWorld("world_skyblock");
+
+            for (Entity entity : syblcok.getEntities()) {
+                if (entity.getType() == EntityType.VILLAGER) {
+                    entity.remove();
+                }
+            }
+
+            World steonblock = Bukkit.getWorld("world_stone");
+            for (Entity entity : steonblock.getEntities()) {
+                if (entity.getType() == EntityType.VILLAGER) {
+                    entity.remove();
+                }
+            }
+
+            World whaterblco = Bukkit.getWorld("world_whater");
+            for (Entity entity : whaterblco.getEntities()) {
+                if (entity.getType() == EntityType.VILLAGER) {
+                    entity.remove();
+                }
+            }
+
         } else {
             getLogger().info("World 'world' not found!");
 

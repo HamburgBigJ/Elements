@@ -15,7 +15,7 @@
 ---
 
 **To Do:**
-- Add technicians in every dimension.
+-
 - Implement Mana Refill System in `player/mana/ManaRefill.java`.
 - Complete story.
 - Add functionality for Stone Splitter mini-boss.
@@ -32,9 +32,11 @@
 - Implement Gravity Stone.
 
 **Ideas:**
+-
 - Combat Skills.
 - Crafting Skills.
 
 **Errors:**
-- Display name for villagers.
+-
 - Right-click detection on villagers not functioning.
+- Ender Chset Right Click in hub
