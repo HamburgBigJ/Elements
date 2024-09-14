@@ -28,7 +28,7 @@ public class SmitherVillager implements Listener {
         int smitherStage = (smitherStageObj != null) ? (int) smitherStageObj : 0;
 
         if (smitherStage == 0) {
-            Location villagerLocation = new Location(Bukkit.getWorld("world"), -8.5, 69, -1.5);
+            Location villagerLocation = new Location(Bukkit.getWorld("world"), -7.5, 69, -0.5);
             if (!isVillagerAtLocation(villagerLocation)) {
                 Villager villager = (Villager) Bukkit.getWorld("world").spawnEntity(villagerLocation, EntityType.VILLAGER);
                 configureVillager(villager);

@@ -28,8 +28,6 @@ import cho.info.elements.server.goals.hubstruktures.LibarianVillager;
 import cho.info.elements.server.goals.hubstruktures.LotaryVillager;
 import cho.info.elements.server.goals.hubstruktures.SmitherVillager;
 import cho.info.elements.server.mapedit.HubBlockBreak;
-import com.sk89q.worldedit.WorldEdit;
-import com.sk89q.worldedit.bukkit.WorldEditPlugin;
 import org.bukkit.*;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -64,7 +62,6 @@ public final class Elements extends JavaPlugin implements Listener {
     @Override
     public void onEnable() {
 
-        WorldEdit worldEdit = WorldEdit.getInstance();
         configManager = new ConfigManager(getDataFolder());
         VariableManager publicVariableManager = new VariableManager(this, getDataFolder(), "ServerVars", "PublicVars.yml", true);
         ItemManager itemManager = new ItemManager();

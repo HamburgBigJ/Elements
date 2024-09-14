@@ -28,7 +28,7 @@ public class EnderVillager implements Listener {
         int enderStage = (enderStageObj != null) ? (int) enderStageObj : 0;
 
         if (enderStage == 0) {
-            Location villagerLocation = new Location(Bukkit.getWorld("world"), -8.5, 69, 3.5);
+            Location villagerLocation = new Location(Bukkit.getWorld("world"), 10.5, 69, -0.5);
             if (!isVillagerAtLocation(villagerLocation)) {
                 Villager villager = (Villager) Bukkit.getWorld("world").spawnEntity(villagerLocation, EntityType.VILLAGER);
                 configureVillager(villager);

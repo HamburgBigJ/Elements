@@ -29,7 +29,7 @@ public class LotaryVillager implements Listener {
         int loteryStage = (loteryStageObj != null) ? (int) loteryStageObj : 0;
 
         if (loteryStage == 0) {
-            Location villagerLocation = new Location(Bukkit.getWorld("world"), -8.5, 69, 3.5);
+            Location villagerLocation = new Location(Bukkit.getWorld("world"), 10.5, 69, 3.5);
             if (!isVillagerAtLocation(villagerLocation)) {
                 Villager villager = (Villager) Bukkit.getWorld("world").spawnEntity(villagerLocation, EntityType.VILLAGER);
                 configureVillager(villager);
@@ -49,6 +49,10 @@ public class LotaryVillager implements Listener {
         villager.setInvisible(false);
         villager.setCollidable(false);
         villager.setCustomNameVisible(true);
+
+        float yaw = 180.0f; // 180 degrees for North
+        float pitch = 0.0f; // 0 degrees for a straight orientation
+        villager.setRotation(yaw, pitch);
     }
 
     private boolean isVillagerAtLocation(Location location) {
