@@ -1,6 +1,7 @@
 package cho.info.elements.server.goals;
 
 import cho.info.elements.managers.ConfigManager;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -61,6 +62,10 @@ public class FirstGoal implements Listener {
                     firstGoal = 1;
 
                     configManager.setPublicVar("FirstGoal", firstGoal);
+
+                    Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "clone 40 67 168 73 77 152 21 66 -7");
+                    Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "fill 21 76 -7 21 68 -6 minecraft:spruce_planks");
+                    Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "fill 21 76 8 21 68 9 minecraft:spruce_planks");
 
                     villager.remove();
                 }

@@ -13,6 +13,7 @@ public class HubBlockBreak implements Listener {
         if (event.getBlock().getLocation().getWorld() == Bukkit.getWorld("world")) {
             if (!event.getPlayer().hasPermission("elements.edit")) {
                 event.getPlayer().sendMessage(ChatColor.RED + "Du kannst in Hub keine Blöcke abbauen !");
+                event.setCancelled(true);
             }
         }
     }

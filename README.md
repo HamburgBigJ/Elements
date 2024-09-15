@@ -39,3 +39,12 @@
 - Ender Chest opens without OP permissions.
 - Foresing Randum UpLebel
 - Right Clik in Lobby not work
+
+
+**Installation**
+-
+1. Set spawn-protection to 0
+2. worlds:
+   world:
+   generator: Elements:CustomOverworldGenerator
+3. Drag and drop the plugin in the plugin folder.

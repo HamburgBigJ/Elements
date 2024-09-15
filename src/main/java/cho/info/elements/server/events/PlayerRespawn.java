@@ -55,8 +55,7 @@ public class PlayerRespawn implements Listener {
             player.setGameMode(GameMode.ADVENTURE);
         }
 
-        player.setTotalExperience(player.getTotalExperience() / 3);
-        //
+        player.setLevel(player.getLevel()  / 3);
 
     }
 

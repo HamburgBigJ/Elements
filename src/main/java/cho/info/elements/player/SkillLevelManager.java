@@ -62,8 +62,8 @@ public class SkillLevelManager implements Listener {
         World world = player.getWorld();
 
         Object forestryXpObj = configManager.getPlayerValue(player, "ForestryXp");  // Corrected "Foresting" to "Forestry"
-        Object forestryMaxXpObj = configManager.getPlayerValue(player, "ForestryMaxXp");  // Corrected "Foresting" to "Forestry"
-        Object forestryLvObj = configManager.getPlayerValue(player, "ForestryLv");  // Corrected "Foresting" to "Forestry"
+        Object forestryMaxXpObj = configManager.getPlayerValue(player, "ForestingMaxXp");  // Corrected "Foresting" to "Forestry"
+        Object forestryLvObj = configManager.getPlayerValue(player, "ForestingLv");  // Corrected "Foresting" to "Forestry"
 
         int forestryXp = (forestryXpObj != null) ? (int) forestryXpObj : 0;
         int forestryMaxXp = (forestryMaxXpObj != null) ? (int) forestryMaxXpObj : 0;
@@ -79,8 +79,8 @@ public class SkillLevelManager implements Listener {
             ));
 
             configManager.setPlayerValue(player, "ForestryXp", forestryXp);
-            configManager.setPlayerValue(player, "ForestryMaxXp", forestryMaxXp);
-            configManager.setPlayerValue(player, "ForestryLv", forestryLv);
+            configManager.setPlayerValue(player, "ForestingMaxXp", forestryMaxXp);
+            configManager.setPlayerValue(player, "ForestingLv", forestryLv);
 
             event.getPlayer().sendMessage(ChatColor.DARK_AQUA + "Forestry Level up to --> " + forestryLv);
 

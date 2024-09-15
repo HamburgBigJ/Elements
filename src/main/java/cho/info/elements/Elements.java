@@ -17,8 +17,8 @@ import cho.info.elements.server.VillagerTechniker;
 import cho.info.elements.server.VillagersInHub;
 import cho.info.elements.server.events.HubWeather;
 import cho.info.elements.server.events.LoadPlayer;
+import cho.info.elements.server.events.PlayerRespawn;
 import cho.info.elements.server.events.SteinSpalterHit;
-import cho.info.elements.server.fix.EnderChestFix;
 import cho.info.elements.server.goals.FirstGoal;
 import cho.info.elements.server.goals.GoalVillagers;
 import cho.info.elements.server.goals.hubstruktures.EnderVillager;
@@ -124,7 +124,7 @@ public final class Elements extends JavaPlugin implements Listener {
         pluginManager.registerEvents(new LibarianVillager(configManager), this);
         pluginManager.registerEvents(new EnderVillager(configManager), this);
         pluginManager.registerEvents(new LotaryVillager(configManager), this);
-        pluginManager.registerEvents(new EnderChestFix(), this);
+        pluginManager.registerEvents(new PlayerRespawn(this, configManager), this);
         // Only Event In der Main !!!!
         pluginManager.registerEvents(this, this);
 
