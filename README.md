@@ -15,7 +15,6 @@
 ---
 
 **To Do:**
--
 - Implement Mana Refill System in `player/mana/ManaRefill.java`.
 - Complete story.
 - Add functionality for Stone Splitter mini-boss.
@@ -25,17 +24,15 @@
 - Implement goal 2: Fertilizer functionality.
 - Enable saving all worlds in schematic format.
 - Add tags before player names.
-- Add Boss 1.
+- Add Boss 1 with mythic mobs.
 - Implement Gravity Stone.
 
 **Ideas:**
--
 - Combat Skills.
 - Crafting Skills.
 
 **Errors:**
--
 - Right-click detection on villagers not functioning.
-- Ender Chset Right Click in hub
-- Selection of class do not work
-- Ender  CHest obe nwothout op
+- Ender Chest right-click in hub not working.
+- Selection of class does not work.
+- Ender Chest opens without OP permissions.

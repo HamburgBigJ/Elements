@@ -81,6 +81,8 @@ public final class Elements extends JavaPlugin implements Listener {
         getLogger().warning("This is an Experimental Alpha version of this plugin.");
         getLogger().warning("Many features aren't implemented yet and may not work!");
 
+        getLogger().info("Mystic Mobs Api Enabled!");
+
 
         // ANSI Escape Code for Blue Color
         String blue = "\u001B[34m";
