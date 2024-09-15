@@ -6,9 +6,7 @@ api-version: '1.21'
 prefix: Elements
 load: STARTUP
 authors: [ HamburgBigJ, WardoTheBee ]
-depend:
-  - eco
-  -
+
 
 
 commands:
