@@ -7,6 +7,7 @@ import cho.info.elements.managers.*;
 import cho.info.elements.player.SelectClass;
 import cho.info.elements.player.SkillLevelManager;
 import cho.info.elements.player.blocks.CompresstCobbleDrop;
+import cho.info.elements.player.gui.CollectionInv;
 import cho.info.elements.player.gui.EnderChest;
 import cho.info.elements.player.mana.ManaRefill;
 import cho.info.elements.player.onFirstJoin;
@@ -124,6 +125,7 @@ public final class Elements extends JavaPlugin implements Listener {
         pluginManager.registerEvents(new EnderVillager(configManager), this);
         pluginManager.registerEvents(new LotaryVillager(configManager), this);
         pluginManager.registerEvents(new PlayerRespawn(this, configManager), this);
+        pluginManager.registerEvents(new CollectionInv(this, configManager, itemManager), this);
         // Only Event In der Main !!!!
         pluginManager.registerEvents(this, this);
 
