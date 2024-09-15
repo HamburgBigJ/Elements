@@ -33,7 +33,7 @@ public class SelectClass implements Listener {
         if (event.getAction() == Action.RIGHT_CLICK_BLOCK) {
             Block block = event.getClickedBlock();
 
-            if (block != null && block.getType() == Material.OAK_SIGN) {
+            if (block != null && block.getType() == Material.OAK_WALL_SIGN) {
                 Location location = block.getLocation();
                 Player player = event.getPlayer();
 

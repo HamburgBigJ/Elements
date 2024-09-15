@@ -26,6 +26,7 @@
 - Add tags before player names.
 - Add Boss 1 with mythic mobs.
 - Implement Gravity Stone.
+- Chane Nem style of Structures
 
 **Ideas:**
 - Combat Skills.
