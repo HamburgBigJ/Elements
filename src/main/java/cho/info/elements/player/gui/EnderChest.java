@@ -112,7 +112,7 @@ public class EnderChest implements Listener {
 
                     //Colection
                     List<String> colectionlore = itemManager.createLore(ChatColor.WHITE + "Click!");
-                    ItemStack colecion = itemManager.createItem(Material.DIAMOND_PICKAXE, 1, ChatColor.GOLD + "Colection", colectionlore);
+                    ItemStack colecion = itemManager.createItem(Material.DIAMOND_PICKAXE, 1, ChatColor.GOLD + "Collection", colectionlore);
 
                     ItemMeta colectionmeta = colecion.getItemMeta();
 
@@ -430,12 +430,48 @@ public class EnderChest implements Listener {
                         event.setCancelled(true);
                     }
 
-                    if (displayName.equals(ChatColor.GOLD + "Colection")) {
+                    if (displayName.equals(ChatColor.GOLD + "Collection")) {
                         event.setCancelled(true);
 
-                        //Code für colection To do !!!
+                        Inventory collectionInv = Bukkit.createInventory(null, 27, ChatColor.DARK_PURPLE + "Collection");
 
+                        // Create gray glass pane item for filling the slots
+                        List<String> glasslore = itemManager.createLore(ChatColor.GRAY + "²");
+                        ItemStack grayglass = itemManager.createItem(Material.BLACK_STAINED_GLASS_PANE, 1, ChatColor.GRAY + "²", glasslore);
+
+                        // Create the cobblestone item
+                        List<String> cobblestonelore = itemManager.createLore(ChatColor.GRAY + "Click");
+                        ItemStack cobblestone = itemManager.createItem(Material.COBBLESTONE, 1, ChatColor.GOLD + "Cobblestone", cobblestonelore);
+
+                        // Create the oak log item
+                        List<String> oaklore = itemManager.createLore(ChatColor.GRAY + "Click");
+                        ItemStack oak = itemManager.createItem(Material.OAK_LOG, 1, ChatColor.GOLD + "Oak", oaklore);
+
+                        // Create the wheat item
+                        List<String> wheetlore = itemManager.createLore(ChatColor.GRAY + "Click");
+                        ItemStack wheat = itemManager.createItem(Material.WHEAT, 1, ChatColor.GOLD + "Wheat", wheetlore);
+
+                        // Create the amethyst cluster item
+                        List<String> amethystlore = itemManager.createLore(ChatColor.GRAY + "Click");
+                        ItemStack amethyst = itemManager.createItem(Material.AMETHYST_CLUSTER, 1, ChatColor.GOLD + "Amethyst", amethystlore);
+
+                        // Set the items in the inventory to match the layout in the image
+                        collectionInv.setItem(9, cobblestone); // Cobblestone in the first slot
+                        collectionInv.setItem(10, oak); // Oak log in the second row, first slot
+                        collectionInv.setItem(11, wheat); // Wheat in the second row, second slot
+                        collectionInv.setItem(12, amethyst); // Amethyst in the second row, third slot
+
+                        // Fill the rest of the slots with gray stained glass pane
+                        for (int i = 0; i < 27; i++) {
+                            if (collectionInv.getItem(i) == null) {
+                                collectionInv.setItem(i, grayglass);
+                            }
+                        }
+
+                        // Open the custom inventory for the player
+                        player.openInventory(collectionInv);
                     }
+
                 }
             }
 
