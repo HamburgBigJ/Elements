@@ -3,10 +3,7 @@ package cho.info.elements;
 import cho.info.elements.commands.*;
 import cho.info.elements.generator.CustomOverworldGenerator;
 import cho.info.elements.generator.SkyblockWorldGenerator;
-import cho.info.elements.managers.ConfigManager;
-import cho.info.elements.managers.ItemManager;
-import cho.info.elements.managers.VariableManager;
-import cho.info.elements.managers.WorldManager;
+import cho.info.elements.managers.*;
 import cho.info.elements.player.SelectClass;
 import cho.info.elements.player.SkillLevelManager;
 import cho.info.elements.player.blocks.CompresstCobbleDrop;
@@ -59,6 +56,7 @@ public final class Elements extends JavaPlugin implements Listener {
     public LibarianVillager libarianVillager;
     public LotaryVillager lotaryVillager;
     public EnderVillager enderVillager;
+    public MobManager mobManager;
 
     @Override
     public void onEnable() {
@@ -107,13 +105,14 @@ public final class Elements extends JavaPlugin implements Listener {
 
         // Register all events
         pluginManager.registerEvents(new onFirstJoin(this), this);
+        pluginManager.registerEvents(new MobManager(this), this);
         pluginManager.registerEvents(new MiningSkill(this, configManager), this);
         pluginManager.registerEvents(new SkillLevelManager(this, configManager), this);
         pluginManager.registerEvents(new FarmingSkill(this, configManager), this);
         pluginManager.registerEvents(new ForestingSkill(this, configManager), this);
         pluginManager.registerEvents(new EnderChest(this, configManager, publicVariableManager, itemManager), this);
         pluginManager.registerEvents(new ManaRefill(this, configManager, itemManager), this);
-        pluginManager.registerEvents(new SteinSpalterHit(), this);
+        pluginManager.registerEvents(new SteinSpalterHit(itemManager, mobManager), this);
         pluginManager.registerEvents(new HubWeather(), this);
         pluginManager.registerEvents(new CompresstCobbleDrop(itemManager), this);
         pluginManager.registerEvents(new LoadPlayer(configManager), this);

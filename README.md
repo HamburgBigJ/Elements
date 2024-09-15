@@ -24,7 +24,7 @@
 - Implement goal 2: Fertilizer functionality.
 - Enable saving all worlds in schematic format.
 - Add tags before player names.
-- Add Boss 1 with mythic mobs.
+- Add Boss 1 with Eco Mobs.
 - Implement Gravity Stone.
 - Chane Nem style of Structures
 
