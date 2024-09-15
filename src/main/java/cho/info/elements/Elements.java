@@ -65,6 +65,7 @@ public final class Elements extends JavaPlugin implements Listener {
         VariableManager publicVariableManager = new VariableManager(this, getDataFolder(), "ServerVars", "PublicVars.yml", true);
         ItemManager itemManager = new ItemManager();
         worldManager = new WorldManager(this);
+        this.mobManager = new MobManager(this);
 
 
 
@@ -78,8 +79,6 @@ public final class Elements extends JavaPlugin implements Listener {
         getLogger().warning("Plugin: " + getName());
         getLogger().warning("This is an Experimental Alpha version of this plugin.");
         getLogger().warning("Many features aren't implemented yet and may not work!");
-
-        getLogger().info("Mystic Mobs Api Enabled!");
 
 
         // ANSI Escape Code for Blue Color

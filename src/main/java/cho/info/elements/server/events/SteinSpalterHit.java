@@ -10,13 +10,10 @@ import org.bukkit.block.Block;
 import org.bukkit.boss.BossBar;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
-import org.bukkit.entity.Zombie;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
-
-import java.util.List;
 
 public class SteinSpalterHit implements Listener {
 
@@ -24,7 +21,7 @@ public class SteinSpalterHit implements Listener {
     private final Material deepslateMaterial = Material.DEEPSLATE;
 
     private final ItemManager itemManager;
-    public MobManager mobManager;
+    private final MobManager mobManager;
 
     public SteinSpalterHit(ItemManager itemManager, MobManager mobManager) {
         this.itemManager = itemManager;
@@ -58,32 +55,10 @@ public class SteinSpalterHit implements Listener {
                         updatedItemInHand.setAmount(updatedItemInHand.getAmount() - 1);
                         player.getInventory().setItemInMainHand(updatedItemInHand);
 
-
+                        // Spawn the mob and create the BossBar
                         Location location = clickedBlock.getLocation();
-
-                        BossBar bossBar = mobManager.createBossBar("Silphy", 20.0);
+                        BossBar bossBar = mobManager.createBossBar(ChatColor.RED + "Silphy", 1.0); // Full health initially
                         mobManager.spawnCustomMob(location, EntityType.SILVERFISH, ChatColor.RED + "Silphy", bossBar);
-
-                        /*  Lagay Verson
-                        // Spawning the "Steinspalter" mini boss
-                        Location location = clickedBlock.getLocation();
-                        Zombie miniBoss = (Zombie) player.getWorld().spawnEntity(location, EntityType.ZOMBIE);
-
-                        // Customize the mini-boss, for example, by setting its name and increasing its health
-                        miniBoss.setCustomName(ChatColor.RED + "Steinspalter Mini-Boss");
-                        miniBoss.setCustomNameVisible(true);
-                        miniBoss.setHealth(40.0); // Double the health of a regular zombie
-                        miniBoss.getEquipment().setHelmet(new ItemStack(Material.DIAMOND_HELMET));
-                        miniBoss.getEquipment().setChestplate(new ItemStack(Material.DIAMOND_CHESTPLATE));
-
-                        // Create the custom item with lore using ItemManager
-                        List<String> itemLore = itemManager.createLore(ChatColor.WHITE + "Common");
-                        ItemStack customItem = itemManager.createItem(Material.EXPERIENCE_BOTTLE, 2, ChatColor.WHITE + "Experience Bottle", itemLore);
-
-                        // Drop the custom item from the mini-boss
-                        miniBoss.getWorld().dropItemNaturally(miniBoss.getLocation(), customItem);
-
-                         */
                     }
                 }
             }

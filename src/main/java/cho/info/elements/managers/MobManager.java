@@ -8,6 +8,7 @@ import org.bukkit.boss.BarStyle;
 import org.bukkit.boss.BarFlag;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
@@ -38,10 +39,11 @@ public class MobManager implements Listener {
         mob.setCustomName(customName);
         mob.setCustomNameVisible(true);
 
-        // Assign custom boss bar
-        if (bossBar != null) {
-            mobBossBars.put(mob.getUniqueId(), bossBar);
-        }
+        // Update BossBar for players in range
+        updateBossBarForPlayers(mob, bossBar);
+
+        // Store the BossBar in the map
+        mobBossBars.put(mob.getUniqueId(), bossBar);
 
         // Start task to update boss bar health
         new BukkitRunnable() {
@@ -51,6 +53,9 @@ public class MobManager implements Listener {
                     // Remove boss bar when mob dies
                     BossBar bar = mobBossBars.remove(mob.getUniqueId());
                     if (bar != null) {
+                        for (Player player : bar.getPlayers()) {
+                            bar.removePlayer(player);
+                        }
                         bar.removeAll();
                     }
                     cancel();
@@ -58,13 +63,31 @@ public class MobManager implements Listener {
                     // Update boss bar health
                     BossBar bar = mobBossBars.get(mob.getUniqueId());
                     if (bar != null) {
-                        bar.setProgress(mob.getHealth() / mob.getMaxHealth());
+                        double healthPercentage = mob.getHealth() / mob.getMaxHealth();
+                        bar.setProgress(healthPercentage);
+
+                        // Update BossBar for players in range
+                        updateBossBarForPlayers(mob, bar);
                     }
                 }
             }
         }.runTaskTimer(plugin, 0L, 20L); // Update every second
 
         return mob;
+    }
+
+    private void updateBossBarForPlayers(LivingEntity mob, BossBar bossBar) {
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            if (player.getWorld().equals(mob.getWorld()) && player.getLocation().distanceSquared(mob.getLocation()) <= 400) { // 400 = 20^2
+                if (!bossBar.getPlayers().contains(player)) {
+                    bossBar.addPlayer(player);
+                }
+            } else {
+                if (bossBar.getPlayers().contains(player)) {
+                    bossBar.removePlayer(player);
+                }
+            }
+        }
     }
 
     // Method to drop custom items
@@ -89,7 +112,8 @@ public class MobManager implements Listener {
         LivingEntity mob = (LivingEntity) event.getEntity();
         BossBar bossBar = mobBossBars.get(mob.getUniqueId());
         if (bossBar != null) {
-            bossBar.setProgress(mob.getHealth() / mob.getMaxHealth());
+            double healthPercentage = mob.getHealth() / mob.getMaxHealth();
+            bossBar.setProgress(healthPercentage);
         }
     }
 }
