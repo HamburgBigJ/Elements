@@ -22,9 +22,6 @@
 - Complete collection.
 - Refine villagers.
 - Implement building generator.
-- Develop structure loading system.
-- Set XP goals for all structures.
-- Integrate villagers into structures.
 - Implement goal 2: Fertilizer functionality.
 - Enable saving all worlds in schematic format.
 - Add tags before player names.
@@ -40,3 +37,5 @@
 -
 - Right-click detection on villagers not functioning.
 - Ender Chset Right Click in hub
+- Selection of class do not work
+- Ender  CHest obe nwothout op
