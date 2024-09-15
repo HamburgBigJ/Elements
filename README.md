@@ -37,3 +37,5 @@
 - Ender Chest right-click in hub not working.
 - Selection of class does not work.
 - Ender Chest opens without OP permissions.
+- Foresing Randum UpLebel
+- Right Clik in Lobby not work
