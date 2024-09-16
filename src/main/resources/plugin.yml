@@ -41,6 +41,17 @@ commands:
     usage: /<command>
     description: Resets all Struktures
 
+  tpdungon:
+    permission: elements.tp
+    usage: /<command>
+    description: Teleports to DungeonWorld
+
+  tphub:
+    permission: elements.tp
+    usage: /<command>
+    description: Teleports to Hub
+
+
 worlds:
   world:
     generator: Elements:CustomOverworldGenerator

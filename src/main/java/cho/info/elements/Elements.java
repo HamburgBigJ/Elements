@@ -7,6 +7,7 @@ import cho.info.elements.managers.*;
 import cho.info.elements.player.SelectClass;
 import cho.info.elements.player.SkillLevelManager;
 import cho.info.elements.player.blocks.CompresstCobbleDrop;
+import cho.info.elements.player.colection.BlockListener;
 import cho.info.elements.player.gui.CollectionInv;
 import cho.info.elements.player.gui.EnderChest;
 import cho.info.elements.player.mana.ManaRefill;
@@ -126,6 +127,7 @@ public final class Elements extends JavaPlugin implements Listener {
         pluginManager.registerEvents(new LotaryVillager(configManager), this);
         pluginManager.registerEvents(new PlayerRespawn(this, configManager), this);
         pluginManager.registerEvents(new CollectionInv(this, configManager, itemManager), this);
+        pluginManager.registerEvents(new BlockListener(configManager), this);
         // Only Event In der Main !!!!
         pluginManager.registerEvents(this, this);
 
@@ -137,6 +139,8 @@ public final class Elements extends JavaPlugin implements Listener {
         this.getCommand("respawnallvillagers").setExecutor(new RespanAllVillager(this));
         this.getCommand("setpublicvar").setExecutor(new SetPublicVarCommand(configManager));
         this.getCommand("resetallstruktures").setExecutor(new ResteAllStruktures());
+        this.getCommand("tpdungon").setExecutor(new DungeonTeleportCommand());
+        this.getCommand("tphub").setExecutor(new HubTeleportCommand());
 
 
         //Public Vars
@@ -237,6 +241,9 @@ public final class Elements extends JavaPlugin implements Listener {
 
         worldManager.createWaterWorld("world_whater");
         getLogger().info("Create: world_whater");
+
+        worldManager.createSkyWorld("world_dungeon");
+        getLogger().info("Create: world_dungeon");
 
         enableKeepInventory();
 

@@ -71,6 +71,9 @@ public class onFirstJoin implements Listener {
 
             // Collection to do
             configManager.addValue(event.getPlayer(), "cobblestone", 0);
+            configManager.addValue(event.getPlayer(), "Oak", 0);
+            configManager.addValue(event.getPlayer(), "Wheat", 0);
+            configManager.addValue(event.getPlayer(), "Amethyst", 0);
 
             // Techniker Stage
             configManager.addValue(event.getPlayer(), "TechnikerStage", 0);
