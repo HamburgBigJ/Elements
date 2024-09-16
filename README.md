@@ -32,6 +32,7 @@
 
 **Errors:**
 -
+- Spawn on Every rejoin in Lobby.
 
 ---
 
