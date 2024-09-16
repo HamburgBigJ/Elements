@@ -9,6 +9,9 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.scoreboard.Scoreboard;
+import org.bukkit.scoreboard.ScoreboardManager;
+import org.bukkit.scoreboard.Team;
 
 public class SelectClass implements Listener {
 
@@ -39,20 +42,24 @@ public class SelectClass implements Listener {
                     if (homeDimension == 0) {
                         Location teleportLocation = null;
                         World targetWorld = null;
+                        String prefix = ""; // Initialize prefix variable
 
                         // Determine the target world and location based on the second line
                         switch (secondLine.toLowerCase()) {
                             case "skyblock":
                                 targetWorld = Bukkit.getWorld("world_skyblock");
                                 teleportLocation = new Location(targetWorld, 1.5, 70, 1.5);
+                                prefix = ChatColor.BLUE + "[Sky] ";
                                 break;
                             case "stoneblock":
                                 targetWorld = Bukkit.getWorld("world_stone");
                                 teleportLocation = new Location(targetWorld, 1.5, 70, 1.5);
+                                prefix = ChatColor.GRAY + "[Stone] ";
                                 break;
                             case "whaterblock":
                                 targetWorld = Bukkit.getWorld("world_whater");
                                 teleportLocation = new Location(targetWorld, 1.5, 70, 1.5);
+                                prefix = ChatColor.AQUA + "[Water] ";
                                 break;
                             default:
                                 player.sendMessage("Unbekannte Dimension!");
@@ -70,6 +77,9 @@ public class SelectClass implements Listener {
                         player.sendMessage("Du hast die " + secondLine + " Dimension gewählt!");
                         player.setGameMode(GameMode.SURVIVAL);
                         player.teleport(teleportLocation);
+
+                        // Set the prefix for the player
+                        addPrefixToSpecificPlayer(player, prefix);
                     } else {
                         player.sendMessage("Du kannst deine Home-Dimension nicht ändern!");
                     }
@@ -89,5 +99,26 @@ public class SelectClass implements Listener {
             default:
                 return 0;
         }
+    }
+
+    private void addPrefixToSpecificPlayer(Player player, String prefix) {
+        ScoreboardManager manager = Bukkit.getScoreboardManager();
+        Scoreboard scoreboard = manager.getMainScoreboard();
+        Team team = scoreboard.getTeam(player.getName());
+
+        if (team == null) {
+            team = scoreboard.registerNewTeam(player.getName());
+        }
+
+        team.setPrefix(prefix);
+
+        // Remove player from any existing teams to avoid conflicts
+        for (Team existingTeam : scoreboard.getTeams()) {
+            if (existingTeam.hasEntry(player.getName())) {
+                existingTeam.removeEntry(player.getName());
+            }
+        }
+
+        team.addEntry(player.getName());
     }
 }

@@ -53,7 +53,9 @@ public class FirstGoal implements Listener {
 
                     villager.setCustomName(ChatColor.GOLD + "First Goal: " + ChatColor.GREEN + String.valueOf(firstGoalXp) + ChatColor.WHITE + " / " + ChatColor.GREEN + String.valueOf(firstGoalMaxXp));
 
-                } else if (firstGoalXp >= firstGoalMaxXp) {
+                }
+
+                if (firstGoalXp >= firstGoalMaxXp) {
 
                     Object firstGoalObj = configManager.getPublicVar("FirstGoal");
 

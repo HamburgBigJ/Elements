@@ -29,7 +29,7 @@ public class MobManager implements Listener {
     }
 
     // Method to spawn a custom mob using only Location
-    public LivingEntity spawnCustomMob(Location location, EntityType type, String customName, BossBar bossBar) {
+    public LivingEntity spawnCustomMob(Location location, EntityType type, String customName, BossBar bossBar, double healt) {
         // Ensure the world is valid
         if (location.getWorld() == null) {
             throw new IllegalArgumentException("Location must have a valid world.");
@@ -38,6 +38,8 @@ public class MobManager implements Listener {
         LivingEntity mob = (LivingEntity) location.getWorld().spawnEntity(location, type);
         mob.setCustomName(customName);
         mob.setCustomNameVisible(true);
+        mob.setHealth(healt);
+
 
         // Update BossBar for players in range
         updateBossBarForPlayers(mob, bossBar);

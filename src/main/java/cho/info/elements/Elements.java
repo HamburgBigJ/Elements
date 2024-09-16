@@ -27,10 +27,14 @@ import cho.info.elements.server.goals.hubstruktures.EnderVillager;
 import cho.info.elements.server.goals.hubstruktures.LibarianVillager;
 import cho.info.elements.server.goals.hubstruktures.LotaryVillager;
 import cho.info.elements.server.goals.hubstruktures.SmitherVillager;
+import cho.info.elements.server.goals.second.SecondGoal;
+import cho.info.elements.server.goals.second.SecondGoalVillager;
 import cho.info.elements.server.mapedit.HubBlockBreak;
+import cho.info.elements.server.serverhealt.TpsMonitor;
 import org.bukkit.*;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.server.ServerLoadEvent;
@@ -39,6 +43,7 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import cho.info.elements.generator.SkyblockWorldGenerator;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.Set;
 
@@ -59,6 +64,7 @@ public final class Elements extends JavaPlugin implements Listener {
     public LotaryVillager lotaryVillager;
     public EnderVillager enderVillager;
     public MobManager mobManager;
+    public SecondGoalVillager secondGoalVillager;
 
     @Override
     public void onEnable() {
@@ -128,6 +134,8 @@ public final class Elements extends JavaPlugin implements Listener {
         pluginManager.registerEvents(new PlayerRespawn(this, configManager), this);
         pluginManager.registerEvents(new CollectionInv(this, configManager, itemManager), this);
         pluginManager.registerEvents(new BlockListener(configManager), this);
+        pluginManager.registerEvents(new TpsMonitor(this), this);
+        pluginManager.registerEvents(new SecondGoal(configManager), this);
         // Only Event In der Main !!!!
         pluginManager.registerEvents(this, this);
 
@@ -145,6 +153,9 @@ public final class Elements extends JavaPlugin implements Listener {
 
         //Public Vars
         configManager.addPublicVar("Stage", 1);
+
+        //
+        configManager.addPublicVar("TotalPlayer", 0);
 
         //First Goal
         configManager.addPublicVar("FirstGoal", 0);
@@ -176,10 +187,24 @@ public final class Elements extends JavaPlugin implements Listener {
         configManager.addPublicVar("LoreryVillagerGoalMaxXp", 1000);
         configManager.addPublicVar("LoreryVillagerGoalXp", 0);
 
+        // Second Goal
+        configManager.addPublicVar("SecondGoal", 0);
+        configManager.addPublicVar("SecondGoalXp", 0);
+        configManager.addPublicVar("SecondGoalMaxXp", 800000);
+
+
         // Note: Villagers after startup !!!
 
         // Serrver gamerules
 
+
+        // Tab List
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                updateTabListNames();
+            }
+        }.runTaskTimer(this, 0L, 1L); // Alle 1 Tick (20 Ticks pro Sekunde) aktualisieren
 
 
 
@@ -272,6 +297,8 @@ public final class Elements extends JavaPlugin implements Listener {
 
         LotaryVillager lotaryVillager = new LotaryVillager(configManager);
 
+        SecondGoalVillager secondGoalVillager = new SecondGoalVillager(configManager);
+
         killAllVillagersInOverworld();
 
 
@@ -293,6 +320,8 @@ public final class Elements extends JavaPlugin implements Listener {
             enderVillager.villagerSpawn();
 
             lotaryVillager.villagerSpawn();
+
+            secondGoalVillager.spawnVillager();
 
 
         }
@@ -407,6 +436,17 @@ public final class Elements extends JavaPlugin implements Listener {
             getLogger().info("Spawn location set to: " + spawnLocation.toVector());
         } else {
             getLogger().warning("World '" + worldName + "' not found!");
+        }
+    }
+
+    private void updateTabListNames() {
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            // Erhalte den aktuellen Namen und das Level des Spielers
+            String playerName = player.getName();
+            int playerLevel = player.getLevel();
+
+            // Setze den neuen Namen in der Tab-Liste
+            player.setPlayerListName(playerName + ChatColor.YELLOW + " [" + playerLevel + "]");
         }
     }
 

@@ -18,11 +18,11 @@
 - 
 - Implement Mana Refill System in `player/mana/ManaRefill.java`.
 - Complete story.
-- Complete collection.
+- Complete collection. ?
 - Implement goal 2: Fertilizer functionality.
 - Add tags before player names.
+- All  Villager Shops
 - Implement Gravity Stone.
-- Chane Nem style of Structures
 - All 27 Unice Items 
 
 **Ideas:**
@@ -38,7 +38,8 @@
 **Installation**
 -
 1. Set spawn-protection to 0
-2. worlds:
+2. enable-command-block to true
+3. worlds:
    world:
    generator: Elements:CustomOverworldGenerator
-3. Drag and drop the plugin in the plugin folder.
+4. Drag and drop the plugin in the plugin folder.

@@ -82,6 +82,14 @@ public class onFirstJoin implements Listener {
             // Gamemod Change
             event.getPlayer().setGameMode(GameMode.ADVENTURE);
 
+            //Chage palyer count
+            Object playerCoutObj = configManager.getPublicVar("TotalPlayer");
+            int plyerCount = (playerCoutObj != null) ? (int) playerCoutObj : 0;
+
+            plyerCount = plyerCount + 1;
+
+            configManager.setPublicVar("palyerCount", plyerCount);
+
         }
 
         Location location = new Location(Bukkit.getWorld("world"), 1.5, 70, 1.5);

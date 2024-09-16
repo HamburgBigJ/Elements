@@ -58,7 +58,8 @@ public class SteinSpalterHit implements Listener {
                         // Spawn the mob and create the BossBar
                         Location location = clickedBlock.getLocation();
                         BossBar bossBar = mobManager.createBossBar(ChatColor.RED + "Silphy", 1.0); // Full health initially
-                        mobManager.spawnCustomMob(location, EntityType.SILVERFISH, ChatColor.RED + "Silphy", bossBar);
+                        mobManager.spawnCustomMob(location, EntityType.SILVERFISH, ChatColor.RED + "Silphy", bossBar, 20);
+
                     }
                 }
             }
