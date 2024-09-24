@@ -25,6 +25,7 @@
 - 3 Villager
 - ElementHoe Logic implement in `player/skills/FarmingSkill.java`
 - Update MobManager to work without BossBar
+- All Hub villagers (Libarien ... ) with Functions
 
 **Ideas:**
 -
