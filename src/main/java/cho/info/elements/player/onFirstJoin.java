@@ -78,6 +78,12 @@ public class onFirstJoin implements Listener {
             // Techniker Stage
             configManager.addValue(event.getPlayer(), "TechnikerStage", 0);
 
+            int playerCount = (configManager.getPublicVar("TotalPlayer") != null) ? (int) configManager.getPublicVar("TotalPlayer") : 0;
+
+            playerCount = playerCount + 1;
+
+            configManager.setPublicVar("TotalPlayer", playerCount);
+
 
             // Gamemod Change
             event.getPlayer().setGameMode(GameMode.ADVENTURE);

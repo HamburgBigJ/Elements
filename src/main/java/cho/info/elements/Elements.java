@@ -86,6 +86,10 @@ public final class Elements extends JavaPlugin implements Listener {
         villagersInHub.configManager = configManager;
         villagersInHub.itemManager = itemManager;
 
+        villagerInHubTirTwo = new VillagerInHubTirTwo();
+        villagerInHubTirTwo.configManager = configManager;
+        villagerInHubTirTwo.itemManager = itemManager;
+
 
         getLogger().warning("Plugin: " + getName());
         getLogger().warning("This is an Experimental Alpha version of this plugin.");
@@ -168,7 +172,7 @@ public final class Elements extends JavaPlugin implements Listener {
 
         //Second Goal
         configManager.addPublicVar("SecondGoal", 0);
-        configManager.addPublicVar("SecondGoalMaxXp", 100000);
+        configManager.addPublicVar("SecondGoalMaxXp", 800000);
         configManager.addPublicVar("SecondGoalXp", 0);
 
         //Smithin goal
@@ -191,10 +195,6 @@ public final class Elements extends JavaPlugin implements Listener {
         configManager.addPublicVar("LoreryVillagerGoalMaxXp", 1000);
         configManager.addPublicVar("LoreryVillagerGoalXp", 0);
 
-        // Second Goal
-        configManager.addPublicVar("SecondGoal", 0);
-        configManager.addPublicVar("SecondGoalXp", 0);
-        configManager.addPublicVar("SecondGoalMaxXp", 800000);
 
         //Villagers in Hub
         configManager.addPublicVar("VillagerInHubTir", 0);
@@ -309,7 +309,7 @@ public final class Elements extends JavaPlugin implements Listener {
 
         SecondGoalVillager secondGoalVillager = new SecondGoalVillager(configManager);
 
-        VillagerInHubTirTwo villagerInHubTirTwo = new VillagerInHubTirTwo(this, configManager, itemManager);
+
 
         killAllVillagersInOverworld();
 
@@ -466,7 +466,7 @@ public final class Elements extends JavaPlugin implements Listener {
             int playerLevel = player.getLevel();
 
             // Setze den neuen Namen in der Tab-Liste
-            player.setPlayerListName(playerName + ChatColor.YELLOW + " [" + playerLevel + "]");
+            player.setPlayerListName(playerName + ChatColor.YELLOW + " " + playerLevel);
         }
     }
 

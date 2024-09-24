@@ -68,6 +68,7 @@ public class FirstGoal implements Listener {
                     Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "clone 40 67 168 73 77 152 21 66 -7");
                     Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "fill 21 76 -7 21 68 -6 minecraft:spruce_planks");
                     Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "fill 21 76 8 21 68 9 minecraft:spruce_planks");
+                    Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "setblock 21 70 -6 minecraft:cobblestone");
 
                     villager.remove();
                 }
