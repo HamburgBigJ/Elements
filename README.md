@@ -1,5 +1,7 @@
 # Elements Project by HamburgBigJ
 
+**Note:** Changes have been made. This is not a recreation but a similar project.
+
 <p align="center">
     <a href="https://www.codefactor.io/repository/github/hamburgbigj/elements/overview/master" alt="CodeFactor Score">
         <img src="https://www.codefactor.io/repository/github/hamburgbigj/elements/badge/master"/>
@@ -15,33 +17,32 @@
 ---
 
 **To Do:**
-- 
-- Implement Mana Refill System in `player/mana/ManaRefill.java`.
-- Complete story.
+- Implement the mana refill system in `player/mana/ManaRefill.java`.
+- Complete the story.
 - Add tags before player names.
-- All  Villager Shops
-- Implement Gravity Stone.
-- All 27 Unite Items 
-- 3 Villager
-- ElementHoe Logic implement in `player/skills/FarmingSkill.java`
-- Update MobManager to work without BossBar
+- Implement all villager shops.
+- Implement the Gravity Stone.
+- Create all 27 Unite Items.
+- Add 3 villagers.
+- Implement ElementHoe logic in `player/skills/FarmingSkill.java`.
+- Update MobManager to work without BossBar.
+- Added collection villager in hub at `7 69 -8`.
 
 **Ideas:**
--
-- Combat Skills.
-- Crafting Skills.
+- Combat skills.
+- Crafting skills.
 
 **Errors:**
--
-- Spawn on Every rejoin in Lobby.
+- Spawn on every rejoin in the lobby.
 
 ---
 
 **Installation**
--
-1. Set spawn-protection to 0
-2. enable-command-block to true
-3. worlds:
+1. Set spawn protection to 0.
+2. Enable command blocks (`enable-command-block` to true).
+3. World configuration:
+   ```yaml
    world:
-   generator: Elements:CustomOverworldGenerator
-4. Drag and drop the plugin in the plugin folder.
+     generator: Elements:CustomOverworldGenerator
+   ```
+4. Drag and drop the plugin into the plugin folder.

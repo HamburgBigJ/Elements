@@ -73,11 +73,11 @@ public class VillagerInHubTirTwo {
             elementHowTrade.addIngredient(compresstWeatetradeItem);
             farmerVillagerTrades.add(elementHowTrade);
 
-            String scramble = "\\u00A7k";
+            String scramble = "\u00A7k";
 
             List<String> saplingLore = itemManager.createLore(
-                    ChatColor.GRAY + scramble + "ölakjdflöakjdf",
-                    ChatColor.GRAY + " ",
+                    ChatColor.GOLD + scramble + "ölakjdflöakjdf",
+                    ChatColor.GOLD + scramble + "ölakjdflöakjdf",
                     ChatColor.GRAY + " ",
                     ChatColor.DARK_PURPLE + "" + ChatColor.BOLD + "Epic"
             );
