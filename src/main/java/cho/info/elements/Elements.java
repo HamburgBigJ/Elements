@@ -4,6 +4,7 @@ import cho.info.elements.commands.*;
 import cho.info.elements.generator.CustomOverworldGenerator;
 import cho.info.elements.generator.SkyblockWorldGenerator;
 import cho.info.elements.managers.*;
+import cho.info.elements.player.PlayerJoin;
 import cho.info.elements.player.SelectClass;
 import cho.info.elements.player.SkillLevelManager;
 import cho.info.elements.player.blocks.CompresstCobbleDrop;
@@ -136,6 +137,7 @@ public final class Elements extends JavaPlugin implements Listener {
         pluginManager.registerEvents(new BlockListener(configManager), this);
         pluginManager.registerEvents(new TpsMonitor(this), this);
         pluginManager.registerEvents(new SecondGoal(configManager), this);
+        pluginManager.registerEvents(new PlayerJoin(this), this);
         // Only Event In der Main !!!!
         pluginManager.registerEvents(this, this);
 
@@ -255,7 +257,7 @@ public final class Elements extends JavaPlugin implements Listener {
 
 
 
-        getLogger().info("Load!");
+        getLogger().info("Loading Worlds!");
 
         //Create all Worlds
         worldManager.createSkyWorld("world_skyblock");

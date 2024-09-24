@@ -92,8 +92,5 @@ public class onFirstJoin implements Listener {
 
         }
 
-        Location location = new Location(Bukkit.getWorld("world"), 1.5, 70, 1.5);
-
-        event.getPlayer().teleport(location);
     }
 }
