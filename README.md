@@ -18,12 +18,13 @@
 - 
 - Implement Mana Refill System in `player/mana/ManaRefill.java`.
 - Complete story.
-- Complete collection. ?
-- Implement goal 2: Fertilizer functionality.
 - Add tags before player names.
 - All  Villager Shops
 - Implement Gravity Stone.
-- All 27 Unice Items 
+- All 27 Unite Items 
+- 3 Villager
+- ElementHoe Logic implement in `player/skills/FarmingSkill.java`
+- Update MobManager to work without BossBar
 
 **Ideas:**
 -

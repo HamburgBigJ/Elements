@@ -32,6 +32,7 @@ import cho.info.elements.server.goals.second.SecondGoal;
 import cho.info.elements.server.goals.second.SecondGoalVillager;
 import cho.info.elements.server.mapedit.HubBlockBreak;
 import cho.info.elements.server.serverhealt.TpsMonitor;
+import cho.info.elements.server.villagers.VillagerInHubTirTwo;
 import org.bukkit.*;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -66,6 +67,7 @@ public final class Elements extends JavaPlugin implements Listener {
     public EnderVillager enderVillager;
     public MobManager mobManager;
     public SecondGoalVillager secondGoalVillager;
+    public VillagerInHubTirTwo villagerInHubTirTwo;
 
     @Override
     public void onEnable() {
@@ -194,6 +196,12 @@ public final class Elements extends JavaPlugin implements Listener {
         configManager.addPublicVar("SecondGoalXp", 0);
         configManager.addPublicVar("SecondGoalMaxXp", 800000);
 
+        //Villagers in Hub
+        configManager.addPublicVar("VillagerInHubTir", 0);
+
+        //Hub Upgrades
+        configManager.setPublicVar("HubTir", 0);
+
 
         // Note: Villagers after startup !!!
 
@@ -301,6 +309,8 @@ public final class Elements extends JavaPlugin implements Listener {
 
         SecondGoalVillager secondGoalVillager = new SecondGoalVillager(configManager);
 
+        VillagerInHubTirTwo villagerInHubTirTwo = new VillagerInHubTirTwo(this, configManager, itemManager);
+
         killAllVillagersInOverworld();
 
 
@@ -324,6 +334,14 @@ public final class Elements extends JavaPlugin implements Listener {
             lotaryVillager.villagerSpawn();
 
             secondGoalVillager.spawnVillager();
+
+            int villager = (configManager.getPublicVar("VillagerInHubTir") != null) ? (int) configManager.getPublicVar("VillagerInHubTir") : 0;
+
+            if (villager >= 1) {
+                villagerInHubTirTwo.spawnVillagerWeat();
+
+
+            }
 
 
         }
