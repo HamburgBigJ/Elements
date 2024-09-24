@@ -25,7 +25,6 @@
 - 3 Villager
 - ElementHoe Logic implement in `player/skills/FarmingSkill.java`
 - Update MobManager to work without BossBar
-- Completer Collection
 
 **Ideas:**
 -
@@ -35,7 +34,6 @@
 **Errors:**
 -
 - Spawn on Every rejoin in Lobby.
-- Error with reitkick on Villager FIst hub 
 
 ---
 
