@@ -455,11 +455,16 @@ public class EnderChest implements Listener {
                         List<String> amethystlore = itemManager.createLore(ChatColor.GRAY + "Click");
                         ItemStack amethyst = itemManager.createItem(Material.AMETHYST_CLUSTER, 1, ChatColor.GOLD + "Amethyst", amethystlore);
 
+                        // Create Eco Sharts Collection maby error
+                        List<String> ecoshartlore = itemManager.createLore(ChatColor.gray + "Click");
+                        ItemStack ecoshart = itemManager.createItem(Matirial.ECOSHART, 1, ChatColor.GOLD, ecoshartlore);
+
                         // Set the items in the inventory to match the layout in the image
                         collectionInv.setItem(9, cobblestone); // Cobblestone in the first slot
                         collectionInv.setItem(10, oak); // Oak log in the second row, first slot
                         collectionInv.setItem(11, wheat); // Wheat in the second row, second slot
                         collectionInv.setItem(12, amethyst); // Amethyst in the second row, third slot
+                        collectionInv.setItem(13, ecoshart); // Eco shart Collection
 
                         // Fill the rest of the slots with gray stained glass pane
                         for (int i = 0; i < 27; i++) {
