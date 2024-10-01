@@ -456,7 +456,7 @@ public class EnderChest implements Listener {
                         ItemStack amethyst = itemManager.createItem(Material.AMETHYST_CLUSTER, 1, ChatColor.GOLD + "Amethyst", amethystlore);
 
                         // Create Eco Sharts Collection maby error
-                        List<String> ecoshartlore = itemManager.createLore(ChatColor.gray + "Click");
+                        List<String> ecoshartlore = itemManager.createLore(ChatColor.GRAY + "Click");
                         ItemStack ecoshart = itemManager.createItem(Matirial.ECOSHART, 1, ChatColor.GOLD, ecoshartlore);
 
                         // Set the items in the inventory to match the layout in the image
