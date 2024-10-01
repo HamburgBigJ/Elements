@@ -457,7 +457,7 @@ public class EnderChest implements Listener {
 
                         // Create Eco Sharts Collection maby error
                         List<String> ecoshartlore = itemManager.createLore(ChatColor.GRAY + "Click");
-                        ItemStack ecoshart = itemManager.createItem(Matirial.ECOSHART, 1, ChatColor.GOLD, ecoshartlore);
+                        ItemStack ecoshart = itemManager.createItem(Matirial.ECHO_SHARD, 1, ChatColor.GOLD, ecoshartlore);
 
                         // Set the items in the inventory to match the layout in the image
                         collectionInv.setItem(9, cobblestone); // Cobblestone in the first slot
