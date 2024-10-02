@@ -34,6 +34,7 @@
 
 **Errors:**
 - Spawn on every rejoin in the lobby.
+- **Config Maneger error Massive !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!**
 
 ---
 
