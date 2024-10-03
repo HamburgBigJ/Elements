@@ -74,6 +74,11 @@ public class onFirstJoin implements Listener {
             configManager.addValue(event.getPlayer(), "Oak", 0);
             configManager.addValue(event.getPlayer(), "Wheat", 0);
             configManager.addValue(event.getPlayer(), "Amethyst", 0);
+            configManager.addValue(event.getPlayer(), "Eco_Shard", 0);
+            configManager.addValue(event.getPlayer(), "Kelp", 0);
+            configManager.addValue(event.getPlayer(), "Potato", 0);
+            configManager.addValue(event.getPlayer(), "Carrot", 0);
+            configManager.addValue(event.getPlayer(), "Apple", 0);
 
             // Techniker Stage
             configManager.addValue(event.getPlayer(), "TechnikerStage", 0);

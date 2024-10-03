@@ -89,6 +89,7 @@ public class ForestingSkill implements Listener {
         // Here you should have a method or logic to determine the dimension based on the world name
         int currentDimension = getDimensionFromWorldName(currentWorldName);
 
+
         // Compare the dimensions
         if (currentDimension == homedimension) {
             return 2;

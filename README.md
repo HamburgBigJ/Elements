@@ -27,6 +27,7 @@
 - Implement ElementHoe logic in `player/skills/FarmingSkill.java`.
 - Update MobManager to work without BossBar.
 - Added collection villager in hub at `7 69 -8`.
+- Eco Shard System in `player/collection/EcoShardCollection.java`.
 
 **Ideas:**
 - Combat skills.
@@ -34,7 +35,6 @@
 
 **Errors:**
 - Spawn on every rejoin in the lobby.
-- **Config Maneger error Massive !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!**
 
 ---
 

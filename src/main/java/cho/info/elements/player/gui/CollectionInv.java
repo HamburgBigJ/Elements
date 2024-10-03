@@ -13,9 +13,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class CollectionInv implements Listener {
 
-    private final ConfigManager configManager;
-    private final ItemManager itemManager;
-    private final JavaPlugin plugin;
+    public ConfigManager configManager;
+    public ItemManager itemManager;
+    public JavaPlugin plugin;
 
     public CollectionInv(JavaPlugin plugin, ConfigManager configManager, ItemManager itemManager) {
         this.configManager = configManager;

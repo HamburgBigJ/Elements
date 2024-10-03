@@ -389,10 +389,10 @@ public class EnderChest implements Listener {
                     if (displayName.equals(ChatColor.WHITE + "Settings")) {
                         Inventory enderchest = player.getEnderChest();
 
-                        List<String> glasslore = itemManager.createLore(ChatColor.GRAY + "²");
+                        List<String> glasslore = itemManager.createLore(ChatColor.GRAY + " ");
 
 
-                        ItemStack grayglass = itemManager.createItem(Material.BLACK_STAINED_GLASS_PANE, 1, ChatColor.GRAY + "²", glasslore);
+                        ItemStack grayglass = itemManager.createItem(Material.BLACK_STAINED_GLASS_PANE, 1, ChatColor.GRAY + " ", glasslore);
                         ItemStack air = new ItemStack(Material.AIR);
 
 
@@ -436,8 +436,8 @@ public class EnderChest implements Listener {
                         Inventory collectionInv = Bukkit.createInventory(null, 27, ChatColor.DARK_PURPLE + "Collection");
 
                         // Create gray glass pane item for filling the slots
-                        List<String> glasslore = itemManager.createLore(ChatColor.GRAY + "²");
-                        ItemStack grayglass = itemManager.createItem(Material.BLACK_STAINED_GLASS_PANE, 1, ChatColor.GRAY + "²", glasslore);
+                        List<String> glasslore = itemManager.createLore(ChatColor.GRAY + " ");
+                        ItemStack grayglass = itemManager.createItem(Material.BLACK_STAINED_GLASS_PANE, 1, ChatColor.GRAY + " ", glasslore);
 
                         // Create the cobblestone item
                         List<String> cobblestonelore = itemManager.createLore(ChatColor.GRAY + "Click");
@@ -459,12 +459,32 @@ public class EnderChest implements Listener {
                         List<String> ecoshartlore = itemManager.createLore(ChatColor.GRAY + "Click");
                         ItemStack ecoshart = itemManager.createItem(Material.ECHO_SHARD, 1, ChatColor.GOLD + "Eco Shard", ecoshartlore);
 
+                        //Create kelp Coellection
+                        List<String> kelplore = itemManager.createLore(ChatColor.GRAY + "Click");
+                        ItemStack kelp = itemManager.createItem(Material.KELP, 1, ChatColor.GOLD + "Kelp", kelplore);
+
+                        //Create Potato Collection
+                        List<String> potatolore = itemManager.createLore(ChatColor.GRAY + "Click");
+                        ItemStack potato = itemManager.createItem(Material.POTATO, 1, ChatColor.GOLD + "Potato", potatolore);
+
+                        //Create Carrot Collection
+                        List<String> carrotlore = itemManager.createLore(ChatColor.GRAY + "Click");
+                        ItemStack carrot = itemManager.createItem(Material.CARROT, 1, ChatColor.GOLD + "Carrot", carrotlore);
+
+                        //Create Apple Collection
+                        List<String> applelore = itemManager.createLore(ChatColor.GRAY + "Click");
+                        ItemStack apple = itemManager.createItem(Material.APPLE, 1, ChatColor.GOLD + "Apple", applelore);
+
                         // Set the items in the inventory to match the layout in the image
                         collectionInv.setItem(9, cobblestone); // Cobblestone in the first slot
                         collectionInv.setItem(10, oak); // Oak log in the second row, first slot
                         collectionInv.setItem(11, wheat); // Wheat in the second row, second slot
                         collectionInv.setItem(12, amethyst); // Amethyst in the second row, third slot
                         collectionInv.setItem(13, ecoshart); // Eco shart Collection
+                        collectionInv.setItem(14, kelp); // Kelp Collection
+                        collectionInv.setItem(15, potato); // Potato Collection
+                        collectionInv.setItem(16, carrot); // Carrot Collection
+                        collectionInv.setItem(17, apple); // Apple Collection
 
                         // Fill the rest of the slots with gray stained glass pane
                         for (int i = 0; i < 27; i++) {

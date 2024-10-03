@@ -8,7 +8,7 @@ import cho.info.elements.player.PlayerJoin;
 import cho.info.elements.player.SelectClass;
 import cho.info.elements.player.SkillLevelManager;
 import cho.info.elements.player.blocks.CompresstCobbleDrop;
-import cho.info.elements.player.colection.BlockListener;
+import cho.info.elements.player.collections.*;
 import cho.info.elements.player.gui.CollectionInv;
 import cho.info.elements.player.gui.EnderChest;
 import cho.info.elements.player.mana.ManaRefill;
@@ -18,10 +18,7 @@ import cho.info.elements.player.skills.ForestingSkill;
 import cho.info.elements.player.skills.MiningSkill;
 import cho.info.elements.server.VillagerTechniker;
 import cho.info.elements.server.VillagersInHub;
-import cho.info.elements.server.events.HubWeather;
-import cho.info.elements.server.events.LoadPlayer;
-import cho.info.elements.server.events.PlayerRespawn;
-import cho.info.elements.server.events.SteinSpalterHit;
+import cho.info.elements.server.events.*;
 import cho.info.elements.server.goals.FirstGoal;
 import cho.info.elements.server.goals.GoalVillagers;
 import cho.info.elements.server.goals.hubstruktures.EnderVillager;
@@ -31,6 +28,7 @@ import cho.info.elements.server.goals.hubstruktures.SmitherVillager;
 import cho.info.elements.server.goals.second.SecondGoal;
 import cho.info.elements.server.goals.second.SecondGoalVillager;
 import cho.info.elements.server.mapedit.HubBlockBreak;
+import cho.info.elements.server.recepies.EcoShardRecepie;
 import cho.info.elements.server.serverhealt.TpsMonitor;
 import cho.info.elements.server.villagers.VillagerInHubTirTwo;
 import org.bukkit.*;
@@ -68,6 +66,7 @@ public final class Elements extends JavaPlugin implements Listener {
     public MobManager mobManager;
     public SecondGoalVillager secondGoalVillager;
     public VillagerInHubTirTwo villagerInHubTirTwo;
+    public EcoShardRecepie ecoShardRecepie;
 
     @Override
     public void onEnable() {
@@ -77,6 +76,7 @@ public final class Elements extends JavaPlugin implements Listener {
         ItemManager itemManager = new ItemManager();
         worldManager = new WorldManager(this);
         this.mobManager = new MobManager(this);
+        ecoShardRecepie = new EcoShardRecepie(this);
 
 
 
@@ -140,12 +140,19 @@ public final class Elements extends JavaPlugin implements Listener {
         pluginManager.registerEvents(new LotaryVillager(configManager), this);
         pluginManager.registerEvents(new PlayerRespawn(this, configManager), this);
         pluginManager.registerEvents(new CollectionInv(this, configManager, itemManager), this);
-        pluginManager.registerEvents(new BlockListener(configManager), this);
         pluginManager.registerEvents(new TpsMonitor(this), this);
         pluginManager.registerEvents(new SecondGoal(configManager), this);
         pluginManager.registerEvents(new PlayerJoin(this), this);
-        // Only Event In der Main !!!!
-        pluginManager.registerEvents(this, this);
+        pluginManager.registerEvents(new AmatystCollection(configManager), this);
+        pluginManager.registerEvents(new AppleCollection(configManager), this);
+        pluginManager.registerEvents(new CarrotCollection(configManager), this);
+        pluginManager.registerEvents(new CobblestoneCollection(configManager), this);
+        pluginManager.registerEvents(new EcoShardCollection(configManager), this);
+        pluginManager.registerEvents(new KelpCollection(configManager), this);
+        pluginManager.registerEvents(new OakCollection(configManager), this);
+        pluginManager.registerEvents(new PotatoCollection(configManager), this);
+        pluginManager.registerEvents(new WheatCollection(configManager), this);
+        pluginManager.registerEvents(new ServerFinishLoad(this, this), this);
 
 
         // Register all commands
@@ -205,6 +212,9 @@ public final class Elements extends JavaPlugin implements Listener {
 
         // Note: Villagers after startup !!!
 
+        //Recepis
+        ecoShardRecepie.createEcoShardRecepie();
+
         // Serrver gamerules
 
 
@@ -215,6 +225,7 @@ public final class Elements extends JavaPlugin implements Listener {
                 updateTabListNames();
             }
         }.runTaskTimer(this, 0L, 1L); // Alle 1 Tick (20 Ticks pro Sekunde) aktualisieren
+
 
 
 
@@ -253,12 +264,6 @@ public final class Elements extends JavaPlugin implements Listener {
         return new CustomOverworldGenerator();
     }
 
-    @EventHandler
-    public void onServerLoad(ServerLoadEvent event) {
-        getLogger().info("Server full load  Finish");
-        runAfterServerLoad();
-
-    }
 
 
     public void runAfterServerLoad() {
