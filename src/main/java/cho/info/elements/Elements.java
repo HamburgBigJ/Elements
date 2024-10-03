@@ -85,6 +85,8 @@ public final class Elements extends JavaPlugin implements Listener {
         ecoShardRecepie = new EcoShardRecepie(this);
         collectionListInv = new CollectionListInv(this);
 
+        serverLogo();
+
 
 
 
@@ -102,25 +104,6 @@ public final class Elements extends JavaPlugin implements Listener {
         getLogger().warning("This is an Experimental Alpha version of this plugin.");
         getLogger().warning("Many features aren't implemented yet and may not work!");
 
-
-        // ANSI Escape Code for Blue Color
-        String blue = "\u001B[34m";
-        String reset = "\u001B[0m";
-
-        // ASCII-Art
-        String logo = blue + "By: HamburgBigJ\n" +
-                " /$$$$$$$$\n" +
-                " | $$_____/\n" +
-                " | $$      \n" +
-                " | $$$$$   \n" +
-                " | $$__/   \n" +
-                " | $$      \n" +
-                " | $$$$$$$$\n" +
-                " |________/\n" +
-                reset;
-
-        // Print to console
-        getLogger().info(logo);
 
         saveDefaultConfig();
 
@@ -253,6 +236,19 @@ public final class Elements extends JavaPlugin implements Listener {
         // Plugin shutdown logic
         getLogger().info("Shutdown");
 
+        serverLogo();
+
+
+    }
+
+
+    @Override
+    public ChunkGenerator getDefaultWorldGenerator(String worldName, String id) {
+        return new CustomOverworldGenerator();
+    }
+
+
+    public void serverLogo() {
         // ANSI Escape Code for Blue Color
         String blue = "\u001B[34m";
         String reset = "\u001B[0m";
@@ -271,14 +267,6 @@ public final class Elements extends JavaPlugin implements Listener {
 
         // Print to console
         getLogger().info(logo);
-
-
-    }
-
-
-    @Override
-    public ChunkGenerator getDefaultWorldGenerator(String worldName, String id) {
-        return new CustomOverworldGenerator();
     }
 
 
@@ -488,7 +476,7 @@ public final class Elements extends JavaPlugin implements Listener {
             int playerLevel = player.getLevel();
 
             // Setze den neuen Namen in der Tab-Liste
-            player.setPlayerListName(playerName + ChatColor.YELLOW + " " + playerLevel);
+            player.setPlayerListName(playerName + ChatColor.BLUE + " " + playerLevel);
         }
     }
 
