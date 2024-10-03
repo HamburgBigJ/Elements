@@ -159,7 +159,7 @@ public final class Elements extends JavaPlugin implements Listener {
         pluginManager.registerEvents(new WheatCollection(configManager), this);
         pluginManager.registerEvents(new ServerFinishLoad(this, this), this);
         pluginManager.registerEvents(new ClickEvent(configManager) , this);
-        pluginManager.registerEvents(new CollectRegister(configManager), this);
+        pluginManager.registerEvents(new CollectRegister(configManager, itemManager), this);
 
 
         // Register all commands
@@ -218,6 +218,9 @@ public final class Elements extends JavaPlugin implements Listener {
 
         //Hub Upgrades
         configManager.setPublicVar("HubTir", 0);
+
+        //Goal
+        configManager.setPublicVar("Goal", 0);
 
 
         // Note: Villagers after startup !!!
