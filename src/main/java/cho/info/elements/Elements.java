@@ -14,6 +14,7 @@ import cho.info.elements.player.gui.EnderChest;
 import cho.info.elements.player.gui.collections.ClickEvent;
 import cho.info.elements.player.gui.collections.CollectRegister;
 import cho.info.elements.player.gui.collections.CollectionListInv;
+import cho.info.elements.player.items.HealtFrutItem;
 import cho.info.elements.player.mana.ManaRefill;
 import cho.info.elements.player.onFirstJoin;
 import cho.info.elements.player.skills.FarmingSkill;
@@ -160,6 +161,7 @@ public final class Elements extends JavaPlugin implements Listener {
         pluginManager.registerEvents(new ServerFinishLoad(this, this), this);
         pluginManager.registerEvents(new ClickEvent(configManager) , this);
         pluginManager.registerEvents(new CollectRegister(configManager, itemManager), this);
+        pluginManager.registerEvents(new HealtFrutItem(configManager, itemManager), this);
 
 
         // Register all commands
