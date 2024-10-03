@@ -6,6 +6,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Barrel;
+import org.bukkit.block.Sign;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -17,7 +18,8 @@ public class CheckBarrel implements Listener {
     public ConfigManager configManager;
 
     // Hardcodierte Position des Fasses
-    private final Location barrelLocation = new Location(Bukkit.getWorld("world"), 100, 64, 100); // Ändere die Koordinaten nach Bedarf
+    private final Location barrelLocation = new Location(Bukkit.getWorld("world"), 8, 70, -8); // Ändere die Koordinaten nach Bedarf
+    private final Location signLocation = new Location(Bukkit.getWorld("world"), 8, 71, -8); // Position für das Schild
 
     private int stage;
 
@@ -92,12 +94,26 @@ public class CheckBarrel implements Listener {
             plugin.getLogger().info("Das Fass an der Position " + barrelLocation + " enthält " + itemCount + " Items.");
             if (hasSpecificItem) {
                 plugin.getLogger().info("Das Fass an der Position " + barrelLocation + " enthält den spezifischen Gegenstand.");
+                createSign("Items vorhanden: " + itemCount); // Schild erstellen
             } else {
                 plugin.getLogger().info("Das Fass an der Position " + barrelLocation + " enthält den spezifischen Gegenstand nicht.");
+                createSign("Keine Items vorhanden."); // Schild erstellen
             }
         } else {
             plugin.getLogger().info("An der Position " + barrelLocation + " befindet sich kein Fass.");
         }
+    }
+
+    private void createSign(String message) {
+        if (signLocation.getBlock().getType() == Material.OAK_WALL_SIGN || signLocation.getBlock().getType() == Material.OAK_SIGN) {
+            signLocation.getBlock().setType(Material.AIR); // Lösche das bestehende Schild, wenn vorhanden
+        }
+
+        Sign sign = (Sign) signLocation.getBlock().getState();
+        sign.setLine(0, "Info:");
+        sign.setLine(1, message);
+        sign.update();
+        plugin.getLogger().info("Schild aktualisiert: " + message);
     }
 
     private void updateGoal(int itemCount) {
@@ -114,9 +130,7 @@ public class CheckBarrel implements Listener {
                 stage++;
                 configManager.setPublicVar("Stage", stage);
                 plugin.getServer().broadcastMessage("Das Ziel wurde erreicht! Jetzt in Stage " + stage);
-
-                configManager.setPublicVar("MaxGoal", (1000 * stage) ); // Setze das neue Ziel für die nächste Stage
-
+                configManager.setPublicVar("MaxGoal", (1000 * stage)); // Setze das neue Ziel für die nächste Stage
                 plugin.spawnvillager(); // Spawne einen Dorfbewohner
                 plugin.getLogger().info("Update Villager");
             } else {
@@ -124,5 +138,4 @@ public class CheckBarrel implements Listener {
             }
         }
     }
-
 }
