@@ -52,6 +52,11 @@ commands:
     usage: /<command>
     description: Teleports to Hub
 
+  setmaxflying:
+    permission: elements.setmaxflying
+    usage: /<command> <value>
+    description: Set Max Flying
+
 
 worlds:
   world:

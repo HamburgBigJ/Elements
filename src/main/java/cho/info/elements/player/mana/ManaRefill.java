@@ -36,6 +36,15 @@ public class ManaRefill implements Listener {
 
             // Impimetation of all player becom 1 mana back
             // Work in porgress
+            // With Bukkit Runtime
+            /*
+            new BukkitRunnable() {
+            @Override
+            public void run() {
+                updateTabListNames();
+            }
+        }.runTaskTimer(this, 0L, 1L); // Alle 1 Tick (20 Ticks pro Sekunde) aktualisieren
+             */
         }
     }
 }

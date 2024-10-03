@@ -10,6 +10,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.enginehub.linbus.stream.token.LinToken;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class CollectionListInv {
@@ -35,11 +36,11 @@ public class CollectionListInv {
             inventory.setItem(i, filler);
         }
 
-        for (int i = 10; i <= 19; i++) {
+        for (int i = 9; i <= 18; i++) {
             ItemStack item = new ItemStack(Material.RED_STAINED_GLASS_PANE);
             if (item.getItemMeta() != null) {
                 ItemMeta itemMeta = item.getItemMeta();
-                String displayName = ChatColor.RED + name + " Locked!  " + ((i - 9) * 100);
+                String displayName = ChatColor.RED + "Locked!  " + name + " ! " + ((i - 9) * 100);
                 itemMeta.setDisplayName(displayName);
                 item.setItemMeta(itemMeta);
 
@@ -47,8 +48,10 @@ public class CollectionListInv {
                     item = new ItemStack(Material.GREEN_STAINED_GLASS_PANE);
                     if (item.getItemMeta() != null) {
                         ItemMeta itemMeta2 = item.getItemMeta();
-                        String displayName2 = ChatColor.GREEN + name + " Unlocked!  " + (i - 9);
+                        String displayName2 = ChatColor.GREEN + "Unlocked " + name + " ! " + (i - 9);
+                        List<String> lore = Arrays.asList(ChatColor.GRAY + "Click To Collect");
                         itemMeta2.setDisplayName(displayName2);
+                        itemMeta2.setLore(lore);
                         item.setItemMeta(itemMeta2);
                     }
                 }

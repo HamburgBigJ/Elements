@@ -18,6 +18,6 @@ public class HubTeleportCommand implements CommandExecutor {
             player.sendMessage("Teleport");
         }
 
-        return false;
+        return true;
     }
 }

@@ -17,7 +17,8 @@ public class DungeonTeleportCommand implements CommandExecutor {
             Location location = new Location(Bukkit.getWorld("world_dungeon"), 1, 77, 1);
             player.setGameMode(GameMode.CREATIVE);
             player.sendMessage("Teleport");
+            player.teleport(location);
         }
-        return false;
+        return true;
     }
 }

@@ -2,6 +2,7 @@ package cho.info.elements.server.recepies;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -17,13 +18,17 @@ public class EcoShardRecepie {
     public void createEcoShardRecepie() {
         ItemStack ecoShard = new ItemStack(Material.ECHO_SHARD, 1);
 
-        ShapedRecipe recepie = new ShapedRecipe(ecoShard);
+        // Create a NamespacedKey for the recipe
+        NamespacedKey key = new NamespacedKey(plugin, "eco_shard");
 
-        recepie.shape(" D ", " C ", " D ");
+        // Use the new constructor with the NamespacedKey
+        ShapedRecipe recipe = new ShapedRecipe(key, ecoShard);
 
-        recepie.setIngredient('D', Material.DIAMOND);
-        recepie.setIngredient('C', Material.COBBLESTONE);
+        recipe.shape(" D ", " C ", " D ");
+        recipe.setIngredient('D', Material.DIAMOND);
+        recipe.setIngredient('C', Material.COBBLESTONE);
 
-        Bukkit.addRecipe(recepie);
+        // Add the recipe to the server
+        Bukkit.addRecipe(recipe);
     }
 }

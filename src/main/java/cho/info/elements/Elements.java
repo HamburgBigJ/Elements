@@ -11,6 +11,7 @@ import cho.info.elements.player.blocks.CompresstCobbleDrop;
 import cho.info.elements.player.collections.*;
 import cho.info.elements.player.gui.CollectionInv;
 import cho.info.elements.player.gui.EnderChest;
+import cho.info.elements.player.gui.collections.ClickEvent;
 import cho.info.elements.player.gui.collections.CollectionListInv;
 import cho.info.elements.player.mana.ManaRefill;
 import cho.info.elements.player.onFirstJoin;
@@ -156,6 +157,7 @@ public final class Elements extends JavaPlugin implements Listener {
         pluginManager.registerEvents(new PotatoCollection(configManager), this);
         pluginManager.registerEvents(new WheatCollection(configManager), this);
         pluginManager.registerEvents(new ServerFinishLoad(this, this), this);
+        pluginManager.registerEvents(new ClickEvent(configManager) , this);
 
 
         // Register all commands
@@ -167,6 +169,9 @@ public final class Elements extends JavaPlugin implements Listener {
         this.getCommand("resetallstruktures").setExecutor(new ResteAllStruktures());
         this.getCommand("tpdungon").setExecutor(new DungeonTeleportCommand());
         this.getCommand("tphub").setExecutor(new HubTeleportCommand());
+        this.getCommand("setmaxflying").setExecutor(new SetMaxFlyingSpeed());
+
+
 
 
         //Public Vars

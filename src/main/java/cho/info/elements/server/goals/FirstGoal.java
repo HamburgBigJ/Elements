@@ -53,6 +53,8 @@ public class FirstGoal implements Listener {
 
                     villager.setCustomName(ChatColor.GOLD + "First Goal: " + ChatColor.GREEN + String.valueOf(firstGoalXp) + ChatColor.WHITE + " / " + ChatColor.GREEN + String.valueOf(firstGoalMaxXp));
 
+                } else {
+                    player.sendMessage(ChatColor.RED + "You need at least 10 levels to deposit!");
                 }
 
                 if (firstGoalXp >= firstGoalMaxXp) {

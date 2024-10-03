@@ -426,7 +426,7 @@ public class EnderChest implements Listener {
                         player.playSound(player.getLocation(), Sound.ITEM_SHIELD_BREAK, 3f, 3f);
                     }
 
-                    if (displayName.equals(ChatColor.GRAY + "²")) {
+                    if (displayName.equals(ChatColor.GRAY + " ")) {
                         event.setCancelled(true);
                     }
 
