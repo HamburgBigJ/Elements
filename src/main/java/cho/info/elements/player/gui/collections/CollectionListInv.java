@@ -36,19 +36,19 @@ public class CollectionListInv {
             inventory.setItem(i, filler);
         }
 
-        for (int i = 9; i <= 18; i++) {
+        for (int i = 9; i <= 17; i++) {
             ItemStack item = new ItemStack(Material.RED_STAINED_GLASS_PANE);
             if (item.getItemMeta() != null) {
                 ItemMeta itemMeta = item.getItemMeta();
-                String displayName = ChatColor.RED + "Locked!  " + name + " ! " + ((i - 9) * 100);
+                String displayName = ChatColor.RED + "Locked!  " + name + " ! " + ((i - 8) * 100);
                 itemMeta.setDisplayName(displayName);
                 item.setItemMeta(itemMeta);
 
-                if (collected >= ((i - 9) * 100)) {
+                if (collected >= ((i - 8) * 100)) {
                     item = new ItemStack(Material.GREEN_STAINED_GLASS_PANE);
                     if (item.getItemMeta() != null) {
                         ItemMeta itemMeta2 = item.getItemMeta();
-                        String displayName2 = ChatColor.GREEN + "Unlocked " + name + " ! " + (i - 9);
+                        String displayName2 = ChatColor.GREEN + "Unlocked " + name + " ! " + (i - 8);
                         List<String> lore = Arrays.asList(ChatColor.GRAY + "Click To Collect");
                         itemMeta2.setDisplayName(displayName2);
                         itemMeta2.setLore(lore);
