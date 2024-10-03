@@ -11,6 +11,7 @@ import cho.info.elements.player.blocks.CompresstCobbleDrop;
 import cho.info.elements.player.collections.*;
 import cho.info.elements.player.gui.CollectionInv;
 import cho.info.elements.player.gui.EnderChest;
+import cho.info.elements.player.gui.collections.CollectionListInv;
 import cho.info.elements.player.mana.ManaRefill;
 import cho.info.elements.player.onFirstJoin;
 import cho.info.elements.player.skills.FarmingSkill;
@@ -67,6 +68,7 @@ public final class Elements extends JavaPlugin implements Listener {
     public SecondGoalVillager secondGoalVillager;
     public VillagerInHubTirTwo villagerInHubTirTwo;
     public EcoShardRecepie ecoShardRecepie;
+    public CollectionListInv collectionListInv;
 
     @Override
     public void onEnable() {
@@ -77,6 +79,7 @@ public final class Elements extends JavaPlugin implements Listener {
         worldManager = new WorldManager(this);
         this.mobManager = new MobManager(this);
         ecoShardRecepie = new EcoShardRecepie(this);
+        collectionListInv = new CollectionListInv(this);
 
 
 
@@ -139,7 +142,7 @@ public final class Elements extends JavaPlugin implements Listener {
         pluginManager.registerEvents(new EnderVillager(configManager), this);
         pluginManager.registerEvents(new LotaryVillager(configManager), this);
         pluginManager.registerEvents(new PlayerRespawn(this, configManager), this);
-        pluginManager.registerEvents(new CollectionInv(this, configManager, itemManager), this);
+        pluginManager.registerEvents(new CollectionInv(this, configManager, itemManager, collectionListInv), this);
         pluginManager.registerEvents(new TpsMonitor(this), this);
         pluginManager.registerEvents(new SecondGoal(configManager), this);
         pluginManager.registerEvents(new PlayerJoin(this), this);
