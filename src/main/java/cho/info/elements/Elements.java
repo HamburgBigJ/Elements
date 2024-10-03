@@ -33,6 +33,7 @@ import cho.info.elements.server.goals.second.SecondGoal;
 import cho.info.elements.server.goals.second.SecondGoalVillager;
 import cho.info.elements.server.mapedit.HubBlockBreak;
 import cho.info.elements.server.recepies.EcoShardRecepie;
+import cho.info.elements.server.servergoals.CheckBarrel;
 import cho.info.elements.server.serverhealt.TpsMonitor;
 import cho.info.elements.server.villagers.VillagerInHubTirTwo;
 import org.bukkit.*;
@@ -162,6 +163,7 @@ public final class Elements extends JavaPlugin implements Listener {
         pluginManager.registerEvents(new ClickEvent(configManager) , this);
         pluginManager.registerEvents(new CollectRegister(configManager, itemManager), this);
         pluginManager.registerEvents(new HealtFrutItem(configManager, itemManager), this);
+        pluginManager.registerEvents(new CheckBarrel(this, configManager), this);
 
 
         // Register all commands
@@ -223,7 +225,7 @@ public final class Elements extends JavaPlugin implements Listener {
 
         //Goal
         configManager.setPublicVar("Goal", 0);
-
+        configManager.setPublicVar("GoalMax", 1000);
 
         // Note: Villagers after startup !!!
 
