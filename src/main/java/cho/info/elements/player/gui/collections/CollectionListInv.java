@@ -54,6 +54,7 @@ public class CollectionListInv {
                         itemMeta2.setLore(lore);
                         item.setItemMeta(itemMeta2);
                     }
+
                 }
 
 
