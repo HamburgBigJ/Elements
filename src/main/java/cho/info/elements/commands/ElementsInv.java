@@ -31,6 +31,8 @@ public class ElementsInv implements CommandExecutor {
 
             // Add More Items
 
+            player.openInventory(inventory);
+
         }
 
         return false;
