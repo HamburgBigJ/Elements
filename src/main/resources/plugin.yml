@@ -57,6 +57,11 @@ commands:
     usage: /<command> <value>
     description: Set Max Flying
 
+  elementsinv:
+    permission: elements.elementsinv
+    usage: /<command>
+    description: Opens Elements Inventory
+
 
 worlds:
   world:

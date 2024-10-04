@@ -35,6 +35,8 @@
 
 **Errors:**
 - Spawn on every rejoin in the lobby.
+- Chek Barrale error
+- Interact with the villager Lotery Villager
 
 ---
 

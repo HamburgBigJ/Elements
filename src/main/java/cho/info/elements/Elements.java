@@ -3,6 +3,7 @@ package cho.info.elements;
 import cho.info.elements.commands.*;
 import cho.info.elements.generator.CustomOverworldGenerator;
 import cho.info.elements.managers.*;
+import cho.info.elements.player.PlayerJoinSpawn;
 import cho.info.elements.player.SelectClass;
 import cho.info.elements.player.SkillLevelManager;
 import cho.info.elements.player.blocks.CompresstCobbleDrop;
@@ -152,6 +153,7 @@ public final class Elements extends JavaPlugin implements Listener {
         pluginManager.registerEvents(new LoteryInteractStand(configManager, itemManager, items), this);
         pluginManager.registerEvents(new SmithInteractStand(configManager), this);
         pluginManager.registerEvents(new AnvilGuiFunction(itemManager), this);
+        pluginManager.registerEvents(new PlayerJoinSpawn(), this);
 
 
         // Register all commands
@@ -164,6 +166,7 @@ public final class Elements extends JavaPlugin implements Listener {
         this.getCommand("tpdungon").setExecutor(new DungeonTeleportCommand());
         this.getCommand("tphub").setExecutor(new HubTeleportCommand());
         this.getCommand("setmaxflying").setExecutor(new SetMaxFlyingSpeed());
+        this.getCommand("elementsinv").setExecutor(new ElementsInv(items));
 
 
 
