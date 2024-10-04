@@ -48,11 +48,10 @@ public class ForestingSkill implements Listener {
             Player player = event.getPlayer();
 
             // Retrieve the player's foresting XP and max XP from the configuration manager
-            Object forestingXpObj = configManager.getPlayerValue(player, "ForestingXp");
-            Object forestingMaxXpObj = configManager.getPlayerValue(player, "ForestingMaxXp");
 
-            int forestingXp = (forestingXpObj != null) ? (int) forestingXpObj : 0;
-            int forestingMaxXp = (forestingMaxXpObj != null) ? (int) forestingMaxXpObj : 0;
+            int forestingXp = (int) configManager.getPlayerValue(player, "ForestingXp");
+            int forestingMaxXp = (int) configManager.getPlayerValue(player, "ForestingMaxXp");
+
 
             // Increment the player's foresting XP
             forestingXp = forestingXp + 1;

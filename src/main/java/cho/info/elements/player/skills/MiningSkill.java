@@ -96,11 +96,9 @@ public class MiningSkill implements Listener {
 
     private void handleMiningXp(Player player, int xpMultiplier) {
         // Retrieve existing XP values
-        Object miningxpObj = configManager.getPlayerValue(player, "MiningXp");
-        Object miningMaxXpObj = configManager.getPlayerValue(player, "MiningMaxXp");
 
-        int miningMaxXp = (miningMaxXpObj != null) ? (int) miningMaxXpObj : 0;
-        int miningXp = (miningxpObj != null) ? (int) miningxpObj : 0;
+        int miningXp = (int) configManager.getPlayerValue(player, "MiningXp");
+        int miningMaxXp = (int) configManager.getPlayerValue(player, "MiningMaxXp");
 
         miningXp += 1; // Increase XP
 

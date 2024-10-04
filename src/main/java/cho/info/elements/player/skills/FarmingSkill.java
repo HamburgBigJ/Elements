@@ -58,11 +58,9 @@ public class FarmingSkill implements Listener {
 
                     Player player = event.getPlayer();
 
-                    Object farmingXpObj = configManager.getPlayerValue(player, "FarmingXp");
-                    Object farmingMaxXpObj = configManager.getPlayerValue(player, "FarmingMaxXp");
+                    int farmingXp = (int) configManager.getPlayerValue(player, "FarmingXp");
+                    int farmingMaxXp = (int) configManager.getPlayerValue(player, "FarmingMaxXp");
 
-                    int farmingXp = (farmingXpObj != null) ? (int) farmingXpObj : 0;
-                    int farmingMaxXp = (farmingMaxXpObj != null) ? (int) farmingMaxXpObj : 0;
 
                     farmingXp = farmingXp + 1;
 
@@ -89,11 +87,9 @@ public class FarmingSkill implements Listener {
 
             Player player = event.getPlayer();
 
-            Object farmingXpObj = configManager.getPlayerValue(player, "FarmingXp");
-            Object farmingMaxXpObj = configManager.getPlayerValue(player, "FarmingMaxXp");
+            int farmingXp = (int) configManager.getPlayerValue(player, "FarmingXp");
+            int farmingMaxXp = (int) configManager.getPlayerValue(player, "FarmingMaxXp");
 
-            int farmingXp = (farmingXpObj != null) ? (int) farmingXpObj : 0;
-            int farmingMaxXp = (farmingMaxXpObj != null) ? (int) farmingMaxXpObj : 0;
 
             farmingXp = farmingXp + 1;
 

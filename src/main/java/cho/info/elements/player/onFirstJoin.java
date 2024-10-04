@@ -54,7 +54,7 @@ public class onFirstJoin implements Listener {
             configManager.addValue(event.getPlayer(), "MiningMaxXp", 100);
 
             // Resources
-            configManager.addValue(event.getPlayer(), "Mana", 10);
+            configManager.addValue(event.getPlayer(), "Mana", 0);
             configManager.addValue(event.getPlayer(), "MaxMana", 20);
 
             // Reward

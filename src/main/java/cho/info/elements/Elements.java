@@ -73,6 +73,7 @@ public final class Elements extends JavaPlugin implements Listener {
     public CollectionListInv collectionListInv;
     public Items items;
     public LoteryVillagerStand loteryVillagerStand;
+    public ManaRefill manaRefill;
 
     @Override
     public void onEnable() {
@@ -85,10 +86,12 @@ public final class Elements extends JavaPlugin implements Listener {
         ecoShardRecepie = new EcoShardRecepie(this);
         collectionListInv = new CollectionListInv(this);
         items = new Items(itemManager);
+        manaRefill = new ManaRefill(this, configManager, itemManager);
 
         serverLogo();
 
-
+        //Init Mana
+        manaRefill.initManaRefill();
 
 
         // Initialisiere VillagersInHub
@@ -116,7 +119,6 @@ public final class Elements extends JavaPlugin implements Listener {
         pluginManager.registerEvents(new FarmingSkill(this, configManager), this);
         pluginManager.registerEvents(new ForestingSkill(this, configManager), this);
         pluginManager.registerEvents(new EnderChest(this, configManager, publicVariableManager, itemManager), this);
-        pluginManager.registerEvents(new ManaRefill(this, configManager, itemManager), this);
         pluginManager.registerEvents(new SteinSpalterHit(itemManager, mobManager), this);
         pluginManager.registerEvents(new HubWeather(), this);
         pluginManager.registerEvents(new CompresstCobbleDrop(itemManager), this);
@@ -340,10 +342,8 @@ public final class Elements extends JavaPlugin implements Listener {
 
 
         //Spawn Villager
-        Object stageobj = configManager.getPublicVar("Stage");
 
-        int stage = (stageobj != null) ? (int) stageobj : 0;
-
+        int stage = (configManager.getPublicVar("Stage") != null) ? (int) configManager.getPublicVar("Stage") : 0;
         int loteryVillagerstage = (configManager.getPublicVar("LoteryVillager") != null) ? (int) configManager.getPublicVar("LoteryVillager") : 0;
         int smitherVillagerstage = (configManager.getPublicVar("SmithithVillager") != null) ? (int) configManager.getPublicVar("SmithithVillager") : 0;
         int libarianVillagerstage = (configManager.getPublicVar("LibarianVillager") != null) ? (int) configManager.getPublicVar("LibarianVillager") : 0;

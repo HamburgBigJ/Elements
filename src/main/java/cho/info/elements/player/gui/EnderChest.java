@@ -128,13 +128,11 @@ public class EnderChest implements Listener {
                         //Stats Item
 
                         //Vars
-                        Object miningLvObj = configManager.getPlayerValue(player, "MiningLv");
-                        Object forestryLvObj = configManager.getPlayerValue(player, "ForestingLv");
-                        Object farmingLvObj = configManager.getPlayerValue(player, "FarmingLv");
 
-                        int miningLv = (miningLvObj != null) ? (int) miningLvObj : 0;
-                        int forestingLv = (forestryLvObj != null) ? (int) forestryLvObj : 0;
-                        int farmingLv = (farmingLvObj != null) ? (int) farmingLvObj :0;
+                        int miningLv = (int) configManager.getPlayerValue(player, "MiningLv");
+                        int forestingLv = (int) configManager.getPlayerValue(player, "ForestingLv");
+                        int farmingLv = (int) configManager.getPlayerValue(player, "FarmingLv");
+
 
 
                         List<String> statitemlore = itemManager.createLore(
@@ -337,13 +335,11 @@ public class EnderChest implements Listener {
 
 
                         //Vars
-                        Object miningLvObj = configManager.getPlayerValue(player, "MiningLv");
-                        Object forestryLvObj = configManager.getPlayerValue(player, "ForestingLv");
-                        Object farmingLvObj = configManager.getPlayerValue(player, "FarmingLv");
 
-                        int miningLv = (miningLvObj != null) ? (int) miningLvObj : 0;
-                        int forestingLv = (forestryLvObj != null) ? (int) forestryLvObj : 0;
-                        int farmingLv = (farmingLvObj != null) ? (int) farmingLvObj :0;
+                        int miningLv = (int) configManager.getPlayerValue(player, "MiningLv");
+                        int forestingLv = (int) configManager.getPlayerValue(player, "ForestingLv");
+                        int farmingLv = (int) configManager.getPlayerValue(player, "FarmingLv");
+
 
 
                         List<String> statitemlore = itemManager.createLore(
