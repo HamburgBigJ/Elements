@@ -20,7 +20,7 @@ public class Items {
     public ItemStack lebensFrucht(int amount) {
 
         List<String> lebensFruchtLore = itemManager.createLore(ChatColor.GRAY + "Click to Consume");
-        ItemStack lebensFrucht = itemManager.createItem(Material.APPLE, amount, ChatColor.GREEN + "Lebens Frucht", lebensFruchtLore);
+        ItemStack lebensFrucht = itemManager.createItem(Material.FERMENTED_SPIDER_EYE, amount, ChatColor.GOLD + "Health Fruit", lebensFruchtLore);
         if (lebensFrucht.getItemMeta() != null) {
             ItemMeta lebensFruchtMeta = lebensFrucht.getItemMeta();
 
@@ -50,7 +50,7 @@ public class Items {
 
     public ItemStack upgradeItem(int amount) {
         List<String> upgradeItemLore = itemManager.createLore(ChatColor.GRAY + "Upgrade your items!");
-        ItemStack upgradeItem = itemManager.createItem(Material.ANVIL, amount, ChatColor.GREEN + "Upgrade Item", upgradeItemLore);
+        ItemStack upgradeItem = itemManager.createItem(Material.BOLT_ARMOR_TRIM_SMITHING_TEMPLATE, amount, ChatColor.GREEN + "Upgrade Item", upgradeItemLore);
 
         if (upgradeItem.getItemMeta() != null) {
             ItemMeta upgradeItemMeta = upgradeItem.getItemMeta();
