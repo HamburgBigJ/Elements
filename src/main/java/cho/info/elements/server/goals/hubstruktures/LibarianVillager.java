@@ -81,6 +81,8 @@ public class LibarianVillager implements Listener {
 
                     // Führe den Clone-Befehl aus
                     Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "clone -34 81 69 -40 77 65 -11 69 3");
+
+                    configManager.setPublicVar("LibarianVillager", 1);
                 }
 
                 if (player.getLevel() >= 10) {

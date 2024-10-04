@@ -23,12 +23,11 @@
 - Implement all villager shops.
 - Implement the Gravity Stone.
 - Create all 27 Unite Items.
-- Add 3 villagers.
 - Implement ElementHoe logic in `player/skills/FarmingSkill.java`.
 - Update MobManager to work without BossBar.
-- Added collection villager in hub at `7 69 -8`.
 - Leader Bords
 - Dungeon Editor
+- Finish Anvil gui in `server/villagers/stants/inventory/AncilGuiFunction.java`.
 
 **Ideas:**
 - Combat skills.

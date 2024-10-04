@@ -77,6 +77,8 @@ public class EnderVillager implements Listener {
 
                     // Führe den Clone-Befehl aus
                     Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "clone -24 81 65 -18 77 69 7 69 -5");
+
+                    configManager.setPublicVar("EnderVillager", 1);
                 }
 
                 if (player.getLevel() >= 10) {

@@ -78,6 +78,8 @@ public class SmitherVillager implements Listener {
                     //Clones
 
                     Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "clone -32 81 65 -26 77 69 -11 69 -5");
+
+                    configManager.setPublicVar("SmithithVillager", 1);
                 }
 
                 if (player.getLevel() >= 10) {

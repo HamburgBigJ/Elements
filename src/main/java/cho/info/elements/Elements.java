@@ -2,9 +2,7 @@ package cho.info.elements;
 
 import cho.info.elements.commands.*;
 import cho.info.elements.generator.CustomOverworldGenerator;
-import cho.info.elements.generator.SkyblockWorldGenerator;
 import cho.info.elements.managers.*;
-import cho.info.elements.player.PlayerJoin;
 import cho.info.elements.player.SelectClass;
 import cho.info.elements.player.SkillLevelManager;
 import cho.info.elements.player.blocks.CompresstCobbleDrop;
@@ -31,26 +29,26 @@ import cho.info.elements.server.goals.hubstruktures.LotaryVillager;
 import cho.info.elements.server.goals.hubstruktures.SmitherVillager;
 import cho.info.elements.server.goals.second.SecondGoal;
 import cho.info.elements.server.goals.second.SecondGoalVillager;
+import cho.info.elements.server.items.Items;
 import cho.info.elements.server.mapedit.HubBlockBreak;
 import cho.info.elements.server.recepies.EcoShardRecepie;
 import cho.info.elements.server.servergoals.CheckBarrel;
 import cho.info.elements.server.serverhealt.TpsMonitor;
 import cho.info.elements.server.villagers.VillagerInHubTirTwo;
+import cho.info.elements.server.villagers.stants.LoteryInteractStand;
+import cho.info.elements.server.villagers.stants.LoteryVillagerStand;
+import cho.info.elements.server.villagers.stants.SmithInteractStand;
+import cho.info.elements.server.villagers.stants.SmithVillagerStand;
+import cho.info.elements.server.villagers.stants.inventory.AnvilGuiFunction;
 import org.bukkit.*;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.server.ServerLoadEvent;
 import org.bukkit.generator.ChunkGenerator;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-import cho.info.elements.generator.SkyblockWorldGenerator;
 import org.bukkit.scheduler.BukkitRunnable;
-
-import java.util.Set;
 
 public final class Elements extends JavaPlugin implements Listener {
 
@@ -73,6 +71,8 @@ public final class Elements extends JavaPlugin implements Listener {
     public VillagerInHubTirTwo villagerInHubTirTwo;
     public EcoShardRecepie ecoShardRecepie;
     public CollectionListInv collectionListInv;
+    public Items items;
+    public LoteryVillagerStand loteryVillagerStand;
 
     @Override
     public void onEnable() {
@@ -84,6 +84,7 @@ public final class Elements extends JavaPlugin implements Listener {
         this.mobManager = new MobManager(this);
         ecoShardRecepie = new EcoShardRecepie(this);
         collectionListInv = new CollectionListInv(this);
+        items = new Items(itemManager);
 
         serverLogo();
 
@@ -132,7 +133,6 @@ public final class Elements extends JavaPlugin implements Listener {
         pluginManager.registerEvents(new CollectionInv(this, configManager, itemManager, collectionListInv), this);
         pluginManager.registerEvents(new TpsMonitor(this), this);
         pluginManager.registerEvents(new SecondGoal(configManager), this);
-        pluginManager.registerEvents(new PlayerJoin(this), this);
         pluginManager.registerEvents(new AmatystCollection(configManager), this);
         pluginManager.registerEvents(new AppleCollection(configManager), this);
         pluginManager.registerEvents(new CarrotCollection(configManager), this);
@@ -147,6 +147,9 @@ public final class Elements extends JavaPlugin implements Listener {
         pluginManager.registerEvents(new CollectRegister(configManager, itemManager), this);
         pluginManager.registerEvents(new HealtFrutItem(configManager, itemManager), this);
         pluginManager.registerEvents(new CheckBarrel(this, configManager), this);
+        pluginManager.registerEvents(new LoteryInteractStand(configManager, itemManager, items), this);
+        pluginManager.registerEvents(new SmithInteractStand(configManager), this);
+        pluginManager.registerEvents(new AnvilGuiFunction(itemManager), this);
 
 
         // Register all commands
@@ -209,6 +212,12 @@ public final class Elements extends JavaPlugin implements Listener {
         //Goal
         configManager.setPublicVar("Goal", 0);
         configManager.setPublicVar("GoalMax", 1000);
+
+        //Stände
+        configManager.addPublicVar("LoteryVillager", 0);
+        configManager.addPublicVar("SmithithVillager", 0);
+        configManager.addPublicVar("LibarianVillager", 0);
+        configManager.addPublicVar("EnderVillager", 0);
 
         // Note: Villagers after startup !!!
 
@@ -319,6 +328,12 @@ public final class Elements extends JavaPlugin implements Listener {
 
         SecondGoalVillager secondGoalVillager = new SecondGoalVillager(configManager);
 
+        LoteryVillagerStand loteryVillagerStand = new LoteryVillagerStand();
+
+        SmithVillagerStand smithVillagerStand = new SmithVillagerStand();
+
+
+
 
 
         killAllVillagersInOverworld();
@@ -328,6 +343,36 @@ public final class Elements extends JavaPlugin implements Listener {
         Object stageobj = configManager.getPublicVar("Stage");
 
         int stage = (stageobj != null) ? (int) stageobj : 0;
+
+        int loteryVillagerstage = (configManager.getPublicVar("LoteryVillager") != null) ? (int) configManager.getPublicVar("LoteryVillager") : 0;
+        int smitherVillagerstage = (configManager.getPublicVar("SmithithVillager") != null) ? (int) configManager.getPublicVar("SmithithVillager") : 0;
+        int libarianVillagerstage = (configManager.getPublicVar("LibarianVillager") != null) ? (int) configManager.getPublicVar("LibarianVillager") : 0;
+        int enderVillagerstage = (configManager.getPublicVar("EnderVillager") != null) ? (int) configManager.getPublicVar("EnderVillager") : 0;
+
+        if (loteryVillagerstage == 1) {
+
+            loteryVillagerStand.spawnVillagerLotery();
+
+
+        }
+
+        if (smitherVillagerstage == 1) {
+            smithVillagerStand.spawnVillagerSmith();
+
+        }
+
+        if (libarianVillagerstage == 1) {
+            //Fix
+
+        }
+
+        if (enderVillagerstage == 1) {
+
+            //Fix
+
+        }
+
+
 
         if (stage >= 1) {
 

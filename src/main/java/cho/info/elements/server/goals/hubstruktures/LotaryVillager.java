@@ -82,6 +82,8 @@ public class LotaryVillager implements Listener {
 
                     // Führe den Clone-Befehl aus
                     Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "clone -10 82 69 -16 77 65 7 69 3");
+
+                    configManager.setPublicVar("LoteryVillager", 1);
                 }
 
                 if (player.getLevel() >= 10) {
