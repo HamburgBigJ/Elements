@@ -6,7 +6,7 @@
 
     <groupId>cho.info</groupId>
     <artifactId>Elements</artifactId>
-    <version>0.5</version>
+    <version>0.6</version>
     <packaging>jar</packaging>
 
     <name>Elements</name>
