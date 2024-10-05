@@ -13,7 +13,7 @@ import org.bukkit.inventory.ItemStack;
 
 public class AnvilGuiFunction implements Listener {
 
-    private final ItemManager itemManager;
+    public ItemManager itemManager;
 
     public AnvilGuiFunction(ItemManager itemManager) {
         this.itemManager = itemManager;
