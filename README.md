@@ -28,6 +28,7 @@
 - Leader Bords
 - Dungeon Editor
 - Finish Anvil gui in `server/villagers/stants/inventory/AncilGuiFunction.java`.
+- Better Random Reword + other system
 
 **Ideas:**
 - Combat skills.
