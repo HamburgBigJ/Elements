@@ -1,6 +1,6 @@
 # Elements Project by HamburgBigJ
 
-**Note:** Changes have been made. This is not a recreation but a similar project.
+**Note:** Some modifications have been made. This is not a direct recreation but a similar project.
 
 <p align="center">
     <a href="https://www.codefactor.io/repository/github/hamburgbigj/elements/overview/master" alt="CodeFactor Score">
@@ -16,32 +16,40 @@
 
 ---
 
-**To Do:**
+**To-Do List:**
 - Implement the mana refill system in `player/mana/ManaRefill.java`.
-- Complete the story.
+- Complete the storyline.
 - Add tags before player names.
 - Implement all villager shops.
 - Implement the Gravity Stone.
 - Create all 27 Unite Items.
 - Implement ElementHoe logic in `player/skills/FarmingSkill.java`.
-- Update MobManager to work without BossBar.
-- Leader Bords
-- Dungeon Editor
-- Finish Anvil gui in `server/villagers/stants/inventory/AncilGuiFunction.java`.
-- Better Random Reword + other system
+- Update `MobManager` to function without `BossBar`.
+- Implement leaderboards.
+- Add a Dungeon Editor.
+- Finish the Anvil GUI in `server/villagers/stants/inventory/AnvilGuiFunction.java`.
+- Improve the random reward system and other mechanics.
+- Create a Boss Bar for the collection barrel's objective.
+- Finish the display cases in the hub.
+- Add a crate display entity for the goal of reaching level 10,000,000.
 
 **Ideas:**
-- Combat skills.
-- Crafting skills.
+- Add combat skills.
+- Add crafting skills.
 
 **Errors:**
-- Chek Barrale error
-- Graventy stone nor working
+- Fix barrel check error.
+- Gravity stone not working.
+- First hall villager interaction issues.
+- Smith villager interaction issues.
+- Villagers not spawning after structure generation.
+- Villagers not spawning after upgrading the barrel.
+- Lottery villager in the dropper not functioning properly.
 
 ---
 
-**Installation**
-1. Set spawn protection to 0.
+**Installation Instructions:**
+1. Set `spawn-protection` to 0.
 2. Enable command blocks (`enable-command-block` to true).
 3. World configuration:
    ```yaml
