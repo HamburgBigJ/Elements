@@ -34,11 +34,8 @@
 - Crafting skills.
 
 **Errors:**
-- Spawn on every rejoin in the lobby.
 - Chek Barrale error
-- Interact with the villager Lotery Villager
 - Graventy stone nor working
-- Smith Villager interaction nor working
 
 ---
 

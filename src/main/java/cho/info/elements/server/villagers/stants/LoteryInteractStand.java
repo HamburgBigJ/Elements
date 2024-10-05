@@ -30,7 +30,7 @@ public class LoteryInteractStand implements Listener {
 
         if (entity instanceof Villager) {
             Villager villager = (Villager) entity;
-            if (villager.getCustomName().equals(ChatColor.GREEN + "Lotery Villager")) {
+            if (villager.getCustomName().equals(ChatColor.DARK_AQUA + "Lotery Villager")) {
 
                 if (player.getLevel() >= 1000) {
                     player.setLevel(player.getLevel() - 1000);

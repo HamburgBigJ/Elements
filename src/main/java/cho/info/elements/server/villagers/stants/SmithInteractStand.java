@@ -50,6 +50,7 @@ public class SmithInteractStand implements Listener {
                 anvilInventory.setItem(14, air);
                 anvilInventory.setItem(17, air);
 
+                player.openInventory(anvilInventory);
 
 
             }
