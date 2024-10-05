@@ -224,6 +224,28 @@ public final class Elements extends JavaPlugin implements Listener {
         configManager.addPublicVar("LibarianVillager", 0);
         configManager.addPublicVar("EnderVillager", 0);
 
+        // Leader Bord
+
+        configManager.addPublicVar("FarmingLv1", "No Player");
+        configManager.addPublicVar("FarmingLv2", "No Player");
+        configManager.addPublicVar("FarmingLv3", "No Player");
+        configManager.addPublicVar("FarmingLv4", "No Player");
+
+        configManager.addPublicVar("ForestingLv1", "No Player");
+        configManager.addPublicVar("ForestingLv2", "No Player");
+        configManager.addPublicVar("ForestingLv3", "No Player");
+        configManager.addPublicVar("ForestingLv4", "No Player");
+
+        configManager.addPublicVar("MiningLv1", "No Player");
+        configManager.addPublicVar("MiningLv2", "No Player");
+        configManager.addPublicVar("MiningLv3", "No Player");
+        configManager.addPublicVar("MiningLv4", "No Player");
+
+        configManager.addPublicVar("PlayerLv1", "No Player");
+        configManager.addPublicVar("PlayerLv2", "No Player");
+        configManager.addPublicVar("PlayerLv3", "No Player");
+        configManager.addPublicVar("PlayerLv4", "No Player");
+
         // Note: Villagers after startup !!!
 
         //Recepis

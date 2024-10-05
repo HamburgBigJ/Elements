@@ -83,6 +83,12 @@ public class onFirstJoin implements Listener {
             // Techniker Stage
             configManager.addValue(event.getPlayer(), "TechnikerStage", 0);
 
+            //Villagers
+            configManager.addValue(event.getPlayer(), "SmithStage", 0);
+            configManager.addValue(event.getPlayer(), "LoteryStage", 0);
+            configManager.addValue(event.getPlayer(), "LibarianStage", 0);
+            configManager.addValue(event.getPlayer(), "EnderStage", 0);
+
             int playerCount = (configManager.getPublicVar("TotalPlayer") != null) ? (int) configManager.getPublicVar("TotalPlayer") : 0;
 
             playerCount = playerCount + 1;

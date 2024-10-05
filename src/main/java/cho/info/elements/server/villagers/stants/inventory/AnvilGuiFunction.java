@@ -44,7 +44,7 @@ public class AnvilGuiFunction implements Listener {
                     // Upgrade the item
                     if (item.getItemMeta().getDisplayName().toString().startsWith(ChatColor.GREEN + "Element")) {
 
-
+                        //Function to upgrade the item
                     }
 
 
