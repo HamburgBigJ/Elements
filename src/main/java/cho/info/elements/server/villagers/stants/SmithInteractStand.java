@@ -27,7 +27,7 @@ public class SmithInteractStand implements Listener {
         Player player = event.getPlayer();
         Entity entity = event.getRightClicked();
 
-        if (event instanceof Villager) {
+        if (entity instanceof Villager) {
             Villager villager = (Villager) entity;
             if (villager.getCustomName().equals(ChatColor.DARK_AQUA + "Smith Villager")) {
                 Inventory anvilInventory = player.getServer().createInventory(null, 27, ChatColor.DARK_AQUA + "Upgrade your items!");

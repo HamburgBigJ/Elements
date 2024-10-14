@@ -51,9 +51,10 @@
 **Installation Instructions:**
 1. Set `spawn-protection` to 0.
 2. Enable command blocks (`enable-command-block` to true).
-3. World configuration:
+   3. World configuration:
    ```yaml
-   world:
-     generator: Elements:CustomOverworldGenerator
+   worlds:
+      world:
+        generator: Elements:CustomOverworldGenerator
    ```
 4. Drag and drop the plugin into the plugin folder.
