@@ -32,7 +32,7 @@ public class onFirstJoin implements Listener {
         } else {
             // The player is joining for the first time
             event.getPlayer().sendMessage("Welcome to your first visit, " + event.getPlayer().getName() + "!");
-            event.getPlayer().sendMessage(ChatColor.BLUE + "This server is Running Elements." +  plugin.getDescription().getVersion());
+            event.getPlayer().sendMessage(ChatColor.BLUE + "This server is Running Elements:" +  plugin.getDescription().getVersion());
             // Add the player to the configuration
             config.set("players." + playerUUID, true);
             plugin.saveConfig(); // Save the configuration
