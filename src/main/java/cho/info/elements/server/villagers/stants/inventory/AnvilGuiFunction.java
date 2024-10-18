@@ -31,7 +31,7 @@ public class AnvilGuiFunction implements Listener {
             // Allow interaction only for slots 11, 14, and 17
             if (slot != 11 && slot != 14 && slot != 17) {
                 event.setCancelled(true); // Cancel the event to prevent interaction
-                return; // Exit the method early since other slots are not allowed
+
             }
 
             // Handle actions based on the specific slot clicked

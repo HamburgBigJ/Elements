@@ -1,5 +1,6 @@
 package cho.info.elements.server.goals.hubstruktures;
 
+import cho.info.elements.Elements;
 import cho.info.elements.managers.ConfigManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -15,12 +16,14 @@ import org.bukkit.event.player.PlayerInteractEntityEvent;
 public class EnderVillager implements Listener {
 
     public ConfigManager configManager;
+    public Elements elements;
 
     private static final String VILLAGER_NAME_PREFIX = ChatColor.GOLD + "EnderVillager ";
     private static final String VILLAGER_NAME_SUFFIX = ChatColor.GOLD + " / ";
 
-    public EnderVillager(ConfigManager configManager) {
+    public EnderVillager(ConfigManager configManager, Elements elements) {
         this.configManager = configManager;
+        this.elements = elements;
     }
 
     public void villagerSpawn() {
@@ -79,6 +82,9 @@ public class EnderVillager implements Listener {
                     Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "clone -24 81 65 -18 77 69 7 69 -5");
 
                     configManager.setPublicVar("EnderVillager", 1);
+
+                    //Respawn Villagers
+                    elements.spawnvillager();
                 }
 
                 if (player.getLevel() >= 10) {

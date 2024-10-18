@@ -38,13 +38,10 @@
 - Add crafting skills.
 
 **Errors:**
-- Fix barrel check error.
+- Fix barrel
 - Gravity stone not working.
-- First hall villager interaction issues.
-- Smith villager interaction issues.
-- Villagers not spawning after structure generation.
 - Villagers not spawning after upgrading the barrel.
-- Lottery villager in the dropper not functioning properly.
+- Villager upgrade gui editable.
 
 ---
 
@@ -58,3 +55,4 @@
         generator: Elements:CustomOverworldGenerator
    ```
 4. Drag and drop the plugin into the plugin folder.
+5. Add plugin "WorldGard" & "WorldEdit" to the Plugins Folder.

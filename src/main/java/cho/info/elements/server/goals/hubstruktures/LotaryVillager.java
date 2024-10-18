@@ -1,5 +1,6 @@
 package cho.info.elements.server.goals.hubstruktures;
 
+import cho.info.elements.Elements;
 import cho.info.elements.managers.ConfigManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -16,12 +17,14 @@ public class LotaryVillager implements Listener {
 
 
     public ConfigManager configManager;
+    public Elements elements;
 
     private static final String VILLAGER_NAME_PREFIX = ChatColor.GOLD + "Lottery ";
     private static final String VILLAGER_NAME_SUFFIX = ChatColor.GOLD + " / ";
 
-    public LotaryVillager(ConfigManager configManager) {
+    public LotaryVillager(ConfigManager configManager, Elements elements) {
         this.configManager = configManager;
+        this.elements = elements;
     }
 
     public void villagerSpawn() {
@@ -84,6 +87,9 @@ public class LotaryVillager implements Listener {
                     Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "clone -10 82 69 -16 77 65 7 69 3");
 
                     configManager.setPublicVar("LoteryVillager", 1);
+
+                    //respawn the villager
+                    elements.spawnvillager();
                 }
 
                 if (player.getLevel() >= 10) {

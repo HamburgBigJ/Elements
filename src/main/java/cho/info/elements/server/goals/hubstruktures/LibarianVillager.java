@@ -1,5 +1,6 @@
 package cho.info.elements.server.goals.hubstruktures;
 
+import cho.info.elements.Elements;
 import cho.info.elements.managers.ConfigManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -15,12 +16,14 @@ import org.bukkit.event.player.PlayerInteractEntityEvent;
 public class LibarianVillager implements Listener {
 
     public ConfigManager configManager;
+    public Elements elements;
 
     private static final String VILLAGER_NAME_PREFIX = ChatColor.GOLD + "Librarian ";
     private static final String VILLAGER_NAME_SUFFIX = ChatColor.GOLD + " / ";
 
-    public LibarianVillager(ConfigManager configManager) {
+    public LibarianVillager(ConfigManager configManager, Elements elements) {
         this.configManager = configManager;
+        this.elements = elements;
     }
 
     public void villagerSpawn() {
@@ -83,6 +86,9 @@ public class LibarianVillager implements Listener {
                     Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "clone -34 81 69 -40 77 65 -11 69 3");
 
                     configManager.setPublicVar("LibarianVillager", 1);
+
+                    //respawn the villager
+                    elements.spawnvillager();
                 }
 
                 if (player.getLevel() >= 10) {

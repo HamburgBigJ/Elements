@@ -12,6 +12,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.List;
+
 public class CheckBarrel implements Listener {
 
     private final Elements plugin;
@@ -21,24 +23,22 @@ public class CheckBarrel implements Listener {
     private final Location barrelLocation = new Location(Bukkit.getWorld("world"), 8, 70, -8); // Ändere die Koordinaten nach Bedarf
     private final Location signLocation = new Location(Bukkit.getWorld("world"), 8, 71, -8); // Position für das Schild
 
-    private int stage;
 
     public CheckBarrel(Elements plugin, ConfigManager configManager) {
         this.plugin = plugin;
-        this.stage = 1; // Setze die anfängliche Stage hier (1, 2, 3 usw.)
         this.configManager = configManager; // Stelle sicher, dass configManager initialisiert ist
     }
 
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
         // Überprüfen, ob der Spieler mit einem Barrel interagiert
-        if (event.getClickedBlock() != null && event.getClickedBlock().getType() == Material.BARREL) {
-            stage = (int) configManager.getPublicVar("Stage"); // Hole die aktuelle Stage aus der Konfiguration
-            checkBarrel();
+        if (event.getClickedBlock() != null && event.getClickedBlock().getType() == Material.BARREL && event.getClickedBlock().getLocation().equals(barrelLocation)) {
+            int stage = (int) configManager.getPublicVar("Stage"); // Hole die aktuelle Stage aus der Konfiguration
+            checkBarrel(stage);
         }
     }
 
-    private void checkBarrel() {
+    private void checkBarrel(int stage) {
         if (barrelLocation.getBlock().getType() == Material.BARREL) {
             Barrel barrel = (Barrel) barrelLocation.getBlock().getState();
             ItemStack[] contents = barrel.getInventory().getContents();
@@ -56,7 +56,7 @@ public class CheckBarrel implements Listener {
                             itemCount += item.getAmount(); // Zähle die Menge jedes Items
                             if (item.getType() == Material.DEEPSLATE) {
                                 hasSpecificItem = true;
-                                updateGoal(itemCount);
+                                updateGoal(itemCount, stage);
                             }
                         }
                     }
@@ -68,7 +68,7 @@ public class CheckBarrel implements Listener {
                             itemCount += item.getAmount();
                             if (item.getType() == Material.GOLDEN_APPLE) {
                                 hasSpecificItem = true;
-                                updateGoal(itemCount);
+                                updateGoal(itemCount, stage);
                             }
                         }
                     }
@@ -80,7 +80,7 @@ public class CheckBarrel implements Listener {
                             itemCount += item.getAmount();
                             if (item.getType() == Material.DIAMOND) {
                                 hasSpecificItem = true;
-                                updateGoal(itemCount);
+                                updateGoal(itemCount, stage);
                             }
                         }
                     }
@@ -116,7 +116,7 @@ public class CheckBarrel implements Listener {
         plugin.getLogger().info("Schild aktualisiert: " + message);
     }
 
-    private void updateGoal(int itemCount) {
+    private void updateGoal(int itemCount, int stage) {
         int goal = (int) configManager.getPublicVar("Goal");
         int maxGoal = (int) configManager.getPublicVar("GoalMax");
 

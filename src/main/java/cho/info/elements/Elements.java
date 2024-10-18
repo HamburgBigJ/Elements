@@ -124,14 +124,14 @@ public final class Elements extends JavaPlugin implements Listener {
         pluginManager.registerEvents(new HubWeather(), this);
         pluginManager.registerEvents(new CompresstCobbleDrop(itemManager), this);
         pluginManager.registerEvents(new LoadPlayer(configManager), this);
-        pluginManager.registerEvents(new FirstGoal(this, configManager), this);
+        pluginManager.registerEvents(new FirstGoal(configManager), this);
         pluginManager.registerEvents(new SelectClass(configManager), this);
         pluginManager.registerEvents(new VillagerTechniker(configManager), this);
-        pluginManager.registerEvents(new SmitherVillager(configManager), this);
+        pluginManager.registerEvents(new SmitherVillager(configManager, this), this);
         pluginManager.registerEvents(new HubBlockBreak(), this);
-        pluginManager.registerEvents(new LibarianVillager(configManager), this);
-        pluginManager.registerEvents(new EnderVillager(configManager), this);
-        pluginManager.registerEvents(new LotaryVillager(configManager), this);
+        pluginManager.registerEvents(new LibarianVillager(configManager, this), this);
+        pluginManager.registerEvents(new EnderVillager(configManager, this), this);
+        pluginManager.registerEvents(new LotaryVillager(configManager, this), this);
         pluginManager.registerEvents(new PlayerRespawn(this, configManager), this);
         pluginManager.registerEvents(new CollectionInv(this, configManager, itemManager, collectionListInv), this);
         pluginManager.registerEvents(new TpsMonitor(this), this);
@@ -152,7 +152,7 @@ public final class Elements extends JavaPlugin implements Listener {
         pluginManager.registerEvents(new CheckBarrel(this, configManager), this);
         pluginManager.registerEvents(new LoteryInteractStand(configManager, itemManager, items), this);
         pluginManager.registerEvents(new SmithInteractStand(configManager), this);
-        pluginManager.registerEvents(new AnvilGuiFunction(itemManager), this);
+        pluginManager.registerEvents(new AnvilGuiFunction(itemManager), this); // Register the AnvilGuiFunction
         pluginManager.registerEvents(new PlayerJoinSpawn(), this);
 
 
@@ -245,6 +245,9 @@ public final class Elements extends JavaPlugin implements Listener {
         configManager.addPublicVar("PlayerLv2", "No Player");
         configManager.addPublicVar("PlayerLv3", "No Player");
         configManager.addPublicVar("PlayerLv4", "No Player");
+
+
+        getLogger().info("Register all Variables");
 
         // Note: Villagers after startup !!!
 
@@ -345,13 +348,13 @@ public final class Elements extends JavaPlugin implements Listener {
 
         VillagerTechniker villagerTechniker = new VillagerTechniker(configManager);
 
-        SmitherVillager smitherVillager = new SmitherVillager(configManager);
+        SmitherVillager smitherVillager = new SmitherVillager(configManager, this);
 
-        LibarianVillager libarianVillager = new LibarianVillager(configManager);
+        LibarianVillager libarianVillager = new LibarianVillager(configManager, this);
 
-        EnderVillager enderVillager = new EnderVillager(configManager);
+        EnderVillager enderVillager = new EnderVillager(configManager, this);
 
-        LotaryVillager lotaryVillager = new LotaryVillager(configManager);
+        LotaryVillager lotaryVillager = new LotaryVillager(configManager, this);
 
         SecondGoalVillager secondGoalVillager = new SecondGoalVillager(configManager);
 

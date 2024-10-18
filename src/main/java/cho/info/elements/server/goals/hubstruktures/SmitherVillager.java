@@ -1,5 +1,6 @@
 package cho.info.elements.server.goals.hubstruktures;
 
+import cho.info.elements.Elements;
 import cho.info.elements.managers.ConfigManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -18,9 +19,11 @@ public class SmitherVillager implements Listener {
     private static final String VILLAGER_NAME_SUFFIX = ChatColor.GOLD + " / ";
 
     private final ConfigManager configManager;
+    public Elements elements;
 
-    public SmitherVillager(ConfigManager configManager) {
+    public SmitherVillager(ConfigManager configManager, Elements elements) {
         this.configManager = configManager;
+        this.elements = elements;
     }
 
     public void villagerSpawn() {
@@ -80,6 +83,9 @@ public class SmitherVillager implements Listener {
                     Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "clone -32 81 65 -26 77 69 -11 69 -5");
 
                     configManager.setPublicVar("SmithithVillager", 1);
+
+                    //Respawn All Villagers
+                    elements.spawnvillager();
                 }
 
                 if (player.getLevel() >= 10) {
