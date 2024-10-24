@@ -41,7 +41,7 @@ public class ManaRefill implements Listener {
                     if (mana > maxMana) {
                         mana = maxMana;
                     } else {
-                        // Update the player's mana
+                            // Update the player's mana
                         player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.DARK_AQUA + "Mana: " + mana + " / " + maxMana + "             "));
                     }
 

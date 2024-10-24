@@ -152,7 +152,7 @@ public final class Elements extends JavaPlugin implements Listener {
         pluginManager.registerEvents(new CheckBarrel(this, configManager), this);
         pluginManager.registerEvents(new LoteryInteractStand(configManager, itemManager, items), this);
         pluginManager.registerEvents(new SmithInteractStand(configManager), this);
-        pluginManager.registerEvents(new AnvilGuiFunction(itemManager), this); // Register the AnvilGuiFunction
+        pluginManager.registerEvents(new AnvilGuiFunction(itemManager, this), this); // Register the AnvilGuiFunction
         pluginManager.registerEvents(new PlayerJoinSpawn(), this);
 
 

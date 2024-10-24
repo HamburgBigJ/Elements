@@ -1,5 +1,6 @@
 package cho.info.elements.server.villagers.stants.inventory;
 
+import cho.info.elements.Elements;
 import cho.info.elements.managers.ItemManager;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -14,9 +15,11 @@ import org.bukkit.inventory.ItemStack;
 public class AnvilGuiFunction implements Listener {
 
     public ItemManager itemManager;
+    public Elements elements;
 
-    public AnvilGuiFunction(ItemManager itemManager) {
+    public AnvilGuiFunction(ItemManager itemManager, Elements elements) {
         this.itemManager = itemManager;
+        this.elements = elements;
     }
 
     @EventHandler
@@ -45,15 +48,20 @@ public class AnvilGuiFunction implements Listener {
                     if (item.getItemMeta().getDisplayName().toString().startsWith(ChatColor.GREEN + "Element")) {
 
                         //Function to upgrade the item
+                        elements.getLogger().info("Elements Test");
+
                     }
 
 
                 }
             } else if (slot == 14) {
                 // Handle slot 14
+                elements.getLogger().info("Elements Test");
+                
 
             } else if (slot == 17) {
                 // Handle slot 17
+                elements.getLogger().info("Elements Test");
 
             }
         }
