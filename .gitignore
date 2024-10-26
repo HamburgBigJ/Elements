@@ -9,6 +9,7 @@
 out/
 
 
+
 # Log file
 *.log
 
@@ -108,3 +109,26 @@ buildNumber.properties
 
 # Common working directory
 run/
+
+#Server
+Server/world
+Server/world_dungeon
+Server/world_nether
+Server/world_skyblock
+Server/world_the_end
+Server/world_whater
+
+Server/versions
+Server/libraries
+Server/logs
+
+Server/whitelist.json
+Server/banned-ips.json
+Server/banned-players.json
+Server/spigot.yml
+Server/wepif.yml
+Server/usercache.json
+Server/help.yml
+Server/permissions.yml
+Server/version_history.json
+
